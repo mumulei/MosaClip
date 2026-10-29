@@ -517,7 +517,7 @@ footer > span {
   }
   .hero-description {
     font-size: 14px;
-    margin: 9.2px 0 23px;
+    margin: 23px 0;
     line-height: 1.9;
     max-width: 340px;
     margin-left: auto;
