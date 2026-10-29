@@ -622,8 +622,8 @@ export function App() {
             {t.dialogCta}
             <Icon name="arrow-down" size={15} />
           </Action>
-          <a className="release-page-link" href={releaseURL} target="_blank" rel="noopener noreferrer">{t.releasePage}</a>
-          <p>{t.dialogDescription}</p>
+          <a className="release-page-link" href={releaseURL} target="_blank" rel="noopener noreferrer"><Icon name="github" size={14} />{t.releasePage}</a>
+          <p className="dialog-installation">{t.dialogDescription}</p>
           <Smooth radius={12} className="release-note">
             <Icon name="info" size={18} />
             <p>{t.release}</p>
