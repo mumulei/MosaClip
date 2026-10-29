@@ -364,6 +364,10 @@ footer > span {
 }
 .dialog-body {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
   text-align: center;
   padding: 36px 30px 30px;
   background: white;
@@ -371,6 +375,7 @@ footer > span {
   border-radius: 24px;
   box-shadow: 0 30px 100px #10172c33;
 }
+.dialog-body > form { position: absolute; top: 0; right: 0; left: 0; margin: 0; }
 .dialog-close {
   position: absolute;
   right: 16px;
@@ -383,12 +388,12 @@ footer > span {
   width: 58px;
   height: 58px;
   border-radius: 14px;
-  margin: 0 auto 22px;
+  margin: 0 auto 20px;
 }
 .dialog-body h2 {
   font-size: 23px;
   font-weight: 550;
-  margin: 15px 0;
+  margin: 0 0 12px;
   line-height: 1.5;
 }
 .dialog-body > p {
@@ -405,7 +410,8 @@ footer > span {
   text-align: left;
   padding: 14px;
   border-radius: 12px;
-  margin: 9.2px 0 23px;
+  width: 100%;
+  margin: 0;
 }
 .release-note > .ui-icon {
   margin-top: 4px;
@@ -423,7 +429,7 @@ footer > span {
 .dialog-body > .dialog-requirements {
   color: #a2a6ae;
   font-size: 12px;
-  margin: 17px 0 0;
+  margin: 12px 0 16px;
 }
 @media (min-width: 1440px) {
   .header-inner,

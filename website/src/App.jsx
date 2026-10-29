@@ -604,7 +604,7 @@ export function App() {
           if (event.target === dialog.current) dialog.current.close();
         }}
       >
-        <Smooth radius={24} className="dialog-body">
+        <Smooth radius={24} className="dialog-body" autoEffects={false}>
           <form method="dialog">
             <Smooth
               as="button"
@@ -624,7 +624,7 @@ export function App() {
             <Icon name="arrow-down" size={15} />
           </Action>
           <p className="dialog-requirements">{t.requirements}</p>
-          <Smooth radius={12} className="release-note">
+          <Smooth radius={12} className="release-note" autoEffects={false}>
             <ol className="installation-steps">
               <li><p>{t.dialogDescription}</p></li>
               <li><p>{t.release}</p></li>
