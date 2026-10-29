@@ -53,7 +53,7 @@ const copy = {
     closingTitle: "好内容，值得再用一次。",
     closingDescription: "给每一个复制的片段，一个随时可回的地方。",
     close: "关闭",
-    dialogTitle: "获取 MosaClip 0.5.0 测试版",
+    dialogTitle: "获取 MosaClip",
     dialogDescription: "打开 DMG，将 MosaClip 拖入「应用程序」文件夹。",
     release:
       "若提示无法打开，请前往「系统设置 → 隐私与安全性」，点击「仍要打开」并完成验证。",
@@ -112,7 +112,7 @@ const copy = {
     closingTitle: "Good things deserve another paste.",
     closingDescription: "Give everything you copy a place to come back to.",
     close: "Close",
-    dialogTitle: "Get MosaClip 0.5.0 Test Build",
+    dialogTitle: "Get MosaClip",
     dialogDescription:
       "Open the DMG and drag MosaClip into Applications.",
     release:
