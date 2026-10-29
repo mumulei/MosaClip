@@ -54,12 +54,12 @@ const copy = {
     closingDescription: "给每一个复制的片段，一个随时可回的地方。",
     preview: "获取 MosaClip",
     close: "关闭",
-    dialogTitle: "获取 MosaClip 0.5.0",
-    dialogDescription: "适用于 Apple Silicon Mac 的测试版本。下载后打开 DMG，将 MosaClip 拖入应用程序文件夹。",
+    dialogTitle: "获取 MosaClip 0.5.0 测试版",
+    dialogDescription: "打开 DMG，将 MosaClip 拖入「应用程序」文件夹。",
     release:
-      "这是采用 ad-hoc 签名的未公证测试版，macOS 可能阻止首次打开。请在发布页核对 SHA-256；它不是经过 Apple 认证的正式安装包。",
+      "若提示无法打开，请前往「系统设置 → 隐私与安全性」，点击「仍要打开」并完成验证。",
     dialogCta: "下载 0.5.0 · Apple Silicon",
-    releasePage: "发布说明与校验值",
+    releasePage: "发布说明",
     requirements: "需要 macOS 14 或更高版本 · Apple Silicon",
     home: "MosaClip 首页",
     pageTitle: "MosaClip — 复制的每一刻，都能随时回到手边。",
@@ -114,13 +114,13 @@ const copy = {
     closingDescription: "Give everything you copy a place to come back to.",
     preview: "Get MosaClip",
     close: "Close",
-    dialogTitle: "Get MosaClip 0.5.0",
+    dialogTitle: "Get MosaClip 0.5.0 Test Build",
     dialogDescription:
-      "A test build for Apple Silicon Macs. Open the DMG and drag MosaClip into Applications.",
+      "Open the DMG and drag MosaClip into Applications.",
     release:
-      "This ad-hoc signed test build is not Apple-notarized. macOS may block its first launch. Verify its SHA-256 on the release page; this is not a production-certified installer.",
+      "If macOS blocks opening it, go to System Settings → Privacy & Security, click Open Anyway, and authenticate.",
     dialogCta: "Download 0.5.0 · Apple Silicon",
-    releasePage: "Release notes & checksums",
+    releasePage: "Release notes",
     requirements: "Requires macOS 14 or later · Apple Silicon",
     home: "MosaClip home",
     pageTitle: "MosaClip — Everything you copy, right where you need it.",
@@ -580,8 +580,9 @@ export function App() {
           <h2>{t.closingTitle}</h2>
           <p>{t.closingDescription}</p>
           <Action primary onClick={openDownload}>
-            {t.preview}
-            <Icon name="arrow-up-right" size={15} />
+            <Icon name="apple" size={17} />
+            {t.get}
+            <Icon name="arrow-down" size={15} />
           </Action>
         </section>
       </main>

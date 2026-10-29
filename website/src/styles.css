@@ -326,10 +326,6 @@ nav a:hover {
   margin: 0 0 25px;
   line-height: 1.8;
 }
-.closing > .button,
-.closing > div {
-  display: inline-block;
-}
 footer {
   max-width: 1000px;
   margin: auto;
@@ -634,7 +630,8 @@ footer > span {
   .hero-actions {
     gap: 8px;
   }
-  .hero-actions .button {
+  .hero-actions .button,
+  .closing > .button {
     padding: 0 12px;
     font-size: 11px;
   }
@@ -681,7 +678,8 @@ footer > span {
   }
 }
 @media (max-width: 360px) {
-  .hero-actions .button {
+  .hero-actions .button,
+  .closing > .button {
     padding: 0 8px;
     gap: 7px;
   }

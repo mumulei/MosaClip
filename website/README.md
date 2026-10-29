@@ -19,6 +19,14 @@ native screenshot carousel, reduced motion and keyboard dialog behavior. All app
 screenshots use demonstration content; do not publish user clipboard data.
 
 The acquisition dialog links directly to the explicitly authorized 0.5.0 ad-hoc
-test DMG, with its uncertified status and a release/checksum link. A production
+test DMG, with a test-build label, concise installation guidance and a release-notes link. A production
 DMG still requires the Developer ID/notarization pipeline. Fonts load from Xiaomi's MiSans CDN;
 other website artwork and UI icons are local assets. No clipboard access or analytics.
+
+## Standalone Vercel deployment
+
+Use the repository's `website` directory as the Vercel project root.
+`vercel.json` selects Vite, `npm run build`, and the `dist/client` output.
+Leave `VITE_BASE_PATH` unset (or `/`) for a standalone root-domain deployment.
+The existing portfolio URL remains live until the new production URL has been
+verified; update canonical/product links and the portfolio redirect afterward.
