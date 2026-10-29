@@ -618,16 +618,16 @@ export function App() {
           </form>
           <img src={asset("/assets/mosaclip-icon.png")} className="dialog-icon" alt="" />
           <h2 id="download-title">{t.dialogTitle}</h2>
-          <p>{t.dialogDescription}</p>
-          <Smooth radius={12} className="release-note">
-            <Icon name="info" size={18} />
-            <p>{t.release}</p>
-          </Smooth>
           <Action as="a" primary href={downloadURL}>
             {t.dialogCta}
             <Icon name="arrow-down" size={15} />
           </Action>
           <a className="release-page-link" href={releaseURL} target="_blank" rel="noopener noreferrer">{t.releasePage}</a>
+          <p>{t.dialogDescription}</p>
+          <Smooth radius={12} className="release-note">
+            <Icon name="info" size={18} />
+            <p>{t.release}</p>
+          </Smooth>
           <p className="dialog-requirements">{t.requirements}</p>
         </Smooth>
       </dialog>
