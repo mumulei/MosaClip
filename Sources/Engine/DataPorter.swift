@@ -1,0 +1,583 @@
+import Compression
+import Foundation
+import SwiftData
+
+// MARK: - Export Types
+
+struct ExportItem: Codable {
+    let content: String
+    let contentType: String
+    let sourceApp: String?
+    let sourceAppBundleID: String?
+    let isFavorite: Bool
+    let isPinned: Bool
+    let isSensitive: Bool
+    let createdAt: Date
+    let lastUsedAt: Date
+    let linkTitle: String?
+    let displayTitle: String?
+    let codeLanguage: String?
+    let imageDataBase64: String?
+    let faviconDataBase64: String?
+    let richTextDataBase64: String?
+    let richTextType: String?
+    let groupName: String?
+    let ocrText: String?
+    let ocrStatus: String?
+    let ocrUpdatedAt: Date?
+    let ocrErrorMessage: String?
+    let ocrVersion: Int?
+    /// The full-resolution original kept in the Originals cache, for clips whose `imageData`
+    /// is only a thumbnail. Optional both ways: older files lack it, older app versions skip it.
+    var originalImageBase64: String? = nil
+    // Same deal for the fields below, which earlier exports silently dropped.
+    /// Full pasteboard replay (Telegram custom emoji, Word / browser rich content).
+    var pasteboardSnapshotBase64: String? = nil
+    /// The file part of `.mixed` clips.
+    var filePaths: String? = nil
+    /// Original SMS behind an extracted verification code.
+    var smsMessageText: String? = nil
+    /// The AI Agent (MCP client) that wrote the clip.
+    var agentSource: String? = nil
+}
+
+struct ExportGroup: Codable {
+    let name: String
+    let icon: String
+    let sortOrder: Int
+    let color: String?
+    let preservesItems: Bool?
+}
+
+struct ExportRule: Codable {
+    let ruleID: String
+    let name: String
+    let enabled: Bool
+    let isBuiltIn: Bool
+    let sortOrder: Int
+    let triggerModeRaw: String
+    let notifyBeforeApply: Bool
+    let notifyOnTrigger: Bool
+    let writeBackToPasteboard: Bool
+    /// Absent in files written before output modes existed; falls back to
+    /// `writeBackToPasteboard` on import.
+    let outputModeRaw: String?
+    /// Folder / URL for the save-to-file and webhook outputs; absent in older files.
+    let outputParam: String?
+    let conditionLogicRaw: String
+    let conditionsDataBase64: String
+    let actionsDataBase64: String
+    let createdAt: Date
+    let updatedAt: Date
+}
+
+struct ExportPayload: Codable {
+    let version: Int
+    let exportDate: Date
+    let items: [ExportItem]
+    /// v2+. Absent in v1 files.
+    let groups: [ExportGroup]?
+    /// v2+. Absent in v1 files.
+    let rules: [ExportRule]?
+}
+
+struct ImportResult {
+    let imported: Int
+    let skipped: Int
+    let importedGroups: Int
+    let importedRules: Int
+
+    init(imported: Int, skipped: Int, importedGroups: Int = 0, importedRules: Int = 0) {
+        self.imported = imported
+        self.skipped = skipped
+        self.importedGroups = importedGroups
+        self.importedRules = importedRules
+    }
+}
+
+// MARK: - DataPorter
+
+enum DataPorter {
+
+    static let currentVersion = 2
+
+    static func exportItems(_ clipItems: [ClipItem]) throws -> Data {
+        let payload = buildExportPayload(clipItems)
+        return try encodeAndCompress(payload)
+    }
+
+    /// Legacy — items only, used by old callers and v1-compat tests.
+    static func buildExportPayload(_ clipItems: [ClipItem]) -> ExportPayload {
+        buildExportPayload(clipItems, groups: [], rules: [])
+    }
+
+    /// Full payload: items + groups + automation rules. Always emits v2.
+    static func buildExportPayload(
+        _ clipItems: [ClipItem],
+        groups: [SmartGroup],
+        rules: [AutomationRule]
+    ) -> ExportPayload {
+        ExportPayload(
+            version: currentVersion,
+            exportDate: Date(),
+            items: clipItems.map { buildExportItem(from: $0) },
+            groups: groups.map { buildExportGroup(from: $0) },
+            rules: rules.map { buildExportRule(from: $0) }
+        )
+    }
+
+    /// Encode + compress (can run on background thread)
+    nonisolated static func encodeAndCompress(_ payload: ExportPayload) throws -> Data {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let jsonData = try encoder.encode(payload)
+        return (try? (jsonData as NSData).compressed(using: .zlib) as Data) ?? jsonData
+    }
+
+    /// Streaming variant: encode each ExportItem individually and feed bytes through
+    /// a zlib OutputFilter into `outputURL`. Avoids holding the full `[ExportItem]`
+    /// array, the encoded JSON Data, and the compression buffer in memory at the
+    /// same time — peak memory drops from ~4× raw to ~1× single-item base64 + zlib
+    /// internal buffer. Output format is identical to `encodeAndCompress(_:)` so
+    /// the existing decode path works unchanged.
+    @MainActor
+    static func encodeAndCompress(
+        clipItems: [ClipItem],
+        groups: [SmartGroup],
+        rules: [AutomationRule],
+        to outputURL: URL,
+        header: Data = Data(),
+        progress: @MainActor @escaping (_ current: Int, _ total: Int) -> Void = { _, _ in }
+    ) async throws {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+
+        FileManager.default.createFile(atPath: outputURL.path, contents: nil)
+        let outHandle = try FileHandle(forWritingTo: outputURL)
+        defer { try? outHandle.close() }
+        // Written raw ahead of the compressed stream (the backup file's plaintext envelope),
+        // so the finished file can be handed on as is instead of re-read and re-wrapped.
+        if !header.isEmpty {
+            try outHandle.write(contentsOf: header)
+        }
+
+        let outputFilter = try OutputFilter(.compress, using: .zlib) { data in
+            if let data = data, !data.isEmpty {
+                outHandle.write(data)
+            }
+        }
+
+        let isoFormatter = ISO8601DateFormatter()
+        let prefix = "{\"version\":\(currentVersion),\"exportDate\":\"\(isoFormatter.string(from: Date()))\",\"items\":["
+        try outputFilter.write(Data(prefix.utf8))
+
+        let total = clipItems.count
+        var first = true
+        for (index, clip) in clipItems.enumerated() {
+            try autoreleasepool {
+                let item = buildSingleExportItem(clip)
+                let itemData = try encoder.encode(item)
+                if !first {
+                    try outputFilter.write(Data(",".utf8))
+                }
+                try outputFilter.write(itemData)
+                first = false
+            }
+            // Yield every 16 items so the UI stays responsive during large backups.
+            if index % 16 == 0 {
+                progress(index + 1, total)
+                await Task.yield()
+            }
+        }
+        progress(total, total)
+
+        // Groups + rules are tiny relative to clips; encode them in one shot.
+        try outputFilter.write(Data("],\"groups\":".utf8))
+        try outputFilter.write(encoder.encode(groups.map(buildSingleExportGroup)))
+        try outputFilter.write(Data(",\"rules\":".utf8))
+        try outputFilter.write(encoder.encode(rules.map(buildSingleExportRule)))
+        try outputFilter.write(Data("}".utf8))
+        try outputFilter.finalize()
+    }
+
+    /// Decompress zlib data if needed, otherwise return as-is (backward compatible with uncompressed exports)
+    nonisolated static func decompressIfNeeded(_ data: Data) -> Data {
+        (try? (data as NSData).decompressed(using: .zlib) as Data) ?? data
+    }
+
+    /// Decompress + JSON-decode. Exposed (and `nonisolated`) so callers can run
+    /// it off the main actor — for large exports the decode alone can block
+    /// the main thread for several seconds and freeze any progress sheet that's
+    /// supposed to be animating.
+    nonisolated static func decodePayload(_ data: Data) throws -> ExportPayload {
+        let jsonData = decompressIfNeeded(data)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return try decoder.decode(ExportPayload.self, from: jsonData)
+    }
+
+    /// Batch import with progress callback. Runs in batches to keep UI responsive.
+    /// Decodes on the main actor — prefer `importItems(payload:into:progress:)`
+    /// when the caller can afford to decode off-actor.
+    @MainActor
+    static func importItems(
+        from data: Data,
+        into context: ModelContext,
+        progress: @escaping (Int, Int) -> Void
+    ) async throws -> ImportResult {
+        let payload = try decodePayload(data)
+        return try await importItems(payload: payload, into: context, progress: progress)
+    }
+
+    /// Batch import from an already-decoded payload. Caller is responsible
+    /// for running the (expensive) `decodePayload` off the main actor.
+    @MainActor
+    static func importItems(
+        payload: ExportPayload,
+        into context: ModelContext,
+        progress: @escaping (Int, Int) -> Void
+    ) async throws -> ImportResult {
+        let groupResult = importGroups(payload.groups ?? [], into: context)
+        let ruleResult = importRules(payload.rules ?? [], into: context)
+
+        let total = payload.items.count
+        // Emit a 0/total tick so the progress sheet shows a definite bar
+        // immediately — otherwise the bar stays at 0 for the duration of
+        // the first batch's inserts, which on large imports reads as a hang.
+        progress(0, total)
+        await Task.yield()
+
+        var imported = 0
+        var skipped = 0
+        let deduplicator = ImportDeduplicator(context: context)
+        // Each batch is one transaction (one context.save). Yield within the
+        // batch too so heavy items (e.g. base64 image decode) don't hold the
+        // main actor long enough for macOS to draw the spinning-beachball
+        // cursor on large imports.
+        let batchSize = 25
+        let yieldEvery = 5
+
+        for batchStart in stride(from: 0, to: total, by: batchSize) {
+            let batchEnd = min(batchStart + batchSize, total)
+            let batch = payload.items[batchStart..<batchEnd]
+
+            for (offset, exportItem) in batch.enumerated() {
+                if deduplicator.mergeIfDuplicate(exportItem) {
+                    skipped += 1
+                } else {
+                    deduplicator.add(insertClipItem(from: exportItem, into: context))
+                    imported += 1
+                }
+                let globalIndex = batchStart + offset
+                if globalIndex % yieldEvery == yieldEvery - 1 {
+                    // Mid-batch progress update — gives the determinate bar
+                    // something to move on while the bigger batches run.
+                    progress(globalIndex + 1, total)
+                    await Task.yield()
+                }
+            }
+
+            try context.save()
+            progress(batchStart + batch.count, total)
+
+            // Yield between batches as well — the save itself can be slow when
+            // SwiftData flushes a batch of inserts to disk.
+            await Task.yield()
+        }
+
+        recalculateGroupCounts(in: context)
+        try context.save()
+
+        return ImportResult(
+            imported: imported,
+            skipped: skipped,
+            importedGroups: groupResult,
+            importedRules: ruleResult
+        )
+    }
+
+    /// Legacy sync import (for small datasets or backward compatibility)
+    @MainActor
+    static func importItems(from data: Data, into context: ModelContext) throws -> ImportResult {
+        let payload = try decodePayload(data)
+
+        let groupResult = importGroups(payload.groups ?? [], into: context)
+        let ruleResult = importRules(payload.rules ?? [], into: context)
+
+        var imported = 0
+        var skipped = 0
+        let deduplicator = ImportDeduplicator(context: context)
+
+        for exportItem in payload.items {
+            if deduplicator.mergeIfDuplicate(exportItem) {
+                skipped += 1
+            } else {
+                deduplicator.add(insertClipItem(from: exportItem, into: context))
+                imported += 1
+            }
+        }
+
+        try context.save()
+        recalculateGroupCounts(in: context)
+        try context.save()
+        return ImportResult(
+            imported: imported,
+            skipped: skipped,
+            importedGroups: groupResult,
+            importedRules: ruleResult
+        )
+    }
+
+    // MARK: - Private
+
+    static func buildSingleExportItem(_ clip: ClipItem) -> ExportItem { buildExportItem(from: clip) }
+    static func buildSingleExportGroup(_ group: SmartGroup) -> ExportGroup { buildExportGroup(from: group) }
+    static func buildSingleExportRule(_ rule: AutomationRule) -> ExportRule { buildExportRule(from: rule) }
+
+    private static func buildExportItem(from clip: ClipItem) -> ExportItem {
+        var item = ExportItem(
+            content: clip.content,
+            contentType: clip.contentType.rawValue,
+            sourceApp: clip.sourceApp,
+            sourceAppBundleID: clip.sourceAppBundleID,
+            isFavorite: clip.isFavorite,
+            isPinned: clip.isPinned,
+            isSensitive: clip.isSensitive,
+            createdAt: clip.createdAt,
+            lastUsedAt: clip.lastUsedAt,
+            linkTitle: clip.linkTitle,
+            displayTitle: clip.displayTitle,
+            codeLanguage: clip.codeLanguage,
+            imageDataBase64: clip.imageData?.base64EncodedString(),
+            faviconDataBase64: clip.faviconData?.base64EncodedString(),
+            richTextDataBase64: clip.richTextData?.base64EncodedString(),
+            richTextType: clip.richTextType,
+            groupName: clip.groupName,
+            ocrText: clip.ocrText,
+            ocrStatus: clip.ocrStatus,
+            ocrUpdatedAt: clip.ocrUpdatedAt,
+            ocrErrorMessage: clip.ocrErrorMessage,
+            ocrVersion: clip.ocrVersion
+        )
+        if let path = clip.originalImageFilePath, let original = ClipboardManager.loadOriginalImageData(at: path) {
+            item.originalImageBase64 = original.base64EncodedString()
+        }
+        item.pasteboardSnapshotBase64 = clip.pasteboardSnapshot?.base64EncodedString()
+        item.filePaths = clip.filePaths
+        item.smsMessageText = clip.smsMessageText
+        item.agentSource = clip.agentSource
+        return item
+    }
+
+    private static func buildExportGroup(from group: SmartGroup) -> ExportGroup {
+        ExportGroup(
+            name: group.name,
+            icon: group.icon,
+            sortOrder: group.sortOrder,
+            color: group.color,
+            preservesItems: group.preservesItems
+        )
+    }
+
+    private static func buildExportRule(from rule: AutomationRule) -> ExportRule {
+        ExportRule(
+            ruleID: rule.ruleID,
+            name: rule.name,
+            enabled: rule.enabled,
+            isBuiltIn: rule.isBuiltIn,
+            sortOrder: rule.sortOrder,
+            triggerModeRaw: rule.triggerModeRaw,
+            notifyBeforeApply: rule.notifyBeforeApply,
+            notifyOnTrigger: rule.notifyOnTrigger,
+            writeBackToPasteboard: rule.writeBackToPasteboard,
+            outputModeRaw: rule.outputModeRaw,
+            outputParam: rule.outputParam,
+            conditionLogicRaw: rule.conditionLogicRaw,
+            conditionsDataBase64: rule.conditionsData.base64EncodedString(),
+            actionsDataBase64: rule.actionsData.base64EncodedString(),
+            createdAt: rule.createdAt,
+            updatedAt: rule.updatedAt
+        )
+    }
+
+    @MainActor
+    @discardableResult
+    static func insertClipItem(from exportItem: ExportItem, into context: ModelContext) -> ClipItem {
+        let contentType = ClipContentType(rawValue: exportItem.contentType) ?? .text
+        let clip = ClipItem(
+            content: exportItem.content,
+            contentType: contentType,
+            imageData: exportItem.imageDataBase64.flatMap { Data(base64Encoded: $0) },
+            sourceApp: exportItem.sourceApp,
+            isFavorite: exportItem.isFavorite,
+            isPinned: exportItem.isPinned,
+            createdAt: exportItem.createdAt,
+            lastUsedAt: exportItem.lastUsedAt,
+            codeLanguage: exportItem.codeLanguage,
+            richTextData: exportItem.richTextDataBase64.flatMap { Data(base64Encoded: $0) },
+            richTextType: exportItem.richTextType
+        )
+        clip.sourceAppBundleID = exportItem.sourceAppBundleID
+        clip.isSensitive = exportItem.isSensitive
+        clip.linkTitle = exportItem.linkTitle
+        clip.displayTitle = exportItem.displayTitle
+        clip.faviconData = exportItem.faviconDataBase64.flatMap { Data(base64Encoded: $0) }
+        clip.groupName = exportItem.groupName
+        clip.ocrText = exportItem.ocrText
+        clip.ocrStatus = exportItem.ocrStatus ?? clip.ocrStatus
+        clip.ocrUpdatedAt = exportItem.ocrUpdatedAt
+        clip.ocrErrorMessage = exportItem.ocrErrorMessage
+        if let version = exportItem.ocrVersion {
+            clip.ocrVersion = version
+        }
+        clip.pasteboardSnapshot = exportItem.pasteboardSnapshotBase64.flatMap { Data(base64Encoded: $0) }
+        clip.filePaths = exportItem.filePaths
+        clip.smsMessageText = exportItem.smsMessageText
+        clip.agentSource = exportItem.agentSource
+        // A save that fails later leaves this file unreferenced; the launch sweep removes it.
+        if let encoded = exportItem.originalImageBase64, let original = Data(base64Encoded: encoded),
+           let path = ClipboardManager.writeOriginalImageToCache(original) {
+            clip.originalImageFilePath = path
+        }
+        context.insert(clip)
+        return clip
+    }
+
+    /// Merge groups by name. Returns number of newly inserted groups.
+    @discardableResult
+    static func importGroups(
+        _ exportGroups: [ExportGroup],
+        into context: ModelContext
+    ) -> Int {
+        guard !exportGroups.isEmpty else { return 0 }
+        let existing = (try? context.fetch(FetchDescriptor<SmartGroup>())) ?? []
+        let existingNames = Set(existing.map(\.name))
+
+        var inserted = 0
+        for exp in exportGroups where !existingNames.contains(exp.name) {
+            let group = SmartGroup(
+                name: exp.name,
+                icon: exp.icon,
+                sortOrder: exp.sortOrder,
+                color: exp.color,
+                preservesItems: exp.preservesItems ?? false
+            )
+            context.insert(group)
+            inserted += 1
+        }
+        return inserted
+    }
+
+    /// Merge rules by ruleID; built-in rules are always skipped (owned by BuiltInRules).
+    @discardableResult
+    static func importRules(
+        _ exportRules: [ExportRule],
+        into context: ModelContext
+    ) -> Int {
+        guard !exportRules.isEmpty else { return 0 }
+        let existing = (try? context.fetch(FetchDescriptor<AutomationRule>())) ?? []
+        let existingIDs = Set(existing.map(\.ruleID))
+
+        var inserted = 0
+        for exp in exportRules where !exp.isBuiltIn && !existingIDs.contains(exp.ruleID) {
+            let rule = AutomationRule(name: exp.name)
+            rule.ruleID = exp.ruleID
+            rule.enabled = exp.enabled
+            rule.isBuiltIn = false
+            rule.sortOrder = exp.sortOrder
+            rule.triggerModeRaw = exp.triggerModeRaw
+            rule.notifyBeforeApply = exp.notifyBeforeApply
+            rule.notifyOnTrigger = exp.notifyOnTrigger
+            rule.writeBackToPasteboard = exp.writeBackToPasteboard
+            rule.outputModeRaw = exp.outputModeRaw ?? ""
+            rule.outputParam = exp.outputParam ?? ""
+            rule.conditionLogicRaw = exp.conditionLogicRaw
+            rule.conditionsData = Data(base64Encoded: exp.conditionsDataBase64) ?? Data()
+            rule.actionsData = Data(base64Encoded: exp.actionsDataBase64) ?? Data()
+            rule.createdAt = exp.createdAt
+            rule.updatedAt = exp.updatedAt
+            context.insert(rule)
+            inserted += 1
+        }
+        return inserted
+    }
+
+    /// SmartGroup.count is persisted; rebuild it from actual items after bulk import
+    /// so sidebar badges and quick-panel suggestions reflect restored data.
+    static func recalculateGroupCounts(in context: ModelContext) {
+        guard let groups = try? context.fetch(FetchDescriptor<SmartGroup>()) else { return }
+        for group in groups {
+            let name = group.name
+            let descriptor = FetchDescriptor<ClipItem>(predicate: #Predicate { $0.groupName == name })
+            group.count = (try? context.fetchCount(descriptor)) ?? 0
+        }
+    }
+}
+
+/// Import-side duplicate check, same rule as a copy (`matchesDuplicateCandidate`): same type
+/// and content, and for pasteboard images (`[Image]`) the same picture; `.mixed` also the same
+/// file list. The old check (same content *and* created within a second) only caught the very
+/// same record, so a backup restored over history copied again later grew a second row.
+/// Existing clips are indexed once up front — the store has no content index, and a query per
+/// imported item scans every clip of that type.
+@MainActor
+final class ImportDeduplicator {
+    private var clips: [String: [ClipItem]] = [:]
+
+    init(context: ModelContext) {
+        for clip in (try? context.fetch(FetchDescriptor<ClipItem>())) ?? [] where !clip.isDeleted {
+            add(clip)
+        }
+    }
+
+    func add(_ clip: ClipItem) {
+        clips[Self.key(clip.contentTypeRaw, clip.content), default: []].append(clip)
+    }
+
+    /// Folds `exportItem` into the clip it duplicates and returns true, or returns false when
+    /// it's new.
+    func mergeIfDuplicate(_ exportItem: ExportItem) -> Bool {
+        guard let existing = match(exportItem) else { return false }
+        if exportItem.lastUsedAt > existing.lastUsedAt { existing.lastUsedAt = exportItem.lastUsedAt }
+        if exportItem.isPinned { existing.isPinned = true }
+        if existing.groupName?.isEmpty ?? true, let group = exportItem.groupName, !group.isEmpty {
+            existing.groupName = group
+        }
+        // Fill what the existing clip lacks, e.g. a full-size original lost to an older backup.
+        if existing.originalImageFilePath == nil, existing.content == "[Image]",
+           let encoded = exportItem.originalImageBase64, let original = Data(base64Encoded: encoded),
+           let path = ClipboardManager.writeOriginalImageToCache(original) {
+            existing.originalImageFilePath = path
+        }
+        if existing.richTextData == nil, let rich = exportItem.richTextDataBase64.flatMap({ Data(base64Encoded: $0) }) {
+            existing.richTextData = rich
+            existing.richTextType = exportItem.richTextType
+        }
+        if existing.pasteboardSnapshot == nil {
+            existing.pasteboardSnapshot = exportItem.pasteboardSnapshotBase64.flatMap { Data(base64Encoded: $0) }
+        }
+        if existing.ocrText == nil, let ocr = exportItem.ocrText {
+            existing.ocrText = ocr
+            existing.ocrStatus = exportItem.ocrStatus ?? existing.ocrStatus
+        }
+        existing.smsMessageText = existing.smsMessageText ?? exportItem.smsMessageText
+        existing.agentSource = existing.agentSource ?? exportItem.agentSource
+        return true
+    }
+
+    private func match(_ exportItem: ExportItem) -> ClipItem? {
+        guard let candidates = clips[Self.key(exportItem.contentType, exportItem.content)] else { return nil }
+        switch ClipContentType(rawValue: exportItem.contentType) {
+        case .image where exportItem.content == "[Image]":
+            let thumbnail = exportItem.imageDataBase64.flatMap { Data(base64Encoded: $0) }
+            return candidates.first { $0.imageData == thumbnail }
+        case .mixed:
+            let thumbnail = exportItem.imageDataBase64.flatMap { Data(base64Encoded: $0) }
+            return candidates.first { $0.imageData == thumbnail && $0.filePaths == exportItem.filePaths }
+        default:
+            return candidates.first
+        }
+    }
+
+    private static func key(_ type: String, _ content: String) -> String { type + "\u{0}" + content }
+}

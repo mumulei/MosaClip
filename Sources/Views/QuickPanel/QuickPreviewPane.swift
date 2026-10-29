@@ -1,0 +1,883 @@
+import SwiftUI
+import AVFoundation
+import AppKit
+
+struct QuickPreviewPane: View {
+    let item: ClipItem
+    var searchText: String = ""
+    // Fallback must match OCRTaskCoordinator.isEnabled (OFF): a never-set key
+    // means the OCR feature is disabled, so the snippet card stays hidden.
+    @AppStorage(OCRTaskCoordinator.enableOCRKey) private var ocrEnabled = false
+    @AppStorage("richTextPreviewEnabled") private var richTextPreviewEnabled = true
+    @State private var allowHeavyPreview = false
+    @State private var webPreviewReady = false
+    @State private var cachedCodeSummary: CodePreviewSummary?
+    @State private var dataURIImageData: Data?
+
+    private var semanticPreview: SemanticPreviewKind? {
+        SemanticPreviewResolver.resolve(item)
+    }
+
+    struct CodePreviewSummary: Equatable {
+        let language: CodeLanguage
+        let lineCount: Int
+        let characterCount: Int
+        let snippet: String
+        let isTruncated: Bool
+        let supportsExpandedPreview: Bool
+    }
+
+    private var isContentImage: Bool {
+        // 多图文件条目虽然带（第一张的）缩略图，但必须落到 previewContent 的
+        // 文件列表分支，不能被这里的单图快速路径短路（否则预览只显示第一张，误导）。
+        item.contentType == .image && item.imageData != nil && !item.isMultiFileImage
+    }
+
+    private var isSingleFile: Bool {
+        item.contentType.isFileBased && item.contentType != .image && !item.content.contains("\n")
+    }
+
+    private var isSingleVideo: Bool {
+        item.contentType == .video && !item.content.contains("\n")
+    }
+
+    /// Absolute path when a `.text` clip is itself an existing filesystem path,
+    /// so the preview can render it as a revealable file (see `quickContentArea`).
+    private var recognizedTextPath: String? {
+        item.contentType == .text ? item.revealableFinderPath : nil
+    }
+
+    private var heavyPreviewDelay: Duration {
+        switch item.contentType {
+        case .code, .link:
+            return .milliseconds(260)
+        default:
+            return .milliseconds(120)
+        }
+    }
+
+    private var codeSummary: CodePreviewSummary {
+        // For huge payloads, buildCodeSummary splits the whole string by
+        // newlines — a 10 MB paste can block the main thread for hundreds
+        // of ms per render. We lazily cache the result and compute it off
+        // the main actor in `.task(id:)`; a lightweight fallback is used
+        // only on the very first render.
+        if let cached = cachedCodeSummary {
+            return cached
+        }
+        return Self.cheapCodeSummary(text: item.content, language: item.resolvedCodeLanguage)
+    }
+
+    /// O(preview limit) summary used as an instant placeholder while the
+    /// detached task computes the real summary. It never scans the full
+    /// content, so even multi-megabyte items stay responsive.
+    static func cheapCodeSummary(
+        text: String,
+        language: CodeLanguage?,
+        previewLineLimit: Int = 8,
+        previewCharacterLimit: Int = 420
+    ) -> CodePreviewSummary {
+        let resolvedLanguage = language ?? .unknown
+        let head = String(text.prefix(previewCharacterLimit * 2))
+        let lines = head.components(separatedBy: .newlines)
+        let previewLines = Array(lines.prefix(previewLineLimit)).joined(separator: "\n")
+        var snippet = String(previewLines.prefix(previewCharacterLimit))
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        let textCount = text.count
+        let approxTruncated = text.count > head.count || lines.count > previewLineLimit
+        if approxTruncated, !snippet.isEmpty, !snippet.hasSuffix("…") {
+            snippet += "…"
+        }
+        return CodePreviewSummary(
+            language: resolvedLanguage,
+            lineCount: max(lines.count, 1),
+            characterCount: textCount,
+            snippet: snippet,
+            isTruncated: approxTruncated,
+            supportsExpandedPreview: false
+        )
+    }
+
+    @ViewBuilder
+    var body: some View {
+        if item.modelContext == nil || item.isDeleted { EmptyView() } else {
+        VStack(spacing: 0) {
+            Group {
+                if item.isSensitive {
+                    SensitiveMask { quickContentArea }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    quickContentArea
+                }
+            }
+            .background(Color.primary.opacity(0.04))
+
+            Divider().opacity(0.3)
+
+            propertiesSection
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .task(id: item.persistentModelID) {
+            allowHeavyPreview = false
+            webPreviewReady = false
+            cachedCodeSummary = nil
+            dataURIImageData = nil
+            retryLinkMetadataIfNeeded()
+
+            if item.contentType == .code {
+                let content = item.content
+                let lang = item.resolvedCodeLanguage
+                let summary = await Task.detached(priority: .userInitiated) {
+                    QuickPreviewPane.buildCodeSummary(text: content, language: lang)
+                }.value
+                if !Task.isCancelled {
+                    cachedCodeSummary = summary
+                }
+            }
+
+            try? await Task.sleep(for: heavyPreviewDelay)
+            guard !Task.isCancelled else { return }
+            allowHeavyPreview = true
+
+            if item.contentType == .link,
+               shouldRenderBase64DataImagePreview,
+               item.imageData == nil {
+                // Legacy fallback: pre-existing clips without `imageData` need the
+                // URI string decoded once. New clips already have bytes in
+                // `imageData` from capture-time pre-decode, so we skip this path.
+                let content = item.content
+                let decoded = await Task.detached(priority: .userInitiated) {
+                    DataImageURI.decodedImageData(from: content)
+                }.value
+                guard !Task.isCancelled else { return }
+                dataURIImageData = decoded
+            }
+        }
+        } // zombie-object guard: isDeleted alone is unsafe after deleteAndNotify — see QuickPanelView.swift
+    }
+
+    @ViewBuilder
+    private var quickContentArea: some View {
+        if case .svg(let svgSource)? = semanticPreview {
+            quickSVGPreview(source: svgSource)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if isContentImage {
+            imagePreviewWithOCR
+        } else if isSingleVideo {
+            videoPreview
+                .padding(10)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .audio, !item.content.contains("\n") {
+            AudioPlayerView(
+                path: item.content.trimmingCharacters(in: .whitespacesAndNewlines),
+                iconSize: 48,
+                nameFont: .system(size: 13, weight: .medium),
+                onOpenInFinder: { QuickPanelWindowController.shared.dismiss() }
+            )
+            .padding(14)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if let smsText = item.smsMessageText, item.contentType == .text {
+            // 短信验证码条目:大号显示码 + 短信原文,不走普通文本或 Markdown 渲染
+            SMSCodePreview(code: item.content, message: smsText)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if case .markdown(let markdownSource)? = semanticPreview {
+            quickMarkdownPreview(source: markdownSource)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .code {
+            codePreview
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if let textPath = recognizedTextPath {
+            // Plain-text clip whose content is an existing filesystem path → show it
+            // like a file so users can reveal it in Finder (⌘O), same as `.file` clips.
+            SingleFilePreview(
+                path: textPath,
+                iconSize: 48,
+                nameFont: .system(size: 13, weight: .medium),
+                shortcutHint: "⌘O",
+                onOpenInFinder: { QuickPanelWindowController.shared.dismiss() }
+            )
+            .padding(14)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .text {
+            previewContent
+                .padding(14)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .color {
+            colorPreview
+                .padding(14)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .link {
+            linkPreview
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .phone {
+            phonePreview
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .image, item.isSingleFileBackedImage,
+                  ClipImagePreviewSource.resolve(from: item) != nil {
+            imagePreviewWithOCR
+        } else if isSingleFile {
+            SingleFilePreview(
+                path: item.content.trimmingCharacters(in: .whitespacesAndNewlines),
+                iconSize: 48,
+                nameFont: .system(size: 13, weight: .medium),
+                shortcutHint: "⌘O",
+                onOpenInFinder: { QuickPanelWindowController.shared.dismiss() }
+            )
+            .padding(14)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) { previewContent }
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 14)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func quickSVGPreview(source: SVGPreviewSource) -> some View {
+        if allowHeavyPreview {
+            SVGPreviewView(source: source, showsModePicker: false, compact: true)
+        } else {
+            switch source {
+            case .inline(_, let text):
+                NativeTextView(
+                    text: text,
+                    allowRichRender: false,
+                    itemID: item.itemID,
+                    searchText: searchText
+                )
+                .id("svg-summary:\(source.id)")
+            case .file(_, let url):
+                SingleFilePreview(
+                    path: url.path,
+                    iconSize: 48,
+                    nameFont: .system(size: 13, weight: .medium),
+                    shortcutHint: "⌘O",
+                    onOpenInFinder: { QuickPanelWindowController.shared.dismiss() }
+                )
+                .padding(14)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func quickMarkdownPreview(source: MarkdownPreviewSource) -> some View {
+        // The floating panel is pre-warmed and hidden with orderOut, so its
+        // SwiftUI hierarchy remains mounted after dismissal. Keep Markdown on
+        // the native/raw path here; rendered Markdown remains available in the
+        // main detail pane, where its lifetime follows the manager window.
+        switch source {
+        case .inline(_, let text):
+            NativeTextView(
+                text: text,
+                allowRichRender: false,
+                itemID: item.itemID,
+                searchText: item.contentType == .text ? searchText : ""
+            )
+            .id("markdown-raw:\(source.id)")
+        case .file(_, let url):
+            SingleFilePreview(
+                path: url.path,
+                iconSize: 48,
+                nameFont: .system(size: 13, weight: .medium),
+                shortcutHint: "⌘O",
+                onOpenInFinder: { QuickPanelWindowController.shared.dismiss() }
+            )
+            .padding(14)
+        }
+    }
+
+    @ViewBuilder
+    private var previewContent: some View {
+        if item.contentType == .image {
+            if item.content != "[Image]", !item.isSingleFileBackedImage {
+                // 多张图片一次复制（Finder 多选）：与多文件条目一致，列出全部文件。
+                // 不走单图渲染——sourceImageFileURL 只会解析到第一张，预览会误导。
+                filePreview
+            } else if ClipImagePreviewSource.resolve(from: item) != nil {
+                imagePreview
+            } else if item.content != "[Image]", item.imageData == nil {
+                filePreview
+            } else {
+                imagePreview
+            }
+        } else {
+            switch item.contentType {
+            case .video:
+                if isSingleVideo { videoPreview } else { filePreview }
+            case .audio:
+                if isSingleFile { audioPreview } else { filePreview }
+            case .file, .document, .archive, .application:
+                filePreview
+            case .color:
+                colorPreview
+            default:
+                NativeTextView(
+                    text: item.content,
+                    richTextData: item.richTextData,
+                    richTextType: item.richTextType,
+                    allowRichRender: richTextPreviewEnabled && allowHeavyPreview,
+                    itemID: item.itemID,
+                    // 仅对纯文本类型启用搜索高亮，避免在 code / link / mixed 等
+                    // 特殊渲染路径上意外染色（rich-text 分支本身已忽略 searchText）
+                    searchText: item.contentType == .text ? searchText : ""
+                )
+                    .id(item.persistentModelID)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var colorPreview: some View {
+        if let parsed = ColorConverter.parse(item.content) {
+            ColorPreviewView(sourceText: item.content, parsed: parsed, compact: true)
+        } else {
+            // Fallback: show raw color text if parsing fails
+            Text(item.content)
+                .font(.system(size: 13, design: .monospaced))
+                .foregroundStyle(.secondary)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        }
+    }
+
+    @ViewBuilder
+    private var imagePreview: some View {
+        ZoomableClipImagePreview(
+            item: item,
+            maxPixelSize: 900,
+            thumbnailSize: 180,
+            cornerRadius: 6,
+            onDoubleClick: {
+                QuickLookHelper.shared.openInPreviewApp(item: item)
+            }
+        )
+        .pointerCursor()
+    }
+
+    private var imagePreviewWithOCR: some View {
+        return VStack(spacing: 10) {
+            imagePreview
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            if ocrEnabled, let ocrText = item.ocrText, !ocrText.isEmpty {
+                ocrSnippetCard(text: ocrText)
+            }
+        }
+        .padding(10)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private func ocrSnippetCard(text: String) -> some View {
+        return VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 6) {
+                Text("OCR")
+                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                    .foregroundStyle(.orange)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(Color.orange.opacity(0.12), in: Capsule())
+                Text(L10n.tr("quick.ocrMatch"))
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Button(L10n.tr("detail.ocr.copy")) {
+                    NSPasteboard.general.clearContents()
+                    NSPasteboard.general.setString(text, forType: .string)
+                    ToastCenter.shared.show(ToastDescriptor(message: L10n.tr("action.copied"), icon: .success))
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+            }
+            .padding(.horizontal, 10)
+            .padding(.top, 10)
+
+            // Keep the card bounded and native-only. QuickPanel stays mounted
+            // while hidden, so OCR text must not retain a Markdown renderer.
+            NativeTextView(
+                text: text,
+                allowRichRender: false,
+                itemID: item.itemID,
+                searchText: searchText,
+                fontSize: 12,
+                textColor: .secondaryLabelColor
+            )
+            .id(item.persistentModelID)
+            .frame(height: 120)
+            .padding(.horizontal, 10)
+            .padding(.bottom, 10)
+        }
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.primary.opacity(0.05))
+        )
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var videoPreview: some View {
+        VideoThumbnailView(
+            path: item.content.trimmingCharacters(in: .whitespacesAndNewlines),
+            storedThumbnail: item.imageData
+        )
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+    }
+
+    private var audioPreview: some View {
+        AudioPlayerView(
+            path: item.content.trimmingCharacters(in: .whitespacesAndNewlines),
+            iconSize: 48,
+            nameFont: .system(size: 13, weight: .medium),
+            onOpenInFinder: { QuickPanelWindowController.shared.dismiss() }
+        )
+    }
+
+
+    @ViewBuilder
+    private var filePreview: some View {
+        let paths = item.content.components(separatedBy: "\n").filter { !$0.isEmpty }
+        if paths.count == 1,
+           item.contentType == .image,
+           ClipImagePreviewSource.resolve(from: item) != nil {
+            imagePreviewWithOCR
+        } else if paths.count == 1, let path = paths.first {
+            SingleFilePreview(
+                path: path,
+                iconSize: 48,
+                nameFont: .system(size: 13, weight: .medium),
+                onOpenInFinder: { QuickPanelWindowController.shared.dismiss() }
+            )
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            // Lazy on purpose: a Finder copy can carry thousands of paths (a 1,920-file
+            // copy froze the panel for seconds), and each FileRow does an icon lookup.
+            // The enclosing ScrollView only materialises the visible rows this way.
+            LazyVStack(alignment: .leading, spacing: 4) {
+                ForEach(Array(paths.enumerated()), id: \.offset) { _, path in
+                    FileRow(path: path, onOpenInFinder: { QuickPanelWindowController.shared.dismiss() })
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+        }
+    }
+
+    @AppStorage("webPreviewEnabled") private var webPreviewEnabled = true
+    @AppStorage("imageLinkPreviewEnabled") private var imageLinkPreviewEnabled = true
+    @AppStorage("showLinkURL") private var showLinkURL = false
+    @AppStorage("offlineModeEnabled") private var offlineModeEnabled = false
+
+    @ViewBuilder
+    private var linkPreview: some View {
+        if shouldRenderBase64DataImagePreview {
+            dataURIImagePreview
+        } else if let url = item.resolvedURL {
+            let webviewActive = ((imageLinkPreviewEnabled && LinkMetadataFetcher.isImageURL(item.content)) || webPreviewEnabled) && allowHeavyPreview && !offlineModeEnabled
+            if webviewActive {
+                ZStack {
+                    // WebView 始终驻留，加载完成前透明
+                    VStack(alignment: .leading, spacing: 0) {
+                        linkSummaryHeader(url: url)
+                            .padding(.horizontal, 14)
+                            .padding(.top, 12)
+                            .padding(.bottom, 10)
+
+                        Divider().opacity(0.25)
+
+                        WebPreviewView(url: url) { ready in
+                            webPreviewReady = ready
+                        }
+                        .id(url)
+                        .clipShape(RoundedRectangle(cornerRadius: 6))
+                        .padding(.horizontal, 10)
+                        .padding(.bottom, 10)
+                    }
+                    .opacity(webPreviewReady ? 1 : 0)
+
+                    // 加载态只显示居中大卡，不显示上方 header/按钮
+                    if !webPreviewReady {
+                        linkStaticPreview(url: url)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 10)
+                    }
+                }
+            } else {
+                linkStaticPreview(url: url)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 10)
+            }
+        } else {
+            NativeTextView(
+                text: item.content,
+                richTextData: item.richTextData,
+                richTextType: item.richTextType,
+                allowRichRender: richTextPreviewEnabled && allowHeavyPreview,
+                itemID: item.itemID
+            )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding(14)
+        }
+    }
+
+    private var shouldRenderBase64DataImagePreview: Bool {
+        guard imageLinkPreviewEnabled || webPreviewEnabled else { return false }
+        // `imageData` set on a `.link` clip means capture-time pre-decode of a
+        // base64 data URI — fast path, no need to materialize the URI string here.
+        if item.imageData != nil { return true }
+        return DataImageURI.isBase64DataImageURI(item.content)
+    }
+
+    private var dataURIImagePreview: some View {
+        ZoomableClipImagePreview(
+            item: item,
+            supplementalData: dataURIImageData,
+            maxPixelSize: 900,
+            thumbnailSize: 180,
+            cornerRadius: 6,
+            onDoubleClick: {
+                QuickLookHelper.shared.openInPreviewApp(item: item)
+            }
+        )
+        .padding(10)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .pointerCursor()
+    }
+
+    // MARK: - Link Static Preview
+
+    @State private var isLinkButtonHovered = false
+
+    @ViewBuilder
+    private var codePreview: some View {
+        let summary = codeSummary
+
+        if allowHeavyPreview, summary.supportsExpandedPreview {
+            CodePreviewView(
+                code: item.content,
+                language: item.resolvedCodeLanguage,
+                deferredHighlightDelayMs: 120,
+                maximumHighlightedCharacters: 12_000
+            )
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            ScrollView {
+                Text(summary.snippet)
+                    .font(.system(size: 12, design: .monospaced))
+                    .foregroundStyle(.secondary)
+                    .textSelection(.enabled)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 12)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+    }
+
+    private func linkSummaryHeader(url: URL) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(alignment: .top, spacing: 10) {
+                if let img = validFavicon(minSize: 24) {
+                    Image(nsImage: img)
+                        .resizable()
+                        .interpolation(.high)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 28, height: 28)
+                } else {
+                    Image(systemName: "globe")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundStyle(.secondary)
+                        .frame(width: 28, height: 28)
+                        .background(Color.primary.opacity(0.05), in: RoundedRectangle(cornerRadius: 8))
+                }
+
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(spacing: 8) {
+                        quickMetadataBadge(Self.displayHost(for: url))
+                        if let scheme = url.scheme?.uppercased(), !scheme.isEmpty {
+                            quickMetadataBadge(scheme)
+                        }
+
+                        Spacer(minLength: 8)
+
+                        Button {
+                            NSWorkspace.shared.open(url)
+                        } label: {
+                            HStack(spacing: 4) {
+                                Image(nsImage: defaultBrowserIcon)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 14, height: 14)
+                                Text(L10n.tr("detail.openInBrowser"))
+                                    .font(.system(size: 12))
+                            }
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+                    }
+
+                    if let title = item.linkTitle, !title.isEmpty {
+                        Text(title)
+                            .font(.system(size: 14, weight: .semibold))
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                    }
+
+                    Text(url.absoluteString)
+                        .font(.system(size: 11))
+                        .foregroundStyle(Color.accentColor)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                        .textSelection(.enabled)
+                }
+            }
+        }
+    }
+
+    private func quickMetadataBadge(_ text: String) -> some View {
+        // Bump lowercase text slightly so its x-height roughly matches
+        // cap-height of uppercase siblings (e.g. "HTTPS" badge).
+        let hasLowercase = text.contains(where: { $0.isLowercase })
+        return Text(text)
+            .font(.system(size: hasLowercase ? 12 : 10, weight: .medium, design: .rounded))
+            .foregroundStyle(.secondary)
+            .padding(.horizontal, 7)
+            .padding(.vertical, 3)
+            .background(Color.primary.opacity(0.06), in: Capsule())
+    }
+
+    @ViewBuilder
+    private func linkStaticPreview(url: URL) -> some View {
+        VStack(spacing: 10) {
+            if let img = validFavicon(minSize: 32) {
+                Image(nsImage: img)
+                    .resizable()
+                    .interpolation(.high)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 48, height: 48)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            } else {
+                Image(systemName: "globe")
+                    .font(.system(size: 36, weight: .light))
+                    .foregroundStyle(.secondary)
+                    .frame(width: 48, height: 48)
+                    .background(Color.primary.opacity(0.05), in: RoundedRectangle(cornerRadius: 10))
+            }
+
+            if let title = item.linkTitle, !title.isEmpty {
+                Text(title)
+                    .font(.system(size: 17, weight: .semibold))
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+            }
+
+            HStack(spacing: 6) {
+                quickMetadataBadge(Self.displayHost(for: url))
+                if let scheme = url.scheme?.uppercased(), !scheme.isEmpty {
+                    quickMetadataBadge(scheme)
+                }
+            }
+
+            Text(url.absoluteString)
+                .font(.system(size: 13, weight: .medium))
+                .foregroundStyle(Color.accentColor)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .textSelection(.enabled)
+
+            let path = Self.displayPath(for: url)
+            if !path.isEmpty {
+                Text(path)
+                    .font(.system(size: 11))
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .truncationMode(.middle)
+            }
+
+            Button {
+                NSWorkspace.shared.open(url)
+            } label: {
+                HStack(spacing: 6) {
+                    Image(nsImage: defaultBrowserIcon)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 16, height: 16)
+                    Text(L10n.tr("detail.openInBrowser"))
+                        .font(.system(size: 12))
+                    // ⌘O opens the link in the browser — mirror the file preview hint.
+                    Text("⌘O")
+                        .font(.system(size: 11, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 3)
+                        .background(Color.primary.opacity(0.08), in: RoundedRectangle(cornerRadius: 4))
+                        .padding(.leading, 2)
+                }
+                .foregroundStyle(isLinkButtonHovered ? .primary : .secondary)
+            }
+            .buttonStyle(.plain)
+            .onHover { isLinkButtonHovered = $0 }
+        }
+        .padding(.horizontal, 16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+    }
+
+    private func retryLinkMetadataIfNeeded() {
+        guard item.contentType == .link,
+              !DataImageURI.isDataImageURI(item.content),
+              item.linkTitle == nil,
+              let context = item.modelContext,
+              let _ = URL(string: item.content.trimmingCharacters(in: .whitespacesAndNewlines))
+        else { return }
+        // Mirror the gate in `ClipboardManager.refreshLinkMetadataIfNeeded` —
+        // offline mode (master), web preview, or raw URL preference must all
+        // keep the retry path quiet (issue #46).
+        if UserDefaults.standard.bool(forKey: "offlineModeEnabled") { return }
+        guard webPreviewEnabled, !showLinkURL else { return }
+        let targetItem = item
+        Task {
+            let metadata = await LinkMetadataFetcher.shared.fetchMetadata(urlString: targetItem.content)
+            await MainActor.run {
+                guard !targetItem.isDeleted else { return }
+                if let title = metadata.title, !title.isEmpty { targetItem.linkTitle = title }
+                if let favicon = metadata.faviconData, targetItem.faviconData == nil { targetItem.faviconData = favicon }
+                ClipItemStore.saveAndNotifyContent(context)
+            }
+        }
+    }
+
+    private func validFavicon(minSize: CGFloat) -> NSImage? {
+        guard let data = item.faviconData, let img = NSImage(data: data) else { return nil }
+        let size = img.representations.first.map { CGFloat(max($0.pixelsWide, $0.pixelsHigh)) } ?? max(img.size.width, img.size.height)
+        return size >= minSize ? img : nil
+    }
+
+    private var defaultBrowserIcon: NSImage {
+        guard let browserURL = NSWorkspace.shared.urlForApplication(toOpen: URL(string: "https://")!) else {
+            return NSWorkspace.shared.icon(for: .html)
+        }
+        return NSWorkspace.shared.icon(forFile: browserURL.path)
+    }
+
+    nonisolated static func buildCodeSummary(
+        text: String,
+        language: CodeLanguage?,
+        previewLineLimit: Int = 8,
+        previewCharacterLimit: Int = 420,
+        expandedPreviewCharacterLimit: Int = 20_000
+    ) -> CodePreviewSummary {
+        let resolvedLanguage = language ?? .unknown
+        let lines = text.components(separatedBy: .newlines)
+        let lineCount = max(lines.count, 1)
+        let previewLines = Array(lines.prefix(previewLineLimit)).joined(separator: "\n")
+        var snippet = String(previewLines.prefix(previewCharacterLimit)).trimmingCharacters(in: .whitespacesAndNewlines)
+        let isTruncated = lineCount > previewLineLimit || previewLines.count > previewCharacterLimit
+
+        if snippet.isEmpty {
+            snippet = String(text.prefix(min(previewCharacterLimit, text.count))).trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        if isTruncated, !snippet.isEmpty, !snippet.hasSuffix("…") {
+            snippet += "…"
+        }
+
+        return CodePreviewSummary(
+            language: resolvedLanguage,
+            lineCount: lineCount,
+            characterCount: text.count,
+            snippet: snippet,
+            isTruncated: isTruncated,
+            supportsExpandedPreview: text.count <= expandedPreviewCharacterLimit
+        )
+    }
+
+    static func displayHost(for url: URL) -> String {
+        let host = url.host(percentEncoded: false) ?? url.host ?? url.absoluteString
+        return host.replacingOccurrences(of: "^www\\.", with: "", options: .regularExpression)
+    }
+
+    static func displayPath(for url: URL) -> String {
+        var parts: [String] = []
+        let path = url.path
+        if !path.isEmpty, path != "/" {
+            parts.append(path)
+        }
+        if let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.query, !query.isEmpty {
+            parts.append("?\(query)")
+        }
+        return parts.joined()
+    }
+
+    // MARK: - Phone Preview
+
+    private var phonePreview: some View {
+        let number = item.content.trimmingCharacters(in: .whitespacesAndNewlines)
+        return VStack(spacing: 20) {
+            Image(systemName: "phone.circle.fill")
+                .font(.system(size: 48))
+                .foregroundStyle(.mint)
+
+            Text(number)
+                .font(.system(size: 24, weight: .semibold, design: .rounded))
+                .textSelection(.enabled)
+
+            HStack(spacing: 16) {
+                phoneActionButton(
+                    icon: "phone.fill",
+                    label: L10n.tr("phone.call"),
+                    color: .green
+                ) {
+                    if let url = URL(string: "tel:\(number)") {
+                        NSWorkspace.shared.open(url)
+                    }
+                }
+
+                phoneActionButton(
+                    icon: "message.fill",
+                    label: L10n.tr("phone.message"),
+                    color: .blue
+                ) {
+                    if let url = URL(string: "sms:\(number)") {
+                        NSWorkspace.shared.open(url)
+                    }
+                }
+
+                phoneActionButton(
+                    icon: "doc.on.doc.fill",
+                    label: L10n.tr("phone.copy"),
+                    color: .orange
+                ) {
+                    NSPasteboard.general.clearContents()
+                    NSPasteboard.general.setString(number, forType: .string)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private func phoneActionButton(icon: String, label: String, color: Color, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            VStack(spacing: 4) {
+                Image(systemName: icon)
+                    .font(.system(size: 16))
+                    .foregroundStyle(color)
+                    .frame(width: 40, height: 40)
+                    .background(color.opacity(0.1), in: Circle())
+                Text(label)
+                    .font(.system(size: 10))
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .buttonStyle(.plain)
+        .pointerCursor()
+    }
+
+    // MARK: - Properties
+
+    private var propertiesSection: some View {
+        ClipPropertiesView(item: item, fontSize: 11) { path in
+            NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: path)
+            QuickPanelWindowController.shared.dismiss()
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 6)
+    }
+}

@@ -1,0 +1,1087 @@
+/* App */
+"app.name" = "MosaClip";
+
+/* Menu */
+"menu.checkForUpdates" = "Controlla aggiornamenti…";
+"menu.github" = "GitHub";
+"menu.reportIssue" = "Segnala un problema";
+"menu.upgrade" = "Passa a Pro";
+
+/* Search */
+"search.placeholder" = "Cerca nella cronologia appunti…";
+
+/* Empty State */
+"empty.title" = "Nessun elemento";
+"empty.message" = "Copia qualcosa per iniziare";
+"empty.hint" = "Usa ⌘C per copiare testo, immagini o file";
+"empty.quickHint" = "Copia qualcosa per iniziare";
+"guide.shortcut" = "Premi %@ per aprire Incolla Rapido ovunque";
+"guide.doubleClick" = "Doppio clic per incollare, singolo clic per selezionare";
+"guide.pin" = "Clic destro per fissare gli elementi importanti";
+
+/* Actions */
+"action.favorite" = "Preferito";
+"action.unfavorite" = "Rimuovi preferito";
+"action.pin" = "Fissa";
+"action.unpin" = "Rimuovi fissato";
+"action.delete" = "Elimina";
+"action.clearAll" = "Cancella tutto";
+"action.aiCopy" = "Copia per AI";
+
+/* Content Types */
+"type.text" = "Testo";
+"type.link" = "Link";
+"type.image" = "Immagine";
+"type.code" = "Codice";
+"type.color" = "Colore";
+"type.file" = "File";
+"type.other" = "Altro";
+"type.email" = "Email";
+"type.phone" = "Telefono";
+"phone.call" = "Chiama";
+"phone.message" = "Messaggio";
+"phone.copy" = "Copia";
+"type.video" = "Video";
+"type.audio" = "Audio";
+"type.document" = "Documento";
+"type.archive" = "Archivio";
+"type.application" = "App";
+"type.mixed" = "Misto";
+"mixed.section.image" = "Immagine";
+"mixed.section.text" = "Testo";
+"mixed.section.files" = "File (%d)";
+"detail.openInFinder" = "Mostra nel Finder";
+"preview.image.zoomFit" = "Adatta larghezza";
+"preview.image.zoomActual" = "100%";
+"preview.image.openInPreview" = "Apri in Anteprima";
+"preview.image.zoomHint" = "⌘+scroll o pinch per zoom";
+
+/* Filter */
+"filter.all" = "Tutto";
+"filter.special" = "Speciali";
+"filter.favorites" = "Preferiti";
+"filter.pinned" = "Fissati";
+"filter.aiAgent" = "AI Agent";
+
+/* Time */
+"time.now" = "ora";
+"time.pinned" = "Fissato";
+"time.today" = "Oggi";
+"time.yesterday" = "Ieri";
+"time.thisWeek" = "Questa settimana";
+"time.thisMonth" = "Questo mese";
+"time.older" = "Precedenti";
+"time.minutes" = "%d min fa";
+"time.hours" = "%d ore fa";
+"time.days" = "%d g fa";
+"time.weeks" = "%d sett fa";
+"time.months" = "%d mesi fa";
+"time.years" = "%d anni fa";
+
+/* Settings */
+"settings.general" = "Generali";
+"settings.update" = "Aggiornamento";
+"settings.about" = "Informazioni";
+"settings.appearance" = "Aspetto";
+"settings.theme" = "Tema";
+"settings.theme.system" = "Sistema";
+"settings.theme.light" = "Chiaro";
+"settings.theme.dark" = "Scuro";
+"settings.language" = "Lingua";
+"settings.language.restart_title" = "Riavvio necessario";
+"settings.language.restart_message" = "L'app deve essere riavviata per applicare completamente la modifica della lingua.";
+"settings.language.restart_now" = "Riavvia ora";
+"settings.language.restart_later" = "Più tardi";
+"settings.launchAtLogin" = "Avvia al login";
+"settings.clipboardMonitoring" = "Abilita monitoraggio appunti";
+"settings.hideDockIcon" = "Nascondi icona Dock";
+"settings.hideDockIcon.hint" = "Se attivato, l'app è accessibile solo dall'icona nella barra dei menu.";
+"settings.hideDockIcon.confirm.title" = "Nascondere l'icona del Dock?";
+"settings.hideDockIcon.confirm.message" = "Tutte le finestre verranno chiuse. Puoi riaprirle dall'icona nella barra dei menu.";
+"settings.hideDockIcon.confirm.ok" = "Nascondi e chiudi finestre";
+"settings.menuBarIconStyle" = "Icona barra dei menu";
+"settings.menuBarIconStyle.outline" = "Contorno";
+"settings.menuBarIconStyle.filled" = "Pieno";
+"settings.menuBar.leftClickAction" = "Azione del clic sinistro nella barra dei menu";
+"settings.menuBar.leftClickAction.help" = "Azione al clic sinistro sull'icona della barra dei menu; il clic destro mostra sempre il menu";
+"menuBar.leftClick.menu" = "Mostra menu";
+"menuBar.leftClick.openManager" = "Apri Gestore";
+"menuBar.leftClick.quickPanel" = "Apri Incolla Rapido";
+"menuBar.leftClick.toggleRelay" = "Attiva/disattiva modalità staffetta";
+"menuBar.leftClick.togglePause" = "Sospendi / Riprendi monitoraggio appunti";
+"menuBar.leftClick.openSettings" = "Apri impostazioni";
+"settings.currentVersion" = "Versione attuale";
+"settings.features" = "Funzionalità";
+"settings.shortcuts" = "Scorciatoie";
+"settings.quickPanelShortcut" = "Incolla Rapido";
+"settings.managerShortcut" = "Apri Gestore";
+"settings.managerShortcut.global" = "Globale";
+"settings.managerShortcut.scopeHint" = "Quando Globale è disattivato, questa scorciatoia funziona solo mentre il pannello rapido è già aperto.";
+"settings.relayShortcut" = "Avvia staffetta";
+"settings.shortcut.none" = "Non impostata";
+"settings.shortcut.clickToRecord" = "Clicca per registrare";
+"settings.shortcut.pressKey" = "Premi scorciatoia…";
+"settings.paste" = "Incolla";
+"settings.autoPaste" = "Incolla nell'app con Invio";
+"settings.addNewLine" = "Aggiungi a capo dopo incolla";
+"settings.quickPanelLaunchAnimation" = "Animazione di avvio del pannello rapido";
+"settings.quickPanelRememberFilter" = "Ricorda l'ultimo filtro";
+"settings.quickPanelSecondaryRow" = "Mostra sotto la ricerca del pannello rapido";
+"settings.quickPanelSecondaryRow.types" = "Tipi";
+"settings.quickPanelSecondaryRow.groups" = "Gruppi";
+"settings.history" = "Cronologia";
+"settings.quickPanelTabTypes" = "Categorie nella barra schede";
+"settings.quickPanelTabTypes.hint" = "Trascina per riordinare. Deselezionare nasconde la scheda nel pannello rapido; la barra laterale non cambia.";
+"settings.quickPanelTabTypes.reset" = "Ripristina";
+"settings.retentionDays" = "Conserva cronologia";
+"settings.retentionDays.forever" = "Per sempre";
+"settings.retentionDays.days" = "%d giorni";
+"settings.retentionDays.cleanConfirm" = "%d elementi oltre il periodo di conservazione verranno eliminati";
+"settings.retentionDays.cleanWarning" = "Questa azione non può essere annullata. Continuare?";
+"settings.display" = "Visualizzazione";
+"settings.quickPanelPosition" = "Posizione del pannello rapido";
+"settings.quickPanelPosition.remembered" = "Ricorda l'ultima posizione";
+"settings.quickPanelPosition.cursor" = "Cursore";
+"settings.quickPanelPosition.menuBarIcon" = "Icona barra menu";
+"settings.quickPanelPosition.windowCenter" = "Centro finestra attiva";
+"settings.quickPanelPosition.screenCenter" = "Centro schermo";
+"settings.quickPanelTargetScreen" = "Schermo di destinazione";
+"settings.quickPanelTargetScreen.active" = "Schermo attivo";
+"settings.quickPanelTargetScreen.specified" = "Schermo specificato";
+"settings.quickPanelSpecifiedScreen" = "Display specificato";
+"settings.behavior" = "Comportamento";
+"settings.preferences" = "Preferenze";
+"settings.quickPanel" = "Incolla Rapido";
+"settings.previewRecognition" = "Anteprima e riconoscimento";
+"settings.showLinkURL" = "Mostra URL invece del titolo per i link";
+"settings.webPreview" = "Anteprima web";
+"settings.imageLinkPreview" = "Anteprima link immagine";
+"settings.previewExecutesJavaScript" = "Esegui JavaScript nelle anteprime";
+"settings.linkPreview" = "Collegamenti e anteprime";
+"settings.linkPreview.footer" = "Questi interruttori controllano se MosaClip effettua richieste di rete per i collegamenti copiati. Disattivandoli tutti, MosaClip si connette solo per controllare gli aggiornamenti.";
+"settings.linkPreview.footer.offline" = "La modalità offline è attiva: gli interruttori sopra sono disabilitati. Disattivala nella scheda «Privacy».";
+"settings.richTextPreview" = "Anteprima testo formattato";
+
+/* Pro */
+"pro.title" = "Passa a MosaClip Pro";
+"pro.description" = "Sblocca cronologia illimitata, raggruppamento smart, sincronizzazione iCloud e altro.";
+"pro.enterKey" = "Inserisci chiave di licenza";
+"pro.activate" = "Attiva";
+"pro.activated" = "Licenza attivata";
+"pro.deactivate" = "Disattiva licenza";
+"pro.invalidKey" = "Chiave di licenza non valida";
+"pro.features" = "Funzionalità Pro";
+"pro.beta.desc" = "MosaClip è attualmente in fase di beta test. Le funzionalità Pro sono previste per una versione futura — resta sintonizzato!";
+"pro.feature.unlimited" = "Cronologia illimitata";
+"pro.feature.favorites" = "Preferiti illimitati";
+"pro.feature.smartGroup" = "Raggruppamento smart";
+"pro.feature.icloud" = "Backup automatico";
+"pro.feature.themes" = "Temi personalizzati";
+"pro.feature.rules" = "Regole appunti";
+"pro.feature.relay" = "Modalità staffetta";
+"pro.feature.customCategory" = "Categorie personalizzate";
+"pro.feature.ignoreApps" = "Ignora app specifiche";
+"pro.feature.automation" = "Automazione appunti";
+
+/* Menu */
+"menu.manager" = "Apri Gestore";
+
+/* Detail */
+"detail.select" = "Seleziona un elemento";
+"detail.selectHint" = "Clicca un elemento a sinistra per vedere i dettagli";
+"detail.info" = "Informazioni";
+"detail.type" = "Tipo";
+"detail.source" = "App di origine";
+"detail.aiAgent" = "AI Agent";
+"detail.created" = "Creato";
+"detail.group" = "Gruppo";
+"detail.lastUsed" = "Ultimo utilizzo";
+"detail.chars" = "Caratteri";
+"detail.lines" = "Righe";
+"detail.words" = "Parole";
+"detail.dimensions" = "Dimensioni";
+"detail.size" = "Peso";
+"detail.format" = "Formato";
+"detail.fileCount" = "File";
+"detail.fileStatus" = "Stato";
+"file.unavailable.missing" = "Il file non esiste piu";
+"finder.notResponding" = "Il Finder non risponde";
+"file.unavailable.denied" = "Nessun permesso di accesso";
+"detail.host" = "Host";
+"detail.url" = "URL";
+"detail.aiPreview" = "Anteprima per AI";
+"detail.location" = "Posizione";
+"detail.linkTitle" = "Titolo";
+"detail.language" = "Lingua";
+"detail.openInBrowser" = "Apri nel browser";
+"detail.preview_failed" = "Impossibile caricare l'anteprima";
+"detail.multiSelected" = "%d elementi selezionati";
+"action.deleteSelected" = "Elimina %d elementi";
+"action.deleteSelected.confirm" = "Delete %d items?";
+"file.multiTitle" = " e %d file";
+
+/* Filter */
+"filter.types" = "Per tipo";
+"filter.apps" = "Per app";
+"filter.groups" = "Gruppi";
+"filter.other" = "Altro";
+
+/* Actions */
+"action.paste" = "Incolla";
+"action.cancel" = "Annulla";
+"action.confirm" = "OK";
+"action.assignGroup" = "Assegna al gruppo";
+"action.newGroup" = "Nuovo gruppo…";
+"action.editGroup" = "Modifica gruppo…";
+"action.deleteGroup" = "Elimina gruppo";
+"action.deleteGroupConfirm" = "Eliminare il gruppo \"%@\"? Gli elementi nel gruppo non verranno eliminati.";
+"action.removeFromGroup" = "Rimuovi dal gruppo";
+"group.preserveItems" = "Conserva permanentemente gli elementi di questo gruppo";
+"group.preserveItems.help" = "Se attivato, gli elementi di questo gruppo sono esclusi dalla pulizia automatica per retention e da Cancella dati.";
+"group.preserveItems.badge" = "Permanente";
+"action.changeIcon" = "Cambia icona…";
+"action.clearConfirm" = "Verranno eliminati tutti gli elementi tranne quelli fissati.";
+"action.clearScope.type" = "Svuota gli elementi di questo tipo";
+"action.clearScope.group" = "Svuota gli elementi di questo gruppo";
+"action.clearScope.group.disabledHelp" = "Questo gruppo è contrassegnato come permanente, quindi i suoi elementi non possono essere svuotati.";
+"action.clearScope.app" = "Svuota gli elementi di questa app";
+"action.clearScope.title" = "Svuota «%@»";
+"action.clearScope.confirm" = "Verranno eliminati %d elementi non fissati. Gli elementi nei gruppi con conservazione permanente non verranno rimossi.";
+"action.clearScope.empty" = "Nessun elemento da svuotare con questo filtro (gli elementi fissati e quelli nei gruppi con conservazione permanente vengono ignorati).";
+"action.copy" = "Copia";
+"action.copied" = "Copiato negli appunti";
+"action.undo" = "Annulla";
+"delete.undo.toast" = "%d elementi eliminati";
+
+/* Stats */
+"stats.total" = "Totale elementi";
+"stats.clips" = "elementi";
+
+/* Menu */
+"menu.openMain" = "Apri finestra principale";
+"menu.quickPanel" = "Incolla Rapido";
+"menu.pause" = "Sospendi monitoraggio appunti";
+"menu.resume" = "Riprendi monitoraggio appunti";
+"menu.settings" = "Impostazioni";
+"menu.quit" = "Esci da %@";
+"menu.accessibility.grant" = "⚠ Concedi permesso di accessibilità";
+
+/* Quick Panel */
+"quick.search" = "Cerca negli appunti…";
+"quick.recent" = "Recenti";
+"quick.selectHint" = "Seleziona un elemento per l'anteprima";
+"quick.pasteTo" = "Incolla in %@";
+"quick.copyToClipboard" = "Copia negli appunti";
+"quick.actions" = "Azioni";
+"quick.navigate" = "Naviga";
+"quick.pasteAction" = "Incolla";
+"quick.close" = "Chiudi";
+"quick.pasteNewLine" = "Incolla + Invio";
+"quick.pastePath" = "Incolla percorso";
+"quick.copyPath" = "Copia percorso";
+"quick.pasteName" = "Incolla nome";
+"quick.saveToFolder" = "Incolla file";
+"quick.switchType" = "Tipo";
+"quick.delete" = "Elimina";
+"quick.openLink" = "Apri";
+"quick.preview" = "Anteprima";
+"quick.pasteImage" = "Incolla immagine";
+"settings.showGuide" = "Mostra guida iniziale";
+
+/* Onboarding */
+"accessibility.lost.title" = "Permesso di accessibilità richiesto";
+"accessibility.lost.message" = "Dopo un aggiornamento, macOS richiede una nuova autorizzazione. Dopo aver fatto clic su «Apri Accessibilità», seleziona la voce MosaClip esistente e fai clic su − per rimuoverla, quindi trascina la nuova versione dal pannello flottante.";
+"accessibility.lost.later" = "Più tardi";
+"reinstall.required.title" = "File dell'app incompleti";
+"reinstall.required.message" = "Alcuni file risultano mancanti dopo l'aggiornamento. Scarica di nuovo il DMG e reinstalla. I tuoi dati e le autorizzazioni saranno preservati.";
+"reinstall.required.action" = "Apri pagina di download";
+"onboarding.back" = "Indietro";
+"onboarding.next" = "Avanti";
+"onboarding.done" = "Inizia";
+"onboarding.welcome.title" = "Benvenuto in MosaClip";
+"onboarding.welcome.desc" = "Un gestore smart degli appunti che vive nella barra dei menu. Tutto ciò che copi viene salvato automaticamente ed è immediatamente ricercabile.";
+"onboarding.accessibility.title" = "Abilita accessibilità";
+"onboarding.accessibility.desc" = "MosaClip ha bisogno del permesso di accessibilità per incollare contenuti in altre app. Clicca il pulsante qui sotto per concedere l'accesso nelle Impostazioni di Sistema.";
+"onboarding.accessibility.grant" = "Apri impostazioni accessibilità";
+"onboarding.accessibility.granted" = "Permesso concesso";
+"onboarding.accessibility.hint" = "Dopo aver concesso il permesso, questa pagina si aggiornerà automaticamente.";
+"onboarding.shortcut.title" = "Scorciatoia Incolla Rapido";
+"onboarding.shortcut.desc" = "Premi la scorciatoia ovunque per aprire il pannello Incolla Rapido. Cerca nella cronologia appunti e incolla con un clic.";
+"onboarding.shortcut.current" = "Clicca per cambiare scorciatoia";
+
+/* About */
+/* Help */
+"menu.newGroup" = "Nuovo gruppo…";
+"menu.newSmartGroup" = "Nuovo gruppo smart…";
+"menu.help" = "Guida MosaClip";
+"menu.alwaysOnTop" = "Sempre in primo piano";
+"help.title" = "Guida MosaClip";
+"help.subtitle" = "Guida rapida per sfruttare al meglio i tuoi appunti.";
+"help.close" = "Ho capito";
+"help.shortcuts" = "Scorciatoie da tastiera";
+"help.shortcut.quickPaste" = "Apri pannello Incolla Rapido";
+"help.shortcut.paste" = "Incolla elemento selezionato";
+"help.shortcut.switchType" = "Filtra per tipo di contenuto";
+"help.shortcut.navigate" = "Naviga tra gli elementi";
+"help.shortcut.cmdEnter" = "Incolla percorso / Incolla file / Incolla immagine";
+"help.shortcut.preview" = "Anteprima / Apri link";
+"help.shortcut.delete" = "Elimina elemento";
+"help.shortcut.close" = "Chiudi pannello";
+"help.actions" = "Azioni Incolla Rapido";
+"help.action.paste" = "Premi Invio o doppio clic per incollare nell'app attiva";
+"help.action.openLink" = "I link possono essere aperti direttamente nel browser predefinito";
+"help.action.pastePath" = "Elementi file: ⌘↵ incolla il percorso del file";
+"help.action.saveToFolder" = "Elementi testo/immagine: ⌘↵ incolla come file nel Finder";
+"help.action.pasteImage" = "Elementi con immagini: ⌘↵ incolla come file immagine";
+"help.action.pin" = "Clic destro per fissare gli elementi — restano in cima permanentemente";
+"help.tips" = "Suggerimenti";
+"help.tip.doubleClick" = "Doppio clic per incollare, singolo clic per selezionare e anteprima";
+"help.tip.rightClick" = "Clic destro per altre azioni: fissa, elimina";
+"help.tip.menuBar" = "Clicca l'icona nella barra dei menu per accedere alla cronologia e alle impostazioni";
+"help.tip.search" = "Digita nella casella di ricerca per trovare qualsiasi elemento all'istante";
+"onboarding.helpHint" = "Puoi visualizzare la guida in qualsiasi momento dal menu: Aiuto → Guida MosaClip";
+
+"about.description" = "Uno spazio di lavoro locale per gli appunti su macOS";
+"about.project" = "Progetto e codice MosaClip";
+
+/* Update */
+"update.available.title" = "È disponibile una nuova versione di MosaClip!";
+"update.available.beta.title" = "È disponibile una nuova beta di MosaClip";
+"update.beta.warning" = "Le versioni beta potrebbero essere instabili. Esegui un backup dei dati importanti prima di installare.";
+"update.available.message" = "MosaClip %@ è disponibile — hai la versione %@. Vuoi scaricarla ora?";
+"update.skip" = "Salta questa versione";
+"update.remind_later" = "Ricordamelo più tardi";
+"update.install" = "Installa aggiornamento";
+"update.downloading" = "Download aggiornamento in corso...";
+"update.ready" = "Pronto per l'installazione";
+"update.install_restart" = "Installa e riavvia";
+"update.cancel" = "Annulla";
+"update.check_failed" = "Controllo aggiornamenti fallito";
+"update.check_failed.hint" = "Impossibile recuperare le informazioni sulla versione più recente. Controlla la connessione di rete e riprova, oppure scarica manualmente da:";
+"update.check_failed.github" = "Scarica da GitHub";
+"update.check_failed.gitee" = "Scarica da Gitee";
+"update.check_failed.cancel" = "Annulla";
+"update.no_updates" = "Sei aggiornato!";
+"update.no_updates.message" = "MosaClip %@ è la versione più recente.";
+"update.download_error" = "Download fallito";
+"update.dmg_error" = "Aggiornamento fallito";
+"update.dmg_error.message" = "L'immagine disco scaricata è corrotta. Prova a scaricare di nuovo l'aggiornamento.";
+"update.download_error.incomplete" = "Il download è incompleto o è stato interrotto. Controlla la connessione di rete e riprova.";
+
+/* Ignored Apps */
+"settings.ignoredApps" = "App ignorate";
+"settings.ignoredApps.add" = "Aggiungi app";
+"settings.ignoredApps.empty" = "Nessuna app ignorata";
+"settings.ignoredApps.remove" = "Rimuovi";
+"settings.ignoredApps.selectApp" = "Seleziona app da ignorare";
+"settings.ignoredApps.running" = "App in esecuzione";
+"settings.ignoredApps.browse" = "Sfoglia applicazioni…";
+
+/* Sensitive Content */
+"sensitive.masked" = "••••••••";
+"sensitive.reveal" = "Mostra";
+"sensitive.hide" = "Nascondi";
+"sensitive.markSensitive" = "Segna come sensibile";
+"sensitive.unmarkSensitive" = "Rimuovi contrassegno sensibile";
+
+/* Data Import/Export */
+"dataPorter.section" = "Dati";
+"dataPorter.importExport" = "Importa ed esporta";
+"dataPorter.export" = "Esporta dati";
+"dataPorter.compressing" = "Compressione in corso...";
+"dataPorter.import" = "Importa dati";
+"dataPorter.encrypt" = "Crittografa esportazione";
+"dataPorter.password" = "Password";
+"dataPorter.confirmPassword" = "Conferma password";
+"dataPorter.passwordMismatch" = "Le password non corrispondono";
+"dataPorter.enterPassword" = "Inserisci la password per decrittografare";
+"dataPorter.exportSuccess" = "Esportazione riuscita";
+"dataPorter.importSuccess" = "Importazione riuscita";
+"dataPorter.wrongPassword" = "Password errata";
+"dataPorter.decrypting" = "Decrittazione in corso...";
+"dataPorter.refreshing" = "Aggiornamento dell'interfaccia principale...";
+"dataPorter.summary.imported" = "%d elementi importati";
+"dataPorter.summary.skipped" = "%d elementi ignorati";
+"dataPorter.summary.newGroups" = "%d nuovi gruppi aggiunti";
+"dataPorter.summary.newRules" = "%d nuove regole aggiunte";
+
+/* Dev Tools */
+"devTools.importFromRelease" = "Import Data from Release";
+"devTools.importFromRelease.confirm" = "Import from Release?";
+"devTools.importFromRelease.confirmMessage" = "This will overwrite all data in the Dev version. This action cannot be undone.";
+"devTools.importFromRelease.releaseRunning" = "Please quit the release version of MosaClip before importing.";
+"devTools.importFromRelease.noData" = "No release version data found.";
+
+/* Rich Text / Plain Text */
+"action.pasteAsPlainText" = "Testo semplice";
+
+/* Text Editing */
+"action.edit" = "Modifica";
+"action.save" = "Salva";
+
+/* Multi-select */
+"action.merge" = "Unisci";
+"action.mergeCopy" = "Copia";
+"action.copyDebugInfo" = "Copia informazioni di debug";
+"quick.multiSelected" = "%d elementi selezionati";
+"quick.batchPaste" = "Incolla in blocco";
+
+/* Privacy */
+"settings.privacy" = "Privacy";
+"settings.privacy.offlineMode" = "Modalità offline";
+"settings.privacy.offlineMode.hint" = "Se attiva, MosaClip blocca anteprime dei link e caricamento immagini. Gli aggiornamenti online e le statistiche anonime non sono disponibili in questa build.";
+"settings.privacy.sensitive" = "Contenuti sensibili";
+"settings.privacy.sensitiveDetection" = "Rileva automaticamente contenuti sensibili";
+"settings.privacy.sensitiveHint" = "Maschera automaticamente password, chiavi API, token e altri dati sensibili copiati negli appunti.";
+
+/* Automation */
+"settings.automation" = "Automazione";
+"settings.automation.enabled" = "Abilita regole di automazione";
+"settings.automation.ruleCount" = "%d regole (%d abilitate)";
+"settings.automation.manage" = "Gestisci regole di automazione...";
+"settings.automation.hint" = "All matching rules are executed in order. Drag to reorder.";
+"settings.automation.auto" = "Auto";
+"settings.automation.manual" = "Manuale";
+"settings.automation.proRequired" = "Le regole di automazione sono una funzione Pro";
+"automation.builtIn.cleanTracking" = "Pulisci parametri di tracciamento";
+"automation.builtIn.lowercaseEmail" = "Converti email in minuscolo";
+"automation.builtIn.removeBlankLines" = "Rimuovi righe vuote in eccesso";
+
+/* Onboarding - Privacy Apps */
+"onboarding.privacy.title" = "Protezione della privacy";
+"onboarding.privacy.desc" = "MosaClip ha rilevato i seguenti gestori di password e app di sicurezza sul tuo Mac. Ti consigliamo di ignorare la loro attività negli appunti per proteggere i tuoi dati sensibili.";
+"onboarding.privacy.none" = "Nessun gestore di password o app di sicurezza rilevato";
+"onboarding.privacy.hint" = "Spuntata = ignorata: gli appunti di questa app non vengono salvati. Fai clic su una riga per cambiare.";
+"onboarding.privacy.ignored" = "Ignorata";
+"onboarding.privacy.notIgnored" = "Non ignorata";
+
+/* Onboarding - Preferences */
+"onboarding.preferences.title" = "Preferenze";
+"onboarding.preferences.desc" = "Configura il comportamento preferito. Puoi modificare queste impostazioni in qualsiasi momento.";
+
+"sensitive.optionHint" = "Tieni premuto ⌥ Option per sbirciare";
+
+"sensitive.peek" = "Sbircia";
+
+/* Accessibility Steps */
+"accessibility.step1" = "Apri Impostazioni di Sistema → Privacy e sicurezza → Accessibilità";
+"accessibility.step2" = "Trova MosaClip, rimuovilo prima (seleziona e clicca meno)";
+"accessibility.step3" = "Clicca più per aggiungere di nuovo MosaClip";
+
+/* Accessibility Steps (rich text parts) */
+"accessibility.step1.prefix" = "Apri";
+"accessibility.step1.path" = "Impostazioni di Sistema → Privacy e sicurezza → Accessibilità";
+"accessibility.step2.prefix" = "Trova";
+"accessibility.step2.suffix" = ", rimuovilo prima";
+"accessibility.step3.text" = "Clicca per aggiungere di nuovo MosaClip";
+
+"accessibility.step2.find" = "Trova";
+"accessibility.step2.delete" = "rimuovi";
+"accessibility.step3.add" = "Clicca";
+
+"accessibility.step3.readd" = "aggiungi di nuovo";
+
+"accessibility.step2.pre" = "prima";
+"accessibility.step2.separator" = ", ";
+
+"accessibility.step3.dragFromPanel" = "Trascina MosaClip dal pannello flottante";
+"accessibility.panelHint" = "Se esiste una vecchia voce, fai clic su − per rimuoverla prima di trascinare.";
+"accessibility.panelTitle" = "Autorizzazione Accessibilità";
+
+"filter.sensitive" = "Sensibili";
+
+
+"settings.sound" = "Suoni";
+"settings.sound.enabled" = "Effetti sonori";
+"settings.sound.copy" = "Suono copia";
+"settings.sound.paste" = "Suono incolla";
+"settings.sound.section.custom" = "Personalizzato";
+"settings.sound.section.system" = "Sistema";
+
+/* Backup */
+"backup.section" = "Backup automatico";
+"backup.enable" = "Attiva backup automatico";
+"backup.frequency" = "Frequenza di backup";
+"backup.maxSlots" = "Numero di backup";
+"backup.destination" = "Metodo di backup";
+"backup.frequency.twoHours" = "Ogni 2 ore";
+"backup.frequency.sixHours" = "Ogni 6 ore";
+"backup.frequency.daily" = "Giornaliero";
+"backup.frequency.threeDays" = "Ogni 3 giorni";
+"backup.frequency.weekly" = "Settimanale";
+"backup.frequency.monthly" = "Mensile";
+"backup.path" = "Percorso di backup";
+"backup.lastBackup" = "Ultimo backup";
+"backup.backupNow" = "Esegui backup ora";
+"backup.restore" = "Ripristina…";
+"backup.success" = "Backup completato con successo.";
+"backup.progress.finalizing" = "Salvataggio…";
+"backup.restore.title" = "Ripristina da backup";
+"backup.restore.empty" = "Nessun backup disponibile.";
+"backup.restore.merge" = "Unisci (mantieni dati esistenti)";
+"backup.restore.overwrite" = "Sovrascrivi (sostituisci tutto)";
+"backup.restore.confirm" = "Conferma ripristino";
+"backup.restore.confirmMerge" = "I dati del backup verranno uniti ai dati esistenti. I duplicati verranno ignorati.";
+"backup.restore.confirmOverwrite" = "Tutti i dati esistenti verranno sostituiti con i dati del backup. Questa azione non può essere annullata.";
+"backup.restore.success" = "Ripristino completato.";
+"backup.webdav.url" = "URL del server";
+"backup.webdav.username" = "Nome utente";
+"backup.webdav.password" = "Password";
+"backup.webdav.test" = "Test";
+"backup.destination.local" = "Locale";
+"backup.changePath" = "Cambia…";
+"backup.webdav.testSuccess" = "Connessione riuscita.";
+"backup.webdav.testFailed" = "Connessione fallita.";
+"backup.webdav.testSuccessHTTP" = "Connessione riuscita (HTTP non crittografato).";
+"backup.webdav.authFailed" = "Server raggiunto, ma il nome utente o la password non sono corretti.";
+"backup.webdav.certError" = "Il certificato del server non è valido; impossibile stabilire una connessione sicura.";
+"backup.webdav.invalidURL" = "URL del server non valido. Sono supportati solo http:// e https://.";
+"backup.webdav.insecureWarning" = "Connessione HTTP non crittografata: le credenziali e i dati di backup vengono trasmessi in chiaro.";
+
+// Modalità staffetta
+// Tavolozza comandi
+"cmd.title" = "Azioni rapide";
+"cmd.paste" = "Incolla";
+"cmd.pasteAndDestroy" = "Incolla ed elimina";
+"cmd.pasteAsPlainText" = "Incolla come testo";
+"cmd.copyAsPlainText" = "Copia come testo";
+"cmd.copy" = "Copia";
+"cmd.pin" = "Fissa / Rimuovi";
+"cmd.toggleSensitive" = "Attiva/disattiva sensibile";
+"cmd.delete" = "Elimina";
+"cmd.openLink" = "Apri link";
+"cmd.openEntity" = "Apri %@";
+"cmd.pasteEntity" = "Incolla %@";
+"cmd.pasteAsFile" = "Incolla come file";
+"cmd.pastePath" = "Incolla percorso";
+"cmd.andNewLine" = " + a capo";
+"cmd.transform" = "Trasforma";
+"cmd.automation" = "Automazione";
+
+"relay.title" = "Modalità Staffetta";
+"relay.exit" = "Esci";
+"relay.clearAndExit" = "Svuota ed esci";
+"relay.close" = "Chiudi";
+"relay.exitRelay" = "Esci dalla staffetta";
+"relay.startRelay" = "Avvia staffetta";
+"relay.pause" = "Pausa";
+"relay.resume" = "Riprendi";
+"relay.paused" = "In pausa";
+"relay.emptyHint" = "Copia contenuti per aggiungerli alla coda";
+"relay.deleted.recirculated" = "Rimosso dal relay, conservato nella cronologia";
+"relay.deleted.undo" = "Annulla";
+"relay.appendedToQueue" = "Aggiunto alla coda staffetta (%d/%d)";
+"relay.queue.heading" = "Coda %d";
+"relay.quickPastePaused" = "Incolla rapido in pausa durante la modalità staffetta";
+"relay.expand" = "Espandi";
+"relay.collapse" = "Comprimi";
+"relay.content.truncated" = "…(contenuto troppo grande, troncato)";
+"relay.alert.title" = "Modalità Staffetta attivata";
+"relay.alert.message" = "Incolla rapido in pausa. I contenuti copiati verranno aggiunti alla coda.
+
+Usa %@ per incollare uno per uno.";
+"relay.alert.ok" = "Capito";
+"relay.alert.dontShowAgain" = "Non mostrare più";
+"relay.settings.pasteKey" = "Scorciatoia incolla staffetta";
+"relay.settings.pasteKeyNote" = "Alcune app (Terminale, Emacs) potrebbero usare la stessa scorciatoia.";
+"relay.settings.pauseToChange" = "Metti in pausa o esci dalla staffetta per modificare la scorciatoia.";
+"relay.settings.plainText" = "Incolla come testo semplice";
+"relay.settings.plainText.desc" = "Rimuovi formattazione";
+"relay.settings.allowRepeatCopy" = "Consenti duplicati";
+"relay.settings.allowRepeatCopy.desc" = "Accoda elementi consecutivi identici";
+"relay.settings.completeSound" = "Suono di completamento";
+"relay.settings.completeSound.desc" = "Riproduci al termine del relay";
+"relay.settings.completeSound.mute" = "Silenzio";
+"relay.banner.clickToClear" = "Clic per cambiare · ✕ per cancellare";
+"relay.settings.automation" = "Automazione";
+"relay.settings.automation.desc" = "Applica regola all'incolla";
+"relay.settings.automation.none" = "Nessuna";
+"relay.settings.preview" = "Anteprima";
+"relay.settings.preview.desc" = "L'elenco mostra il testo elaborato";
+"relay.settings.tooltip.default" = "Impostazioni";
+"relay.settings.tooltip.active" = "Attivo";
+"relay.settings.postPasteKey" = "Tasto dopo l'incollaggio";
+"relay.settings.postPasteKey.desc" = "Utile per inserimento rapido";
+"relay.settings.postPasteKey.none" = "Nessuno";
+"relay.settings.postPasteKey.return" = "Return";
+"relay.settings.postPasteKey.tab" = "Tab";
+"relay.settings.postPasteKey.down" = "Giù";
+"relay.settings.postPasteKey.up" = "Su";
+"relay.settings.postPasteKey.left" = "Sinistra";
+"relay.settings.postPasteKey.right" = "Destra";
+"relay.settings.postPasteKey.space" = "Space";
+"relay.autoExit.short" = "Uscita auto a fine";
+"relay.loop" = "Ciclo";
+"relay.loop.tooltip.on" = "Ciclo: Attivo (Riparti dall'inizio alla fine della coda)";
+"relay.loop.tooltip.off" = "Ciclo: Disattivato";
+"relay.pasteAsText" = "Incolla come testo";
+"relay.autoExit" = "Uscita auto quando la coda è vuota";
+"relay.previous" = "Precedente";
+"relay.skip" = "Salta";
+"relay.pasteAll" = "Incolla tutto";
+"relay.pasteAll.stop" = "Interrompi";
+"relay.pasteAll.help" = "Incolla in ordine tutti gli elementi rimanenti in coda (⌥⌃V)";
+"relay.delete" = "Elimina";
+"relay.setCurrent" = "Imposta come corrente";
+"relay.split" = "Dividi";
+"relay.addToQueue" = "Aggiungi alla coda staffetta";
+"relay.splitAndRelay" = "Dividi e staffetta";
+"relay.split.title" = "Dividi in coda";
+"relay.split.delimiter" = "Separatore";
+"relay.split.customPlaceholder" = "Inserisci separatore...";
+"relay.split.confirm" = "Dividi";
+"relay.split.preview" = "Verrà diviso in %d elementi";
+"relay.split.noResult" = "Separatore non trovato";
+"relay.delimiter.newline" = "A capo";
+"relay.delimiter.comma" = "Virgola (,)";
+"relay.delimiter.chineseComma" = "Virgola cinese (、)";
+"relay.delimiter.custom" = "Personalizzato";
+"onboarding.skip" = "Salta";
+"onboarding.relay.title" = "Modalità Staffetta";
+"onboarding.relay.desc" = "Copia più elementi e incollali uno per uno in ordine — perfetto per l'inserimento dati in blocco.";
+"onboarding.relay.feature1" = "Seleziona più elementi o copia continuamente per creare una coda";
+"onboarding.relay.feature2" = "Dividi il testo per separatore per creare rapidamente una coda";
+"onboarding.relay.feature3" = "Premi Ctrl+V per incollare uno per uno (personalizzabile)";
+"onboarding.aiAgent.title" = "Ponte per agenti IA";
+"onboarding.aiAgent.desc" = "Rendi disponibili gli appunti a Claude Code, Cursor, Codex e qualsiasi agente IA compatibile con MCP.";
+"onboarding.aiAgent.feature1" = "5 strumenti MCP — leggere, cercare, scrivere gli appunti";
+"onboarding.aiAgent.feature2" = "Installazione in un clic in Impostazioni → AI Agents";
+"onboarding.aiAgent.feature3" = "Elementi sensibili filtrati per impostazione predefinita";
+"help.relay" = "Modalità staffetta";
+"help.relay.open" = "Apri tramite il pulsante nella barra degli strumenti o nella barra dei menu";
+"help.relay.paste" = "Ctrl+V per incollare l'elemento successivo (personalizzabile nelle Impostazioni)";
+"help.relay.skip" = "Clicca il pulsante Salta nella finestra staffetta per saltare l'elemento corrente";
+"help.relay.previous" = "Clicca il pulsante Precedente nella finestra staffetta per tornare indietro";
+"help.relay.split" = "Passa il mouse e clicca l'icona forbici, o clic destro per dividere l'elemento";
+"help.relay.pauseResume" = "Pulsanti Pausa / Riprendi nella finestra staffetta";
+"help.relay.exit" = "Pulsante Chiudi o Esc per uscire dalla modalità staffetta";
+"about.help" = "Guida all’uso";
+
+/* Missing Keys - Empty State */
+"empty.noResults" = "Nessun elemento corrispondente";
+
+/* Missing Keys - Actions */
+"cmd.showInFinder" = "Mostra nel Finder";
+"cmd.copyAs" = "Copia come %@";
+"relay.reverse" = "Inverti ordine";
+"relay.clearAll" = "Cancella tutto";
+"relay.editItem" = "Modifica contenuto";
+"quickPanel.pin" = "Fissa finestra";
+"quickPanel.unpin" = "Sblocca finestra";
+
+/* Missing Keys - Settings */
+"settings.doubleTap" = "Doppio tocco per aprire";
+"settings.doubleTap.modifier" = "Tasto modificatore doppio tocco";
+
+/* Missing Keys - Clear Data */
+
+/* Missing Keys - Backup */
+"backup.nextBackup" = "Prossimo backup";
+
+/* Missing Keys - Automation Manager Window */
+"automation.window.title" = "Regole di automazione";
+"automation.section.builtIn" = "Regole integrate";
+"automation.section.custom" = "Le mie regole";
+"automation.section.empty" = "(vuoto)";
+"automation.section.disabled" = "Disabilitata";
+"automation.editor.selectRule" = "Seleziona una regola da modificare";
+"automation.rule.name" = "Nome";
+"automation.rule.enabled" = "Attivo";
+"automation.rule.triggerMode" = "Attivazione";
+"automation.rule.triggerMode.automatic" = "Automatica";
+"automation.rule.triggerMode.manual" = "Solo manuale";
+"automation.rule.triggerMode.shortcutManualOnly" = "Contiene azioni solo manuali: solo attivazione manuale";
+"automation.rule.outputMode" = "Il risultato va in";
+"automation.rule.outputMode.replaceItem" = "Sostituisci questo elemento";
+"automation.rule.outputMode.newItem" = "Nuovo elemento";
+"automation.rule.outputMode.clipboard" = "Solo appunti";
+"automation.rule.outputMode.pasteToFrontmost" = "Incolla nell’app in primo piano";
+"automation.rule.outputMode.help" = "Le regole automatiche non hanno una destinazione di incolla: «Solo appunti» e «Incolla nell’app in primo piano» riscrivono entrambe il risultato negli appunti, così ⌘V subito dopo la copia incolla il testo elaborato (il testo formattato diventa testo semplice).";
+"automation.action.section.flow" = "Flusso";
+"automation.action.stopProcessing" = "Non eseguire altre regole";
+"automation.action.closeQuickPanel" = "Chiudi il pannello rapido";
+"automation.rule.triggerMode.automatic.help" = "Viene eseguita automaticamente alla copia";
+"automation.rule.triggerMode.manual.help" = "Eseguila con ⌘K nel pannello rapido o dal menu contestuale dell’elemento";
+"automation.action.regexReplace.pattern" = "Trova";
+"automation.preview.asyncSkipped" = "I comandi rapidi e OCR non vengono mostrati in anteprima qui";
+"automation.builtIn.restore" = "Ripristina regole integrate";
+"automation.editor.unsaved" = "Modifiche non salvate";
+"automation.editor.unsavedMessage" = "Salvare prima di passare a un’altra regola?";
+"automation.editor.dontSave" = "Non salvare";
+"automation.editor.on" = "Attivo";
+"automation.editor.off" = "Disattivo";
+"automation.flow.when" = "Attivazione";
+"automation.flow.if" = "Condizioni";
+"automation.flow.then" = "Azioni";
+"automation.flow.finally" = "Risultato";
+"automation.flow.allConditions" = "tutte le condizioni sono soddisfatte";
+"automation.flow.anyCondition" = "una condizione è soddisfatta";
+"automation.flow.inOrder" = "in ordine";
+"automation.rule.notifyBeforeApply" = "Conferma prima di applicare";
+"automation.rule.newName" = "Nuova regola";
+"automation.condition.title" = "Condizioni";
+"automation.condition.add" = "+ Aggiungi condizione";
+"automation.condition.contentType" = "Tipo di contenuto è";
+"automation.condition.regexMatch" = "Il contenuto corrisponde a regex";
+"automation.condition.containsText" = "Il contenuto contiene";
+"automation.condition.sourceApp" = "App di origine è";
+"automation.condition.anyText" = "Qualsiasi testo";
+"automation.action.title" = "Azioni (in ordine)";
+"automation.action.add" = "+ Aggiungi azione";
+"automation.action.lowercased" = "Minuscolo";
+"automation.action.uppercased" = "Maiuscolo";
+"automation.action.trimWhitespace" = "Rimuovi spazi";
+"automation.action.removeBlankLines" = "Rimuovi righe vuote";
+"automation.action.stripRichText" = "Rimuovi formattazione";
+"automation.action.assignGroup" = "Assegna al gruppo";
+"automation.action.assignGroup.placeholder" = "Inserisci il nome del gruppo";
+"automation.action.urlEncode" = "Codifica URL";
+"automation.action.urlDecode" = "Decodifica URL";
+"automation.action.removeQueryParams" = "Rimuovi parametri URL";
+"automation.action.regexReplace" = "Sostituzione regex";
+"automation.action.regexReplace.to" = "Sostituisci con";
+"automation.action.addPrefix" = "Aggiungi prefisso";
+"automation.action.addSuffix" = "Aggiungi suffisso";
+"automation.action.removeQueryParams.placeholder" = "Inserisci nomi parametri, separati da virgola";
+"automation.action.regexReplace.placeholder" = "Inserisci il pattern regex";
+"automation.action.regexReplace.to.placeholder" = "Inserisci il testo sostitutivo";
+"automation.action.addPrefix.placeholder" = "Inserisci il testo del prefisso";
+"automation.action.addSuffix.placeholder" = "Inserisci il testo del suffisso";
+"automation.preview" = "Testa regola";
+"automation.preview.input" = "Incolla o digita contenuto per testare la regola…";
+"automation.preview.useClipboard" = "Usa appunti correnti";
+"automation.preview.output" = "Anteprima del risultato";
+"automation.preview.notMatched" = "Condizioni non soddisfatte";
+
+/* Automation Confirm */
+"automation.confirm.title" = "Regola di automazione attivata";
+"automation.confirm.matched" = "La regola \"%@\" corrisponde";
+"automation.confirm.apply" = "Applica";
+"automation.confirm.keep" = "Mantieni originale";
+"automation.confirm.original" = "Originale:";
+"automation.confirm.processed" = "Elaborato:";
+"automation.action.delete" = "Elimina regola";
+"automation.action.section.text" = "Testo";
+"automation.action.section.url" = "URL";
+"automation.action.section.advanced" = "Avanzato";
+"automation.action.section.clipboard" = "Clipboard";
+"automation.action.markSensitive" = "Mark as Sensitive";
+"automation.action.pin" = "Pin";
+"automation.action.skipCapture" = "Skip Capture";
+"automation.action.section.external" = "External";
+"automation.action.runShortcut" = "Run Shortcut";
+"automation.action.runShortcut.placeholder" = "Shortcut name";
+"automation.action.runShortcut.empty" = "No shortcut selected";
+"automation.action.runShortcut.pick" = "Pick from list";
+"automation.action.runShortcut.openInApp" = "Open in Shortcuts";
+"automation.action.runShortcut.failed" = "Shortcut failed";
+"automation.action.runShortcut.loading" = "Loading…";
+"automation.rule.notifyOnTrigger" = "Send notification on trigger";
+"automation.notification.title" = "Automation";
+"automation.applied" = "Automation applied";
+"automation.validation.incomplete" = "Cannot enable rule";
+"automation.validation.incompleteMessage" = "Please add at least one condition and one action before enabling.";
+"automation.delete.confirm" = "Delete Rule?";
+"automation.delete.confirmMessage" = "This action cannot be undone.";
+"automation.notification.permissionDenied" = "Notifications Not Allowed";
+"automation.notification.permissionDeniedMessage" = "Please allow notifications for MosaClip in System Settings.";
+"automation.notification.openSettings" = "Open Settings";
+"automation.condition.sourceApp.select" = "Seleziona app";
+"automation.condition.sourceApp.add" = "Aggiungi app";
+"automation.condition.sourceApp.empty" = "Nessuna app selezionata";
+"automation.editor.definition" = "Definizione regola";
+"automation.editor.settings" = "Impostazioni";
+"automation.editor.triggerAndNotification" = "Trigger & Notification";
+"automation.rule.status.active" = "Active";
+"automation.rule.status.inactive" = "Inactive";
+"automation.editor.save" = "Salva";
+"automation.editor.cancel" = "Annulla";
+"automation.editor.edit" = "Modifica";
+"automation.condition.empty" = "Nessuna condizione";
+"automation.condition.title.prefix" = "Quando";
+"automation.condition.logic.all" = "tutte";
+"automation.condition.logic.any" = "una";
+"automation.condition.title.suffix" = "le condizioni sono soddisfatte";
+"automation.condition.regexMatch.placeholder" = "Inserisci il pattern regex";
+"automation.condition.containsText.placeholder" = "Inserisci il contenuto testuale";
+"automation.action.empty" = "Nessuna azione";
+"quick.commandPalette" = "Azioni";
+"quick.pasteToApp" = "Incolla in %@";
+
+
+/* About - Open Source */
+"about.license" = "Licenza";
+
+/* Analytics */
+"settings.privacy.analytics" = "Statistiche d'uso";
+"settings.privacy.analyticsToggle" = "Invia statistiche anonime";
+"settings.privacy.analyticsHint" = "Aiuta a migliorare MosaClip inviando dati anonimi (versione app, lingua, versione macOS). Nessun dato personale viene raccolto.";
+"analytics.consent.title" = "Statistiche d'uso";
+"analytics.consent.message" = "Vuoi inviare statistiche anonime per migliorare MosaClip? Include versione app, lingua e versione macOS. Nessun dato personale viene raccolto. Puoi modificarlo in Impostazioni → Privacy.";
+"analytics.consent.allow" = "Consenti";
+"analytics.consent.deny" = "Non consentire";
+
+/* Onboarding - Analytics */
+"onboarding.analytics.title" = "Statistiche d'uso";
+"onboarding.analytics.desc" = "Aiuta a migliorare MosaClip inviando dati anonimi (versione app, lingua, versione macOS). Nessun dato personale viene raccolto.";
+"onboarding.analytics.hint" = "Puoi modificarlo in Impostazioni → Privacy.";
+
+/* OCR */
+"settings.ocr" = "OCR";
+"settings.ocr.enable" = "Abilita OCR immagini";
+"settings.ocr.auto" = "Elabora automaticamente le nuove immagini";
+"settings.ocr.markdown" = "Riconosci il layout come Markdown";
+"settings.ocr.markdown.hint" = "Rileva paragrafi, elenchi e tabelle e salva il testo come Markdown. Richiede macOS 26.";
+"settings.ocr.stopScan" = "Interrompi la scansione";
+"settings.ocr.scanExisting" = "Scansiona le immagini esistenti";
+"settings.ocr.scanStarted" = "L'OCR in background per le immagini esistenti è stato avviato.";
+"settings.ocr.hint" = "L'OCR viene eseguito sul dispositivo e rende ricercabile il testo nelle immagini.";
+"settings.autoCheckUpdates" = "Controlla aggiornamenti automaticamente";
+"settings.updateCheckInterval" = "Intervallo di controllo";
+"settings.updateCheckInterval.6h" = "Ogni 6 ore";
+"settings.updateCheckInterval.12h" = "Ogni 12 ore";
+"settings.updateCheckInterval.24h" = "Ogni 24 ore";
+"settings.updateCheckInterval.72h" = "Ogni 3 giorni";
+"settings.includeBetaChannel" = "Partecipa al canale Beta";
+"settings.includeBetaChannel.hint" = "Prova in anteprima le nuove funzionalità. Potrebbe essere instabile. Si aggiorna automaticamente alla versione stabile.";
+"detail.ocr" = "Testo riconosciuto";
+"detail.ocr.copy" = "Copia testo";
+"detail.ocr.retry" = "Riprova OCR";
+"detail.ocr.recognize" = "Riconosci testo";
+"detail.ocr.notStarted" = "Testo dell'immagine non ancora riconosciuto";
+"detail.ocr.notStartedHint" = "Il riconoscimento automatico è disattivato. Puoi riconoscere questa immagine manualmente.";
+"detail.ocr.pending" = "In attesa di analizzare il testo dell'immagine.";
+"detail.ocr.processing" = "Analisi del testo dell'immagine in corso…";
+"detail.ocr.ready" = "Il testo riconosciuto è disponibile per la ricerca.";
+"detail.ocr.empty" = "Nessun testo trovato finora in questa immagine.";
+"detail.ocr.failed" = "OCR non riuscito per questa immagine.";
+"quick.ocrMatch" = "Corrispondenza nel testo riconosciuto";
+"cmd.openInPreview" = "Apri in Anteprima";
+"cmd.quickLook" = "Vista rapida";
+"cmd.retryOCR" = "Riprova OCR";
+"cmd.pasteOCR" = "Incolla testo OCR";
+
+/* Edit */
+"detail.richText.editWarning" = "Modificando, il testo formattato verrà convertito in testo semplice.";
+
+/* AI Agents */
+"settings.tab.aiAgents" = "Agenti IA";
+"settings.aiAgents.service" = "Servizio";
+"settings.aiAgents.serverRunning" = "Server MCP in esecuzione";
+"settings.aiAgents.agents" = "Agenti";
+"settings.aiAgents.detected" = "Disponibile";
+"settings.aiAgents.notInstalled" = "Non installato su questo Mac";
+"settings.aiAgents.installed.label" = "Installato";
+"settings.aiAgents.install" = "Installa";
+"settings.aiAgents.uninstall" = "Disinstalla";
+"settings.aiAgents.manualConfig" = "Configurazione manuale";
+"settings.aiAgents.installed" = "Installato in %@. Riavvia %@ affinché le modifiche abbiano effetto.";
+"settings.aiAgents.uninstalled" = "Disinstallato da %@.";
+"settings.aiAgents.installFailed" = "Installazione su %@ non riuscita: %@";
+"settings.aiAgents.uninstallFailed" = "Disinstallazione da %@ non riuscita: %@";
+"settings.aiAgents.privacy" = "Privacy";
+"settings.aiAgents.allowSensitive" = "Consenti all'agente di leggere gli elementi sensibili";
+"settings.aiAgents.master.toggle" = "Abilita integrazione agenti IA";
+"settings.aiAgents.master.detail" = "Consente a strumenti IA come Claude e Codex di leggere la cronologia degli appunti tramite MCP";
+"settings.aiAgents.master.disabledHint" = "Disabilitato. Attiva per consentire agli agenti IA di accedere agli appunti tramite MCP.";
+"settings.aiAgents.sourceBlocklist" = "Elenco di blocco app di origine";
+"settings.aiAgents.binaryMissing" = "Binario pastememo-mcp mancante";
+"settings.aiAgents.binaryMissingDetail" = "L'helper MCP è assente. Reinstalla MosaClip dal DMG di test.";
+"settings.aiAgents.openDownload" = "Apri pagina di download";
+"settings.aiAgents.blocklist.empty" = "Nessuna app bloccata";
+"settings.aiAgents.blocklist.add" = "Aggiungi app";
+"settings.aiAgents.manualConfig.title" = "Configurazione manuale per %@";
+"settings.aiAgents.manualConfig.subtitle" = "Copia il frammento qui sotto e uniscilo al file di configurazione pertinente.";
+"settings.aiAgents.manualConfig.copy" = "Copia negli appunti";
+"settings.aiAgents.manualConfig.done" = "Fine";
+
+"settings.diagnostics" = "Diagnostica";
+"settings.diagnostics.export" = "Esporta registro diagnostico";
+
+/* Image grid (Quick Panel) */
+"settings.imageLayout" = "Visualizzazione immagini";
+"settings.imageLayout.list" = "Elenco";
+"settings.imageLayout.grid" = "Griglia a cascata";
+"workspace.layout.cards" = "Schede";
+"settings.imageGridDensity" = "Densità griglia";
+"settings.imageGridDensity.sparse" = "Rada";
+"settings.imageGridDensity.medium" = "Media";
+"settings.imageGridDensity.dense" = "Fitta";
+
+"settings.ocr.memoryHint" = "Se attivo, MosaClip riconosce il testo nelle immagini in background tramite Vision, il che può aumentare l’uso della memoria.";
+
+// SMS verification codes
+"settings.smsCode" = "Codici di verifica SMS";
+"settings.smsCode.enabled" = "Copia automaticamente i codici ricevuti in Messaggi";
+"settings.smsCode.needsFDA" = "Per leggere i messaggi è richiesto l'accesso completo al disco";
+"settings.smsCode.openSettings" = "Apri Impostazioni di Sistema";
+"settings.smsCode.granted" = "Accesso completo al disco concesso";
+"settings.smsCode.hint" = "Richiede l'inoltro degli SMS dall'iPhone a questo Mac (Impostazioni → Messaggi → Inoltro SMS). Se non funziona dopo l'autorizzazione, riavvia MosaClip.";
+"sms.notification.codeCopied" = "Codice %@ copiato";
+"sms.notification.fallbackTitle" = "Messaggio che potrebbe contenere un codice di verifica";
+"sms.preview.messageLabel" = "Messaggio originale";
+"settings.smsCode.description" = "Se attivo, MosaClip estrae i codici di verifica dai messaggi in arrivo, li copia negli appunti e ti avvisa.";
+"settings.smsCode.feedback" = "Un codice non è stato riconosciuto? Condividi il testo (anonimizzato) del messaggio per aiutarci a migliorare le regole.";
+"settings.smsCode.feedbackLink" = "Invia feedback";
+
+// MARK: - List row metrics
+"meta.chars" = "%@ caratteri";
+"meta.lines" = "%@ righe";
+"markdown.preview.mode" = "Modalità anteprima Markdown";
+"markdown.preview.rendered" = "Renderizzato";
+"markdown.preview.raw" = "Originale";
+"markdown.preview.renderOnDemand" = "Può influire sulla reattività; per impostazione predefinita viene mostrato l'originale. Scegli Renderizzato per continuare";
+"markdown.preview.tooLarge" = "Troppo grande per un rendering sicuro; viene mostrato il testo originale";
+"markdown.preview.imageBlocked" = "Caricamento immagine bloccato";
+"svg.preview.mode" = "Modalità anteprima SVG";
+"svg.preview.rendered" = "Renderizzato";
+"svg.preview.raw" = "Sorgente";
+"svg.preview.invalid" = "SVG non valido; viene mostrato il sorgente";
+"svg.preview.blocked" = "Script o risorse esterne bloccati; viene mostrato il sorgente";
+"svg.preview.tooLarge" = "Troppo grande o complesso per un rendering sicuro; viene mostrato il sorgente";
+"svg.preview.unreadable" = "Impossibile leggere il sorgente SVG";
+"svg.preview.unsupported" = "macOS non può renderizzare questo SVG; viene mostrato il sorgente";
+"svg.metadata.viewBox" = "viewBox";
+"svg.metadata.width" = "Larghezza";
+"svg.metadata.height" = "Altezza";
+"svg.metadata.sourceSize" = "Dimensione sorgente";
+"settings.update.disabled.title" = "Aggiornamenti online disattivati";
+"settings.update.disabled.message" = "Gli aggiornamenti online sono disattivati. Scarica un DMG MosaClip verificato dalla pagina delle versioni e installalo manualmente.";
+"about.acknowledgements" = "Ringraziamenti";
+"about.upstreamThanks" = "MosaClip è basato su PasteMemo. Grazie a lifedever e ai collaboratori del progetto originale per il loro lavoro open source.";
+"about.upstreamRepository" = "PasteMemo · Repository originale";
+
+/* Automation: extract / open / outputs */
+"automation.action.convertColor" = "Converti formato colore";
+"automation.action.extractVerificationCode" = "Mantieni solo il codice di verifica";
+"automation.action.extractLinks" = "Mantieni solo i link";
+"automation.action.runOCR" = "Riconosci il testo nell’immagine";
+"automation.action.deleteItem" = "Elimina l’elemento originale";
+"automation.action.playSound" = "Riproduci suono";
+"automation.action.section.extract" = "Estrai e riconosci";
+"automation.action.section.open" = "Apri e staffetta";
+"automation.rule.outputMode.saveToFile" = "Salva nella cartella";
+"automation.rule.outputMode.postWebhook" = "Invia al webhook";
+"automation.output.folder.empty" = "Nessuna cartella selezionata";
+"automation.output.folder.choose" = "Scegli…";
+"automation.output.folder.invalid" = "Cartella non trovata";
+"automation.output.webhook.placeholder" = "https://";
+"automation.output.webhook.help" = "Invia JSON (content, contentType, sourceApp, rule, createdAt). Gli elementi sensibili non vengono mai inviati.";
+"automation.output.webhook.invalidURL" = "L’indirizzo deve iniziare con http:// o https://";
+"automation.output.webhook.tooLarge" = "Troppo lungo, non inviato";
+"automation.output.webhook.failedStatus" = "Invio non riuscito (HTTP %d)";
+"automation.output.webhook.failed" = "Invio non riuscito: %@";
+"automation.output.webhook.sent" = "Inviato";
+"automation.output.webhook.refused" = "Gli elementi sensibili non vengono inviati";
+"automation.output.webhook.textOnly" = "Si può inviare solo testo";
+"automation.output.saved" = "Salvato in «%@»";
+"automation.output.saveFailed" = "Salvataggio non riuscito. Controlla che la cartella esista ancora.";
+
+/* Automation: text toolbox */
+"automation.action.base64Encode" = "Codifica Base64";
+"automation.action.base64Decode" = "Decodifica Base64";
+"automation.action.jsonFormat" = "Formatta JSON";
+"automation.action.jsonMinify" = "Comprimi JSON";
+"automation.action.toCamelCase" = "Converti in camelCase";
+"automation.action.toSnakeCase" = "Converti in snake_case";
+"automation.action.toHalfWidth" = "Da larghezza piena a mezza";
+"automation.action.toFullWidth" = "Da mezza larghezza a piena";
+"automation.action.simplifiedToTraditional" = "Cinese semplificato in tradizionale";
+"automation.action.removeDuplicateLines" = "Rimuovi righe duplicate";
+"automation.action.sortLines" = "Ordina righe";
+"automation.action.sortLines.ascending" = "Crescente";
+"automation.action.sortLines.descending" = "Decrescente";
+"automation.action.joinLines" = "Unisci righe";
+"automation.action.joinLines.space" = "Spazio";
+"automation.action.joinLines.none" = "Senza separatore";
+"automation.action.removeHTMLTags" = "Rimuovi tag HTML";
+"automation.action.section.format" = "Converti";
+"automation.action.section.lines" = "Righe";
+
+/* Automation: conditions */
+"automation.condition.section.content" = "Contenuto";
+"automation.condition.section.app" = "App";
+"automation.condition.section.state" = "Stato dell’elemento";
+"automation.condition.section.time" = "Orario";
+"automation.condition.targetApp" = "Incolla in";
+"automation.condition.targetApp.help" = "Noto solo nel pannello rapido e durante l’incolla a staffetta. Le regole attivate alla copia non lo soddisfano mai.";
+"automation.condition.contentLength" = "Numero di caratteri";
+"automation.condition.lineCount" = "Numero di righe";
+"automation.condition.range.min" = "Min";
+"automation.condition.range.max" = "Max";
+"automation.condition.range.any" = "Qualsiasi";
+"automation.condition.isPinned" = "È fissato";
+"automation.condition.isSensitive" = "È segnato come sensibile";
+"automation.condition.inGroup" = "Il gruppo è";
+"automation.condition.inGroup.any" = "Qualsiasi gruppo";
+"automation.condition.timeOfDay" = "Fascia oraria";
+"automation.condition.weekday" = "Giorno della settimana";
+"automation.condition.negated" = "Non soddisfatta";
+
+/* Privacy: sensitive retention */
+"settings.privacy.sensitiveRetention" = "Conserva elementi sensibili";
+"settings.privacy.sensitiveRetention.followHistory" = "Come la cronologia";
+"settings.privacy.sensitiveRetention.minutes" = "%d minuti";
+"settings.privacy.sensitiveRetention.hours" = "%d ore";
+"settings.privacy.sensitiveRetention.hint" = "Conteggiato dall’ultima copia o incolla, poi eliminato. Restano gli elementi fissati e quelli nei gruppi conservati per sempre.";
+"settings.privacy.sensitiveRetention.cleanConfirm" = "Verranno eliminati %d elementi sensibili";
+
+/* Storage */
+"settings.nav.back" = "Indietro";
+"settings.nav.forward" = "Avanti";
+"settings.storage" = "Spazio";
+"storage.manage.title" = "Gestisci spazio";
+"storage.manage" = "Gestisci";
+"storage.recordCount" = "%@ elementi";
+"storage.scanFailed" = "Impossibile leggere i dati";
+"storage.scanning" = "Calcolo in corso...";
+"storage.part.originals" = "Originali";
+"storage.part.previews" = "Miniature";
+"storage.part.richText" = "Testo formattato";
+"storage.byType" = "Per tipo";
+"storage.itemCount" = "%@ elementi";
+"storage.autoClean" = "Pulizia automatica";
+"storage.optimize" = "Ottimizza";
+"storage.tiff.title" = "Converti gli originali TIFF in PNG (senza perdita)";
+"storage.tiff.detail" = "%1$@ immagini · %2$@";
+"storage.tiff.progress" = "Conversione %1$@ di %2$@";
+"storage.tiff.result" = "%1$@ immagini convertite, %2$@ risparmiati";
+"storage.tiff.kept" = "%@ immagini non si possono convertire senza perdita e restano TIFF";
+"storage.sourceCount" = "%@ origini";
+"storage.grouping.source" = "Per origine";
+"storage.typeCount" = "%@ tipi";
+"storage.column.type" = "Tipo";
+"storage.typeSelectionSummary" = "%1$@ tipi selezionati · %2$@ elementi · %3$@";
+"storage.searchSources" = "Cerca origini";
+"storage.allSources" = "Tutte le origini";
+"storage.sourceWithCount" = "%1$@ · %2$@";
+"storage.column.source" = "Origine";
+"storage.column.latest" = "Ultima copia";
+"storage.column.count" = "Elementi";
+"storage.column.size" = "Dimensione";
+"storage.protectedNote" = "Si eliminano elementi di MosaClip, non i file originali. Gli elementi fissati e quelli nei gruppi permanenti non vengono mai eliminati.";
+"storage.protectedExcluded" = "Esclusi %@ elementi fissati o nei gruppi permanenti";
+"storage.deleteRecords" = "Elimina elementi";
+"storage.delete.scope" = "Vengono eliminati solo gli elementi di MosaClip e le copie che conserva; i file originali non vengono toccati. L'operazione non è reversibile.";
+"storage.selectionSummary" = "%1$@ origini selezionate · %2$@ elementi · %3$@";
+"storage.delete.confirm" = "Eliminare %@ elementi?";
+"storage.deleting" = "Eliminazione...";
+"storage.empty" = "Niente da pulire";
+"storage.time.all" = "Tutto il periodo";
+"storage.time.1month" = "Più di 1 mese";
+"storage.time.3months" = "Più di 3 mesi";
+"storage.time.6months" = "Più di 6 mesi";
+"storage.time.1year" = "Più di 1 anno";
+"storage.time.custom" = "Intervallo personalizzato...";
+"storage.type.all" = "Tutti i tipi";
+"storage.listSeparator" = ", ";
+"storage.sort.size" = "Più grandi prima";
+"storage.sort.latest" = "Più recenti";
+"storage.selectAll" = "Seleziona tutto";
+"storage.deselectAll" = "Deseleziona tutto";
+"storage.itemSelectionSummary" = "%1$@ selezionati · %2$@";
+"storage.custom.title" = "Intervallo personalizzato";
+"storage.custom.from" = "Dal";
+"storage.custom.to" = "Al";
+
+"about.productWebsite" = "Sito del prodotto";

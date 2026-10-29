@@ -1,0 +1,1026 @@
+import SwiftUI
+import AppKit
+import AVFoundation
+
+private enum ImageDetailPane: String {
+    case image
+    case ocr
+}
+
+/// Which main content pane the detail view presents, and whether the
+/// ClipItem-level sensitive mask wraps it. Pure so the sensitive-image → OCR
+/// invariant stays unit-testable without SwiftUI rendering.
+struct DetailPresentation: Equatable {
+    var showsImagePanePicker: Bool
+    var showsOCRPane: Bool
+    var masksContent: Bool
+}
+
+struct ClipDetailView: View {
+    let item: ClipItem
+    let clipboardManager: ClipboardManager
+    @Environment(\.modelContext) private var modelContext
+
+    @State private var isEditing = false
+    @State private var editingContent = ""
+    @State private var decodedLinkImageData: Data?
+    @State private var imageDetailPane = ImageDetailPane.image
+    // Fallback must match OCRTaskCoordinator.isEnabled (OFF) and Settings:
+    // a never-set key means the feature is disabled, so the OCR pane picker
+    // must not appear for fresh installs until the user enables it.
+    @AppStorage(OCRTaskCoordinator.enableOCRKey) private var ocrEnabled = false
+
+    private var isEditableType: Bool {
+        item.contentType == .text || item.contentType == .code
+    }
+
+    private var semanticPreview: SemanticPreviewKind? {
+        SemanticPreviewResolver.resolve(item)
+    }
+
+    private var hasSVGPreview: Bool {
+        if case .svg? = semanticPreview { return true }
+        return false
+    }
+
+    /// Resolves the detail body presentation.
+    ///
+    /// Sensitive is a ClipItem-level property, so an image preview and its
+    /// derived OCR text obey the same reveal policy — masking the image while
+    /// showing its OCR text (plus Copy/Retry OCR) would leak the same content
+    /// through a side door. Images can be marked sensitive manually, via
+    /// automation rules, or restored from import/undo; `SensitiveDetector`
+    /// intentionally skips captures of file-based types. Editing overrides
+    /// masking only for the editable text body; the OCR pane has no editable
+    /// mode and therefore never unmasks while sensitive.
+    static func resolvePresentation(
+        contentType: ClipContentType,
+        hasSVGPreview: Bool,
+        ocrEnabled: Bool,
+        ocrPaneSelected: Bool,
+        isSensitive: Bool,
+        isEditing: Bool
+    ) -> DetailPresentation {
+        let showsImagePanePicker = contentType == .image && !hasSVGPreview && ocrEnabled
+        let showsOCRPane = showsImagePanePicker && ocrPaneSelected
+        let masksContent = isSensitive && (!isEditing || showsOCRPane)
+        return DetailPresentation(
+            showsImagePanePicker: showsImagePanePicker,
+            showsOCRPane: showsOCRPane,
+            masksContent: masksContent
+        )
+    }
+
+    private var presentation: DetailPresentation {
+        Self.resolvePresentation(
+            contentType: item.contentType,
+            hasSVGPreview: hasSVGPreview,
+            ocrEnabled: ocrEnabled,
+            ocrPaneSelected: imageDetailPane == .ocr,
+            isSensitive: item.isSensitive,
+            isEditing: isEditing
+        )
+    }
+
+    @ViewBuilder
+    var body: some View {
+        if item.isGone { EmptyView() } else {
+        VStack(alignment: .leading, spacing: 0) {
+            actionBar
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+            Divider()
+
+            if presentation.showsImagePanePicker {
+                imageDetailPanePicker
+                Divider().opacity(0.3)
+            }
+
+            if presentation.showsOCRPane {
+                if presentation.masksContent {
+                    SensitiveMask {
+                        ocrContentArea
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    ocrContentArea
+                }
+            } else if presentation.masksContent {
+                SensitiveMask {
+                    contentArea
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.primary.opacity(0.04))
+            } else {
+                contentArea
+                    .background(Color.primary.opacity(0.04))
+            }
+
+            Divider().opacity(0.3)
+
+            propertiesCard
+        }
+        .onChange(of: item.persistentModelID) {
+            if isEditing { cancelEdit() }
+        }
+        } // zombie-object guard: modelContext must be checked before model properties
+    }
+
+    // MARK: - Content Area
+
+    private var imageDetailPanePicker: some View {
+        HStack {
+            Spacer()
+            Picker("", selection: $imageDetailPane) {
+                Text(L10n.tr("type.image"))
+                    .tag(ImageDetailPane.image)
+                Text("OCR")
+                    .tag(ImageDetailPane.ocr)
+            }
+            .pickerStyle(.segmented)
+            .labelsHidden()
+            .frame(width: 220)
+            .accessibilityLabel("\(L10n.tr("type.image")) / OCR")
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+    }
+
+    @ViewBuilder
+    private var contentArea: some View {
+        if isEditing {
+            editableTextPreview
+                .padding(.horizontal, 16)
+                .padding(.top, 10)
+                .padding(.bottom, 16)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        } else if case .svg(let svgSource)? = semanticPreview {
+            SVGPreviewView(source: svgSource)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .link {
+            VStack(alignment: .leading, spacing: 0) {
+                contentPreview
+            }
+            .padding(.horizontal, 8)
+            .padding(.top, 8)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        } else if item.contentType == .image, item.imageData != nil {
+            VStack { contentPreview }
+                .padding(16)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .video, !item.content.contains("\n") {
+            VStack { contentPreview }
+                .padding(16)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .audio, !item.content.contains("\n") {
+            audioPreview
+        } else if let smsText = item.smsMessageText, item.contentType == .text {
+            // 短信验证码条目:大号显示码 + 短信原文,不走普通文本或 Markdown 渲染
+            SMSCodePreview(code: item.content, message: smsText)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        } else if case .markdown(let markdownSource)? = semanticPreview {
+            MarkdownPreviewView(source: markdownSource)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .code {
+            CodePreviewView(code: item.content, language: item.resolvedCodeLanguage, insets: NSSize(width: 16, height: 16))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .text {
+            contentPreview
+                .padding(16)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        } else if item.contentType == .color {
+            contentPreview
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if item.contentType == .phone {
+            phonePreview
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if isSingleFile {
+            SingleFilePreview(
+                path: item.content.trimmingCharacters(in: .whitespacesAndNewlines),
+                iconSize: 64,
+                nameFont: .system(size: 15, weight: .medium)
+            )
+            .padding(16)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) { contentPreview }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 16)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+            }
+        }
+    }
+
+    // MARK: - Action Bar
+
+    private var actionBar: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Label(detailTitle, systemImage: item.contentType.icon)
+                .font(.headline)
+                .lineLimit(2)
+
+            HStack {
+                Spacer()
+                if isEditing {
+                    editButtons
+                } else {
+                    copyButton
+                    if isEditableType { editButtons }
+                    sensitiveButton
+                    pinButton
+                    if !item.content.isEmpty { relayButton }
+                    deleteButton
+                }
+            }
+        }
+    }
+
+    private var copyButton: some View {
+        Button {
+            clipboardManager.writeToPasteboard(item)
+            NotificationCenter.default.post(
+                name: Notification.Name("copyItemFromDetail"),
+                object: nil
+            )
+        } label: {
+            Label(L10n.tr("action.copy"), systemImage: "doc.on.doc")
+                .font(.system(size: 12))
+        }
+        .buttonStyle(.bordered)
+        .controlSize(.small)
+    }
+
+    private var sensitiveButton: some View {
+        Button {
+            item.isSensitive.toggle()
+            ClipItemStore.saveAndNotify(modelContext)
+        } label: {
+            Label(
+                item.isSensitive ? L10n.tr("sensitive.unmarkSensitive") : L10n.tr("sensitive.markSensitive"),
+                systemImage: item.isSensitive ? "lock.shield" : "lock.shield.fill"
+            )
+            .font(.system(size: 12))
+        }
+        .buttonStyle(.bordered)
+        .controlSize(.small)
+    }
+
+    private var pinButton: some View {
+        Button {
+            item.isPinned.toggle()
+            ClipItemStore.saveAndNotify(modelContext)
+            NotificationCenter.default.post(name: Notification.Name("clearSelection"), object: nil)
+        } label: {
+            Label(
+                item.isPinned ? L10n.tr("action.unpin") : L10n.tr("action.pin"),
+                systemImage: item.isPinned ? "pin.slash" : "pin"
+            )
+            .font(.system(size: 12))
+        }
+        .buttonStyle(.bordered)
+        .controlSize(.small)
+    }
+
+    private var relayButton: some View {
+        Button {
+            RelayManager.shared.addToQueue(clipItems: [item])
+        } label: {
+            Label(L10n.tr("relay.addToQueue"), systemImage: "arrow.right.arrow.left")
+                .font(.system(size: 12))
+        }
+        .buttonStyle(.bordered)
+        .controlSize(.small)
+    }
+
+    private var deleteButton: some View {
+        Button(role: .destructive) {
+            NotificationCenter.default.post(name: Notification.Name("deleteSelectedFromDetail"), object: nil)
+        } label: {
+            Label(L10n.tr("cmd.delete"), systemImage: "trash")
+                .font(.system(size: 12))
+        }
+        .buttonStyle(.bordered)
+        .controlSize(.small)
+    }
+
+    @ViewBuilder
+    private var editButtons: some View {
+        if isEditing {
+            Button { saveEdit() } label: {
+                Label(L10n.tr("action.save"), systemImage: "square.and.arrow.down")
+                    .font(.system(size: 12))
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+
+            Button { cancelEdit() } label: {
+                Label(L10n.tr("action.cancel"), systemImage: "arrow.uturn.backward")
+                    .font(.system(size: 12))
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+        } else {
+            Button { enterEditMode() } label: {
+                Label(L10n.tr("action.edit"), systemImage: "pencil")
+                    .font(.system(size: 12))
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+        }
+    }
+
+    private func enterEditMode() {
+        editingContent = item.content
+        isEditing = true
+    }
+
+    private func cancelEdit() {
+        isEditing = false
+        editingContent = ""
+    }
+
+    private func saveEdit() {
+        item.content = editingContent
+        if item.richTextData != nil {
+            item.richTextData = nil
+            item.richTextType = nil
+        }
+        item.displayTitle = ClipItem.buildTitle(
+            content: item.content,
+            contentType: item.contentType,
+            imageData: item.imageData
+        )
+        item.isSensitive = SensitiveDetector.isSensitive(
+            content: item.content,
+            sourceAppBundleID: nil,
+            contentType: item.contentType
+        )
+        ClipItemStore.saveAndNotifyContent(modelContext)
+        isEditing = false
+        textRefreshID = UUID()
+    }
+
+    // MARK: - Content Preview
+
+    @ViewBuilder
+    private var contentPreview: some View {
+        if item.contentType == .image {
+            if item.content != "[Image]", !item.isSingleFileBackedImage {
+                // 多张图片一次复制：与快捷面板一致，列出全部文件而非只渲染第一张
+                filePreview
+            } else if ClipImagePreviewSource.resolve(from: item) != nil {
+                zoomableImagePreview
+            } else if item.content != "[Image]", item.imageData == nil {
+                filePreview
+            } else {
+                zoomableImagePreview
+            }
+        } else {
+            contentPreviewByType
+        }
+    }
+
+    @ViewBuilder
+    private var contentPreviewByType: some View {
+        switch item.contentType {
+        case .link:
+            linkPreview
+        case .video:
+            if isSingleVideo { videoPreview } else { filePreview }
+        case .audio:
+            if isSingleFile { audioPreview } else { filePreview }
+        case .file, .document, .archive, .application:
+            filePreview
+        case .color:
+            colorPreview
+        default:
+            textPreviewContent
+        }
+    }
+
+    private var isSingleFile: Bool {
+        item.contentType.isFileBased && item.contentType != .image && !item.content.contains("\n")
+    }
+
+    private var detailTitle: String {
+        guard item.contentType.isFileBased, item.contentType != .image else { return item.contentType.label }
+        let paths = item.content.components(separatedBy: "\n").filter { !$0.isEmpty }
+        guard let first = paths.first else { return item.contentType.label }
+        let name = URL(fileURLWithPath: first).lastPathComponent
+        if paths.count > 1 {
+            return "\(name) +\(paths.count - 1)"
+        }
+        return name
+    }
+
+    private var isSingleVideo: Bool {
+        item.contentType == .video && !item.content.contains("\n")
+    }
+
+    private var audioPreview: some View {
+        AudioPlayerView(
+            path: item.content.trimmingCharacters(in: .whitespacesAndNewlines),
+            iconSize: 64,
+            nameFont: .system(size: 15, weight: .medium)
+        )
+        .padding(16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var videoPreview: some View {
+        VideoThumbnailView(
+            path: item.content.trimmingCharacters(in: .whitespacesAndNewlines),
+            storedThumbnail: item.imageData
+        )
+            .frame(maxHeight: 400)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+
+    private var editableTextPreview: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            if item.richTextData != nil {
+                HStack(spacing: 6) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundStyle(.orange)
+                    Text(L10n.tr("detail.richText.editWarning"))
+                        .foregroundStyle(.secondary)
+                }
+                .font(.system(size: 11))
+                .padding(.horizontal, 11)
+                .padding(.vertical, 6)
+                .background(
+                    RoundedRectangle(cornerRadius: 6)
+                        .fill(Color.orange.opacity(0.08))
+                )
+            }
+            NativeTextView(
+                text: editingContent,
+                isEditable: true,
+                autoFocus: true,
+                onTextChange: { editingContent = $0 },
+                onEscape: { cancelEdit() }
+            )
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 6)
+            .background(
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(Color.primary.opacity(0.08))
+            )
+        }
+    }
+
+    @State private var textRefreshID = UUID()
+
+    private var textPreviewContent: some View {
+        NativeTextView(
+            text: item.content,
+            richTextData: item.richTextData,
+            richTextType: item.richTextType,
+            allowRichRender: richTextPreviewEnabled,
+            itemID: item.itemID
+        )
+            .id("\(item.persistentModelID)-\(textRefreshID)-\(item.content.hashValue)")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    @State private var isEditingColorWithPanel = false
+
+    @ViewBuilder
+    private var colorPreview: some View {
+        if let parsed = ColorConverter.parse(item.content) {
+            ColorPreviewView(
+                sourceText: item.content,
+                parsed: parsed,
+                onEdit: {
+                    isEditingColorWithPanel = true
+                    NSApp.activate(ignoringOtherApps: true)
+                    let panel = NSColorPanel.shared
+                    panel.color = parsed.nsColor
+                    panel.setTarget(nil)
+                    panel.level = .floating
+                    panel.orderFrontRegardless()
+                }
+            )
+            .onReceive(NotificationCenter.default.publisher(for: NSColorPanel.colorDidChangeNotification)) { _ in
+                guard isEditingColorWithPanel else { return }
+                let panelColor = NSColorPanel.shared.color.usingColorSpace(.sRGB) ?? NSColorPanel.shared.color
+                let updated = ColorConverter.from(nsColor: panelColor)
+                item.content = updated.formatted(parsed.originalFormat)
+                item.displayTitle = item.content
+            }
+            .onChange(of: item.id) {
+                isEditingColorWithPanel = false
+            }
+        } else {
+            NativeTextView(
+                text: item.content,
+                allowRichRender: false,
+                itemID: item.itemID
+            )
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+
+    @ViewBuilder
+    private var zoomableImagePreview: some View {
+        ZoomableClipImagePreview(
+            item: item,
+            supplementalData: decodedLinkImageData,
+            maxPixelSize: 1400,
+            cornerRadius: 8
+        )
+    }
+
+    @AppStorage("webPreviewEnabled") private var webPreviewEnabled = true
+    @AppStorage("imageLinkPreviewEnabled") private var imageLinkPreviewEnabled = true
+    @AppStorage("offlineModeEnabled") private var offlineModeEnabled = false
+    @AppStorage("richTextPreviewEnabled") private var richTextPreviewEnabled = true
+
+    @ViewBuilder
+    private var linkPreview: some View {
+        if item.prefersZoomableLinkImagePreview,
+           ClipImagePreviewSource.resolve(from: item, supplementalData: decodedLinkImageData) != nil {
+            zoomableImagePreview
+                .task(id: item.persistentModelID) {
+                    decodedLinkImageData = nil
+                    guard item.imageData == nil,
+                          DataImageURI.isBase64DataImageURI(item.content) else { return }
+                    let content = item.content
+                    let decoded = await Task.detached(priority: .userInitiated) {
+                        DataImageURI.decodedImageData(from: content)
+                    }.value
+                    guard !Task.isCancelled else { return }
+                    decodedLinkImageData = decoded
+                }
+        } else if let url = item.resolvedURL {
+            if !offlineModeEnabled,
+               (imageLinkPreviewEnabled && LinkMetadataFetcher.isImageURL(item.content)) || webPreviewEnabled {
+                linkWebPreview(url: url)
+            } else {
+                linkStaticPreview(url: url)
+            }
+        }
+    }
+
+    @State private var isLinkButtonHovered = false
+
+    @ViewBuilder
+    private func linkStaticPreview(url: URL) -> some View {
+        VStack(spacing: 12) {
+            if let img = validFavicon(minSize: 32) {
+                Image(nsImage: img)
+                    .resizable()
+                    .interpolation(.high)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 64, height: 64)
+            } else {
+                Image(systemName: "globe")
+                    .font(.system(size: 48, weight: .light))
+                    .foregroundStyle(.secondary)
+                    .frame(width: 64, height: 64)
+            }
+
+            Text(url.absoluteString)
+                .font(.system(size: 13))
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .textSelection(.enabled)
+
+            if let title = item.linkTitle {
+                Text(title)
+                    .font(.system(size: 11))
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
+
+            Button {
+                NSWorkspace.shared.open(url)
+            } label: {
+                HStack(spacing: 4) {
+                    Image(nsImage: defaultBrowserIcon)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 16, height: 16)
+                    Text(L10n.tr("detail.openInBrowser"))
+                        .font(.system(size: 12))
+                }
+                .foregroundStyle(isLinkButtonHovered ? .primary : .secondary)
+            }
+            .buttonStyle(.plain)
+            .onHover { isLinkButtonHovered = $0 }
+        }
+        .padding(.horizontal, 20)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+    }
+
+    private func validFavicon(minSize: CGFloat) -> NSImage? {
+        guard let data = item.faviconData, let img = NSImage(data: data) else { return nil }
+        let size = img.representations.first.map { CGFloat(max($0.pixelsWide, $0.pixelsHigh)) } ?? max(img.size.width, img.size.height)
+        return size >= minSize ? img : nil
+    }
+
+    private var defaultBrowserIcon: NSImage {
+        guard let browserURL = NSWorkspace.shared.urlForApplication(toOpen: URL(string: "https://")!) else {
+            return NSWorkspace.shared.icon(for: .html)
+        }
+        return NSWorkspace.shared.icon(forFile: browserURL.path)
+    }
+
+    @ViewBuilder
+    private func linkWebPreview(url: URL) -> some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 6) {
+                if let data = item.faviconData, let img = NSImage(data: data) {
+                    Image(nsImage: img)
+                        .resizable()
+                        .frame(width: 14, height: 14)
+                } else {
+                    Image(systemName: "link")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
+                }
+                Text(item.content)
+                    .font(.system(size: 13))
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .textSelection(.enabled)
+                Button {
+                    NSWorkspace.shared.open(url)
+                } label: {
+                    Image(systemName: "arrow.up.right.square")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.tertiary)
+                }
+                .buttonStyle(.plain)
+                .help(L10n.tr("detail.openInBrowser"))
+                Spacer()
+            }
+            .padding(.bottom, 10)
+
+            WebPreviewView(url: url)
+                .id(url)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+
+    @ViewBuilder
+    private var filePreview: some View {
+        let paths = item.content.components(separatedBy: "\n").filter { !$0.isEmpty }
+        if paths.count == 1, let path = paths.first {
+            SingleFilePreview(path: path, iconSize: 64, nameFont: .system(size: 15, weight: .medium))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            // Lazy on purpose: multi-thousand-file Finder copies would otherwise build
+            // every FileRow (icon lookup each) in one body pass and freeze the app.
+            LazyVStack(alignment: .leading, spacing: 4) {
+                ForEach(Array(paths.enumerated()), id: \.offset) { _, path in
+                    FileRow(path: path)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+        }
+    }
+
+    // MARK: - Phone Preview
+
+    private var phonePreview: some View {
+        let number = item.content.trimmingCharacters(in: .whitespacesAndNewlines)
+        return VStack(spacing: 24) {
+            Image(systemName: "phone.circle.fill")
+                .font(.system(size: 56))
+                .foregroundStyle(.mint)
+
+            Text(number)
+                .font(.system(size: 28, weight: .semibold, design: .rounded))
+                .textSelection(.enabled)
+
+            HStack(spacing: 20) {
+                detailPhoneButton(
+                    icon: "phone.fill",
+                    label: L10n.tr("phone.call"),
+                    color: .green
+                ) {
+                    if let url = URL(string: "tel:\(number)") {
+                        NSWorkspace.shared.open(url)
+                    }
+                }
+
+                detailPhoneButton(
+                    icon: "message.fill",
+                    label: L10n.tr("phone.message"),
+                    color: .blue
+                ) {
+                    if let url = URL(string: "sms:\(number)") {
+                        NSWorkspace.shared.open(url)
+                    }
+                }
+
+                detailPhoneButton(
+                    icon: "doc.on.doc.fill",
+                    label: L10n.tr("phone.copy"),
+                    color: .orange
+                ) {
+                    NSPasteboard.general.clearContents()
+                    NSPasteboard.general.setString(number, forType: .string)
+                }
+            }
+        }
+    }
+
+    private func detailPhoneButton(icon: String, label: String, color: Color, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            VStack(spacing: 6) {
+                Image(systemName: icon)
+                    .font(.system(size: 18))
+                    .foregroundStyle(color)
+                    .frame(width: 48, height: 48)
+                    .background(color.opacity(0.1), in: Circle())
+                Text(label)
+                    .font(.system(size: 11))
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .buttonStyle(.plain)
+        .pointerCursor()
+    }
+
+    // MARK: - Properties Card
+
+    private var propertiesCard: some View {
+        ClipPropertiesView(item: item, fontSize: 12) { path in
+            NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: path)
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+        .background(Color.clear)
+    }
+
+    private var ocrPresentation: OCRDetailPresentation {
+        OCRDetailPresentation.resolve(
+            status: item.resolvedOCRStatus,
+            hasText: !(item.ocrText?.isEmpty ?? true),
+            hasAttempted: item.ocrUpdatedAt != nil
+        )
+    }
+
+    private var ocrContentArea: some View {
+        let presentation = ocrPresentation
+        return VStack(alignment: .leading, spacing: 0) {
+            HStack(spacing: 6) {
+                Text("OCR")
+                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                    .foregroundStyle(.orange)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(Color.orange.opacity(0.12), in: Capsule())
+                Text(ocrStatusText(for: presentation))
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundStyle(.secondary)
+                Spacer()
+                if presentation.state == .ready {
+                    if let text = item.ocrText, !text.isEmpty {
+                        Button(L10n.tr("detail.ocr.copy")) {
+                            NSPasteboard.general.clearContents()
+                            NSPasteboard.general.setString(text, forType: .string)
+                            ToastCenter.shared.show(ToastDescriptor(message: L10n.tr("action.copied"), icon: .success))
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+                    }
+                }
+                if presentation.showsManualAction {
+                    Button(ocrManualActionLabel(presentation)) {
+                        OCRTaskCoordinator.shared.retry(itemID: item.itemID)
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
+                }
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+
+            Divider().opacity(0.3)
+
+            Group {
+                switch presentation.state {
+                case .ready:
+                    if let text = item.ocrText, !text.isEmpty {
+                        MarkdownPreviewView(
+                            source: .inline(
+                                id: "\(item.itemID):ocr:\(text.hashValue)",
+                                text: text
+                            )
+                        )
+                        .id("\(item.persistentModelID):ocr:\(text.hashValue)")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                case .idle:
+                    ocrIdlePlaceholder(autoOff: !OCRTaskCoordinator.shared.autoProcessEnabled)
+                case .processing:
+                    VStack(spacing: 10) {
+                        ProgressView()
+                            .controlSize(.small)
+                        Text(L10n.tr("detail.ocr.processing"))
+                            .font(.system(size: 12))
+                            .foregroundStyle(.tertiary)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                case .empty:
+                    VStack(spacing: 10) {
+                        Text(L10n.tr("detail.ocr.empty"))
+                            .font(.system(size: 12))
+                            .foregroundStyle(.tertiary)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                case .failed:
+                    VStack(spacing: 10) {
+                        Text(item.ocrErrorMessage ?? L10n.tr("detail.ocr.failed"))
+                            .font(.system(size: 12))
+                            .foregroundStyle(.tertiary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 24)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background(Color.primary.opacity(0.04))
+    }
+
+    /// Quiet first-run placeholder: no spinner, no "processing" wording —
+    /// nothing is executing until the user asks for it.
+    private func ocrIdlePlaceholder(autoOff: Bool) -> some View {
+        VStack(spacing: 10) {
+            Image(systemName: "text.viewfinder")
+                .font(.system(size: 30, weight: .regular))
+                .foregroundStyle(.secondary.opacity(0.7))
+            Text(L10n.tr("detail.ocr.notStarted"))
+                .font(.system(size: 13, weight: .medium))
+                .foregroundStyle(.secondary)
+            if autoOff {
+                Text(L10n.tr("detail.ocr.notStartedHint"))
+                    .font(.system(size: 11))
+                    .foregroundStyle(.tertiary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 24)
+            }
+            Button(L10n.tr("detail.ocr.recognize")) {
+                OCRTaskCoordinator.shared.retry(itemID: item.itemID)
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.regular)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private func ocrManualActionLabel(_ presentation: OCRDetailPresentation) -> String {
+        L10n.tr(presentation.usesRetryLabel ? "detail.ocr.retry" : "detail.ocr.recognize")
+    }
+
+    private func ocrStatusText(for presentation: OCRDetailPresentation) -> String {
+        switch presentation.state {
+        case .idle:
+            return L10n.tr("detail.ocr.notStarted")
+        case .processing:
+            return L10n.tr("detail.ocr.processing")
+        case .ready:
+            return L10n.tr("detail.ocr.ready")
+        case .empty:
+            return L10n.tr("detail.ocr.empty")
+        case .failed:
+            return item.ocrErrorMessage ?? L10n.tr("detail.ocr.failed")
+        }
+    }
+
+}
+
+// MARK: - File Row with Hover
+
+struct FileRow: View {
+    let path: String
+    var onOpenInFinder: (() -> Void)?
+    @State private var isHovered = false
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Image(nsImage: systemIcon(forFile: path))
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 20, height: 20)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(URL(fileURLWithPath: path).lastPathComponent)
+                    .font(.system(size: 13))
+                    .lineLimit(1)
+                Text(path)
+                    .font(.system(size: 10))
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .truncationMode(.middle)
+                    .textSelection(.enabled)
+            }
+            Spacer()
+            if isHovered {
+                Button {
+                    onOpenInFinder?()
+                    NSWorkspace.shared.selectFile(path, inFileViewerRootedAtPath: URL(fileURLWithPath: path).deletingLastPathComponent().path)
+                } label: {
+                    HStack(spacing: 3) {
+                        Image(nsImage: NSWorkspace.shared.icon(forFile: "/System/Library/CoreServices/Finder.app"))
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 14, height: 14)
+                        Text(L10n.tr("detail.openInFinder"))
+                            .font(.system(size: 11))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(.vertical, 4)
+        .padding(.leading, 6)
+        .padding(.trailing, 12)
+        .contentShape(Rectangle())
+        .background(
+            RoundedRectangle(cornerRadius: 6)
+                .fill(isHovered ? Color.primary.opacity(0.06) : Color.clear)
+        )
+        .onHover { isHovered = $0 }
+    }
+}
+
+// MARK: - Single File Preview (Centered)
+
+struct SingleFilePreview: View {
+    let path: String
+    var iconSize: CGFloat = 64
+    var nameFont: Font = .system(size: 15, weight: .medium)
+    /// Optional keyboard hint (e.g. "⌘O") shown next to the reveal button. The
+    /// Quick Panel passes this so users see the shortcut; the main window omits it.
+    var shortcutHint: String? = nil
+    var onOpenInFinder: (() -> Void)?
+    @State private var isButtonHovered = false
+
+    private var finderAppIcon: NSImage {
+        NSWorkspace.shared.icon(forFile: "/System/Library/CoreServices/Finder.app")
+    }
+
+    var body: some View {
+        VStack(spacing: 12) {
+            Image(nsImage: systemIcon(forFile: path))
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: iconSize, height: iconSize)
+
+            Text(URL(fileURLWithPath: path).lastPathComponent)
+                .font(nameFont)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .textSelection(.enabled)
+
+            Text(path)
+                .font(.system(size: 11))
+                .foregroundStyle(.secondary)
+                .lineLimit(2)
+                .truncationMode(.middle)
+                .multilineTextAlignment(.center)
+                .textSelection(.enabled)
+                .padding(.horizontal, 24)
+
+            Button {
+                onOpenInFinder?()
+                let resolved = (path as NSString).expandingTildeInPath
+                NSWorkspace.shared.selectFile(resolved, inFileViewerRootedAtPath: URL(fileURLWithPath: resolved).deletingLastPathComponent().path)
+            } label: {
+                HStack(spacing: 6) {
+                    Image(nsImage: finderAppIcon)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 16, height: 16)
+                    Text(L10n.tr("detail.openInFinder"))
+                        .font(.system(size: 12))
+                    if let shortcutHint {
+                        // Match the footer keycap style (footerKey) so it reads as a
+                        // proper shortcut chip rather than a cramped monospaced tag.
+                        Text(shortcutHint)
+                            .font(.system(size: 11, weight: .semibold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 3)
+                            .background(Color.primary.opacity(0.08), in: RoundedRectangle(cornerRadius: 4))
+                            .padding(.leading, 2)
+                    }
+                }
+                .foregroundStyle(isButtonHovered ? .primary : .secondary)
+            }
+            .buttonStyle(.plain)
+            .onHover { isButtonHovered = $0 }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+    }
+}

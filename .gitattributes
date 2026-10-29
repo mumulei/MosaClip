@@ -1,0 +1,2 @@
+# Preserve the bundled third-party highlighter byte-for-byte, including strings.
+Sources/Resources/highlight.min.js -whitespace

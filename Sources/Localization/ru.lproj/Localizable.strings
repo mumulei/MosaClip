@@ -1,0 +1,1097 @@
+/* App */
+"app.name" = "MosaClip";
+
+/* Menu */
+"menu.checkForUpdates" = "Проверить обновления…";
+"menu.github" = "GitHub";
+"menu.reportIssue" = "Сообщить о проблеме";
+"menu.upgrade" = "Перейти на Pro";
+
+/* Search */
+"search.placeholder" = "Поиск по истории буфера…";
+
+/* Empty State */
+"empty.title" = "Нет записей";
+"empty.message" = "Скопируйте что-нибудь, чтобы начать";
+"empty.hint" = "Используйте ⌘C для копирования текста, изображений или файлов";
+"empty.quickHint" = "Скопируйте что-нибудь, чтобы начать";
+"guide.shortcut" = "Нажмите %@, чтобы открыть Быструю вставку";
+"guide.doubleClick" = "Двойной клик для вставки, одинарный — для выбора";
+"guide.pin" = "Правый клик, чтобы закрепить важные записи";
+
+/* Actions */
+"action.favorite" = "В избранное";
+"action.unfavorite" = "Убрать из избранного";
+"action.pin" = "Закрепить";
+"action.unpin" = "Открепить";
+"action.delete" = "Удалить";
+"action.clearAll" = "Очистить всё";
+"action.aiCopy" = "Копировать для AI";
+
+/* Content Types */
+"type.text" = "Текст";
+"type.link" = "Ссылка";
+"type.image" = "Изображение";
+"type.code" = "Код";
+"type.color" = "Цвет";
+"type.file" = "Файл";
+"type.other" = "Другое";
+"type.email" = "Эл. почта";
+"type.phone" = "Телефон";
+"phone.call" = "Позвонить";
+"phone.message" = "Сообщение";
+"phone.copy" = "Копировать";
+"type.video" = "Видео";
+"type.audio" = "Аудио";
+"type.document" = "Документ";
+"type.archive" = "Архив";
+"type.application" = "Приложение";
+"type.mixed" = "Смешанное";
+"mixed.section.image" = "Изображение";
+"mixed.section.text" = "Текст";
+"mixed.section.files" = "Файлы (%d)";
+"detail.openInFinder" = "Показать в Finder";
+"preview.image.zoomFit" = "По ширине";
+"preview.image.zoomActual" = "100%";
+"preview.image.openInPreview" = "Открыть в Просмотре";
+"preview.image.zoomHint" = "⌘+прокрутка или жест для масштаба";
+
+/* Filter */
+"filter.all" = "Все";
+"filter.special" = "Особые";
+"filter.favorites" = "Избранное";
+"filter.pinned" = "Закреплённые";
+"filter.aiAgent" = "AI Agent";
+
+/* Time */
+"time.now" = "сейчас";
+"time.pinned" = "Закреплено";
+"time.today" = "Сегодня";
+"time.yesterday" = "Вчера";
+"time.thisWeek" = "На этой неделе";
+"time.thisMonth" = "В этом месяце";
+"time.older" = "Ранее";
+"time.minutes" = "%d мин назад";
+"time.hours" = "%d ч назад";
+"time.days" = "%d дн назад";
+"time.weeks" = "%d нед назад";
+"time.months" = "%d мес назад";
+"time.years" = "%d г назад";
+
+/* Settings */
+"settings.general" = "Основные";
+"settings.update" = "Обновление";
+"settings.about" = "О программе";
+"settings.appearance" = "Внешний вид";
+"settings.theme" = "Тема";
+"settings.theme.system" = "Системная";
+"settings.theme.light" = "Светлая";
+"settings.theme.dark" = "Тёмная";
+"settings.language" = "Язык";
+"settings.language.restart_title" = "Требуется перезапуск";
+"settings.language.restart_message" = "Для полного применения изменения языка необходимо перезапустить приложение.";
+"settings.language.restart_now" = "Перезапустить сейчас";
+"settings.language.restart_later" = "Позже";
+"settings.launchAtLogin" = "Запускать при входе";
+"settings.clipboardMonitoring" = "Включить мониторинг буфера обмена";
+"settings.hideDockIcon" = "Скрыть значок Dock";
+"settings.hideDockIcon.hint" = "При включении приложение доступно только через значок в строке меню.";
+"settings.hideDockIcon.confirm.title" = "Скрыть значок Dock?";
+"settings.hideDockIcon.confirm.message" = "Все окна будут закрыты. Вы сможете открыть их снова через значок в строке меню.";
+"settings.hideDockIcon.confirm.ok" = "Скрыть и закрыть окна";
+"settings.menuBarIconStyle" = "Значок строки меню";
+"settings.menuBarIconStyle.outline" = "Контур";
+"settings.menuBarIconStyle.filled" = "Заливка";
+"settings.menuBar.leftClickAction" = "Действие при левом клике на иконке меню";
+"settings.menuBar.leftClickAction.help" = "Действие при левом клике на иконку строки меню; правый клик всегда показывает меню";
+"menuBar.leftClick.menu" = "Показать меню";
+"menuBar.leftClick.openManager" = "Открыть менеджер";
+"menuBar.leftClick.quickPanel" = "Открыть быструю вставку";
+"menuBar.leftClick.toggleRelay" = "Переключить режим эстафеты";
+"menuBar.leftClick.togglePause" = "Приостановить / возобновить мониторинг буфера";
+"menuBar.leftClick.openSettings" = "Открыть настройки";
+"settings.currentVersion" = "Текущая версия";
+"settings.features" = "Функции";
+"settings.shortcuts" = "Горячие клавиши";
+"settings.quickPanelShortcut" = "Быстрая вставка";
+"settings.managerShortcut" = "Открыть менеджер";
+"settings.managerShortcut.global" = "Глобально";
+"settings.managerShortcut.scopeHint" = "Когда глобальный режим выключен, это сочетание клавиш работает только если быстрая панель уже открыта.";
+"settings.relayShortcut" = "Начать эстафету";
+"settings.shortcut.none" = "Не задано";
+"settings.shortcut.clickToRecord" = "Нажмите для записи";
+"settings.shortcut.pressKey" = "Нажмите клавиши…";
+"settings.paste" = "Вставка";
+"settings.autoPaste" = "Вставлять в приложение по Enter";
+"settings.addNewLine" = "Добавлять перевод строки после вставки";
+"settings.quickPanelLaunchAnimation" = "Анимация запуска быстрой панели";
+"settings.quickPanelRememberFilter" = "Запоминать последний фильтр";
+"settings.quickPanelSecondaryRow" = "Показывать под поиском быстрой панели";
+"settings.quickPanelSecondaryRow.types" = "Типы";
+"settings.quickPanelSecondaryRow.groups" = "Группы";
+"settings.history" = "История";
+"settings.quickPanelTabTypes" = "Категории на панели вкладок";
+"settings.quickPanelTabTypes.hint" = "Перетащите, чтобы изменить порядок. Снятие галочки скрывает вкладку в быстрой панели; боковая панель не меняется.";
+"settings.quickPanelTabTypes.reset" = "Сбросить";
+"settings.retentionDays" = "Хранить историю";
+"settings.retentionDays.forever" = "Навсегда";
+"settings.retentionDays.days" = "%d дней";
+"settings.retentionDays.cleanConfirm" = "Будет удалено %d записей за пределами срока хранения";
+"settings.retentionDays.cleanWarning" = "Это действие нельзя отменить. Продолжить?";
+"settings.display" = "Отображение";
+"settings.quickPanelPosition" = "Положение быстрой панели";
+"settings.quickPanelPosition.remembered" = "Запоминать прошлую позицию";
+"settings.quickPanelPosition.cursor" = "Курсор";
+"settings.quickPanelPosition.menuBarIcon" = "Значок в строке меню";
+"settings.quickPanelPosition.windowCenter" = "Центр активного окна";
+"settings.quickPanelPosition.screenCenter" = "Центр экрана";
+"settings.quickPanelTargetScreen" = "Целевой экран";
+"settings.quickPanelTargetScreen.active" = "Активный экран";
+"settings.quickPanelTargetScreen.specified" = "Указанный экран";
+"settings.quickPanelSpecifiedScreen" = "Указанный дисплей";
+"settings.behavior" = "Поведение";
+"settings.preferences" = "Настройки";
+"settings.quickPanel" = "Быстрая вставка";
+"settings.previewRecognition" = "Предпросмотр и распознавание";
+"settings.showLinkURL" = "Показывать URL вместо заголовка для ссылок";
+"settings.webPreview" = "Веб-предпросмотр";
+"settings.imageLinkPreview" = "Предпросмотр ссылок на изображения";
+"settings.previewExecutesJavaScript" = "Выполнять JavaScript в предпросмотре";
+"settings.linkPreview" = "Ссылки и предпросмотр";
+"settings.linkPreview.footer" = "Эти переключатели управляют тем, делает ли MosaClip сетевые запросы для скопированных ссылок. Отключите все, и MosaClip будет подключаться только для проверки обновлений.";
+"settings.linkPreview.footer.offline" = "Автономный режим включён: переключатели выше отключены. Выключите его на вкладке «Конфиденциальность».";
+"settings.richTextPreview" = "Предпросмотр форматированного текста";
+
+/* Pro */
+"pro.title" = "Перейти на MosaClip Pro";
+"pro.description" = "Безлимитная история, умная группировка, синхронизация iCloud и многое другое.";
+"pro.enterKey" = "Введите лицензионный ключ";
+"pro.activate" = "Активировать";
+"pro.activated" = "Лицензия активирована";
+"pro.deactivate" = "Деактивировать лицензию";
+"pro.invalidKey" = "Недействительный лицензионный ключ";
+"pro.features" = "Функции Pro";
+"pro.beta.desc" = "MosaClip сейчас в стадии бета-тестирования. Функции Pro запланированы для будущих версий — следите за обновлениями!";
+"pro.feature.unlimited" = "Безлимитная история";
+"pro.feature.favorites" = "Безлимитное избранное";
+"pro.feature.smartGroup" = "Умная группировка";
+"pro.feature.icloud" = "Автоматическое резервное копирование";
+"pro.feature.themes" = "Пользовательские темы";
+"pro.feature.rules" = "Правила буфера обмена";
+"pro.feature.relay" = "Режим эстафеты";
+"pro.feature.customCategory" = "Пользовательские категории";
+"pro.feature.ignoreApps" = "Игнорировать определённые приложения";
+"pro.feature.automation" = "Автоматизация буфера обмена";
+
+/* Menu */
+"menu.manager" = "Открыть менеджер";
+
+/* Detail */
+"detail.select" = "Выберите элемент";
+"detail.selectHint" = "Нажмите на элемент слева, чтобы посмотреть подробности";
+"detail.info" = "Информация";
+"detail.type" = "Тип";
+"detail.source" = "Приложение-источник";
+"detail.aiAgent" = "AI Agent";
+"detail.created" = "Создано";
+"detail.group" = "Группа";
+"detail.lastUsed" = "Последнее использование";
+"detail.chars" = "Символы";
+"detail.lines" = "Строки";
+"detail.words" = "Слова";
+"detail.dimensions" = "Размеры";
+"detail.size" = "Размер";
+"detail.format" = "Формат";
+"detail.fileCount" = "Файлы";
+"detail.fileStatus" = "Статус";
+"file.unavailable.missing" = "Файл больше не существует";
+"finder.notResponding" = "Finder не отвечает";
+"file.unavailable.denied" = "Нет прав доступа";
+"detail.host" = "Хост";
+"detail.url" = "URL";
+"detail.aiPreview" = "Предпросмотр для AI";
+"detail.location" = "Расположение";
+"detail.linkTitle" = "Заголовок";
+"detail.language" = "Язык";
+"detail.openInBrowser" = "Открыть в браузере";
+"detail.preview_failed" = "Не удалось загрузить предпросмотр";
+"detail.multiSelected" = "Выбрано элементов: %d";
+"action.deleteSelected" = "Удалить элементов: %d";
+"action.deleteSelected.confirm" = "Удалить записи (%d)?";
+"file.multiTitle" = " и ещё %d файлов";
+
+/* Filter */
+"filter.types" = "По типу";
+"filter.apps" = "По приложению";
+"filter.groups" = "Группы";
+"filter.other" = "Другое";
+
+/* Actions */
+"action.paste" = "Вставить";
+"action.cancel" = "Отмена";
+"action.confirm" = "ОК";
+"action.assignGroup" = "Назначить группу";
+"action.newGroup" = "Новая группа…";
+"action.editGroup" = "Редактировать группу…";
+"action.deleteGroup" = "Удалить группу";
+"action.deleteGroupConfirm" = "Вы уверены, что хотите удалить группу «%@»? Элементы в группе не будут удалены.";
+"action.removeFromGroup" = "Убрать из группы";
+"group.preserveItems" = "Хранить элементы этой группы постоянно";
+"group.preserveItems.help" = "Если включено, элементы этой группы не будут удаляться автоматической очисткой по сроку хранения и командой очистки данных.";
+"group.preserveItems.badge" = "Постоянно";
+"action.changeIcon" = "Изменить значок…";
+"action.clearConfirm" = "Все незакреплённые элементы будут удалены.";
+"action.clearScope.type" = "Очистить все элементы этого типа";
+"action.clearScope.group" = "Очистить все элементы в этой группе";
+"action.clearScope.group.disabledHelp" = "Эта группа помечена как постоянная, поэтому её элементы нельзя очистить.";
+"action.clearScope.app" = "Очистить все элементы из этого приложения";
+"action.clearScope.title" = "Очистить «%@»";
+"action.clearScope.confirm" = "Будет удалено %d элементов (закреплённые элементы и элементы из постоянных групп будут сохранены).";
+"action.clearScope.empty" = "Нечего очищать в текущем фильтре (закреплённые элементы и элементы из постоянных групп пропускаются).";
+"action.copy" = "Копировать";
+"action.copied" = "Скопировано в буфер обмена";
+"action.undo" = "Отменить";
+"delete.undo.toast" = "Удалено: %d";
+
+/* Stats */
+"stats.total" = "Всего записей";
+"stats.clips" = "записей";
+
+/* Menu */
+"menu.openMain" = "Открыть главное окно";
+"menu.quickPanel" = "Быстрая вставка";
+"menu.pause" = "Приостановить мониторинг буфера обмена";
+"menu.resume" = "Возобновить мониторинг буфера обмена";
+"menu.settings" = "Настройки";
+"menu.quit" = "Завершить %@";
+"menu.accessibility.grant" = "⚠ Предоставить разрешение на универсальный доступ";
+
+/* Quick Panel */
+"quick.search" = "Поиск по буферу…";
+"quick.recent" = "Недавние";
+"quick.selectHint" = "Выберите элемент для предпросмотра";
+"quick.pasteTo" = "Вставить в %@";
+"quick.copyToClipboard" = "Скопировать в буфер обмена";
+"quick.actions" = "Действия";
+"quick.navigate" = "Навигация";
+"quick.pasteAction" = "Вставить";
+"quick.close" = "Закрыть";
+"quick.pasteNewLine" = "Вставить + Enter";
+"quick.pastePath" = "Вставить путь";
+"quick.copyPath" = "Скопировать путь";
+"quick.pasteName" = "Вставить имя";
+"quick.saveToFolder" = "Вставить файл";
+"quick.switchType" = "Тип";
+"quick.delete" = "Удалить";
+"quick.openLink" = "Открыть";
+"quick.preview" = "Просмотр";
+"quick.pasteImage" = "Вставить изображение";
+"settings.showGuide" = "Показать приветствие";
+
+/* Onboarding */
+"accessibility.lost.title" = "Требуется разрешение на Универсальный доступ";
+"accessibility.lost.message" = "После обновления приложения macOS требует повторной авторизации. После нажатия «Открыть Универсальный доступ» выберите существующую запись MosaClip и нажмите −, чтобы удалить её, затем перетащите новую версию из плавающей панели.";
+"accessibility.lost.later" = "Позже";
+"reinstall.required.title" = "Файлы приложения неполные";
+"reinstall.required.message" = "После обновления отсутствуют некоторые файлы. Пожалуйста, повторно скачайте DMG и переустановите. Ваши данные и разрешения сохранятся.";
+"reinstall.required.action" = "Открыть страницу загрузки";
+"onboarding.back" = "Назад";
+"onboarding.next" = "Далее";
+"onboarding.done" = "Начать";
+"onboarding.welcome.title" = "Добро пожаловать в MosaClip";
+"onboarding.welcome.desc" = "Умный менеджер буфера обмена в строке меню. Всё, что вы копируете, автоматически сохраняется и доступно для мгновенного поиска.";
+"onboarding.accessibility.title" = "Включить Универсальный доступ";
+"onboarding.accessibility.desc" = "MosaClip нужно разрешение на Универсальный доступ для вставки содержимого в другие приложения. Нажмите кнопку ниже, чтобы предоставить доступ в Системных настройках.";
+"onboarding.accessibility.grant" = "Открыть настройки доступа";
+"onboarding.accessibility.granted" = "Разрешение получено";
+"onboarding.accessibility.hint" = "После предоставления разрешения эта страница обновится автоматически.";
+"onboarding.shortcut.title" = "Горячая клавиша Быстрой вставки";
+"onboarding.shortcut.desc" = "Нажмите горячую клавишу в любом приложении, чтобы открыть панель Быстрой вставки. Ищите в истории буфера и вставляйте одним кликом.";
+"onboarding.shortcut.current" = "Нажмите, чтобы изменить горячую клавишу";
+
+/* About */
+/* Help */
+"menu.newGroup" = "Новая группа…";
+"menu.newSmartGroup" = "Новая смарт-группа…";
+"menu.help" = "Справка MosaClip";
+"menu.alwaysOnTop" = "Всегда поверх других окон";
+"help.title" = "Справка MosaClip";
+"help.subtitle" = "Краткое руководство по использованию менеджера буфера обмена.";
+"help.close" = "Понятно";
+"help.shortcuts" = "Горячие клавиши";
+"help.shortcut.quickPaste" = "Открыть панель Быстрой вставки";
+"help.shortcut.paste" = "Вставить выбранный элемент";
+"help.shortcut.switchType" = "Фильтр по типу содержимого";
+"help.shortcut.navigate" = "Навигация по элементам";
+"help.shortcut.cmdEnter" = "Вставить путь / Вставить файл / Вставить изображение";
+"help.shortcut.preview" = "Просмотр / Открыть ссылку";
+"help.shortcut.delete" = "Удалить элемент";
+"help.shortcut.close" = "Закрыть панель";
+"help.actions" = "Действия Быстрой вставки";
+"help.action.paste" = "Нажмите Enter или дважды кликните, чтобы вставить в активное приложение";
+"help.action.openLink" = "Ссылки можно открывать прямо в браузере по умолчанию";
+"help.action.pastePath" = "Файлы: ⌘↵ вставляет путь к файлу";
+"help.action.saveToFolder" = "Текст/изображения: ⌘↵ вставляет как файл в Finder";
+"help.action.pasteImage" = "Элементы с изображениями: ⌘↵ вставляет как файл изображения";
+"help.action.pin" = "Правый клик для закрепления — элемент всегда будет вверху списка";
+"help.tips" = "Советы";
+"help.tip.doubleClick" = "Двойной клик для вставки, одинарный — для выбора и предпросмотра";
+"help.tip.rightClick" = "Правый клик для дополнительных действий: закрепить, удалить";
+"help.tip.menuBar" = "Нажмите на значок в строке меню для доступа к истории и настройкам";
+"help.tip.search" = "Введите текст в поле поиска, чтобы мгновенно найти любую запись";
+"onboarding.helpHint" = "Вы можете открыть справку в любой момент через меню: Справка → Справка MosaClip";
+
+"about.description" = "Локальное рабочее пространство буфера обмена для macOS";
+"about.project" = "Проект и исходный код MosaClip";
+
+/* Update */
+"update.available.title" = "Доступна новая версия MosaClip!";
+"update.available.beta.title" = "Доступна новая бета-версия MosaClip";
+"update.beta.warning" = "Бета-версии могут быть нестабильными. Сделайте резервную копию важных данных перед установкой.";
+"update.available.message" = "Доступна MosaClip %@ — у вас %@. Хотите загрузить сейчас?";
+"update.skip" = "Пропустить эту версию";
+"update.remind_later" = "Напомнить позже";
+"update.install" = "Установить обновление";
+"update.downloading" = "Загрузка обновления...";
+"update.ready" = "Готово к установке";
+"update.install_restart" = "Установить и перезапустить";
+"update.cancel" = "Отмена";
+"update.check_failed" = "Не удалось проверить обновления";
+"update.check_failed.hint" = "Не удалось получить информацию о последней версии. Проверьте подключение к сети и повторите попытку, или скачайте вручную:";
+"update.check_failed.github" = "Скачать с GitHub";
+"update.check_failed.gitee" = "Скачать с Gitee";
+"update.check_failed.cancel" = "Отмена";
+"update.no_updates" = "У вас последняя версия!";
+"update.no_updates.message" = "MosaClip %@ — это последняя версия.";
+"update.download_error" = "Ошибка загрузки";
+"update.dmg_error" = "Ошибка обновления";
+"update.dmg_error.message" = "Загруженный образ диска повреждён. Попробуйте скачать обновление ещё раз.";
+"update.download_error.incomplete" = "Загрузка не завершена или прервана. Проверьте подключение к сети и повторите попытку.";
+
+/* Ignored Apps */
+"settings.ignoredApps" = "Игнорируемые приложения";
+"settings.ignoredApps.add" = "Добавить приложение";
+"settings.ignoredApps.empty" = "Нет игнорируемых приложений";
+"settings.ignoredApps.remove" = "Удалить";
+"settings.ignoredApps.selectApp" = "Выберите приложение для игнорирования";
+"settings.ignoredApps.running" = "Запущенные приложения";
+"settings.ignoredApps.browse" = "Обзор приложений…";
+
+/* Sensitive Content */
+"sensitive.masked" = "••••••••";
+"sensitive.reveal" = "Показать";
+"sensitive.hide" = "Скрыть";
+"sensitive.markSensitive" = "Отметить как конфиденциальное";
+"sensitive.unmarkSensitive" = "Снять отметку конфиденциальности";
+
+/* Data Import/Export */
+"dataPorter.section" = "Данные";
+"dataPorter.importExport" = "Импорт и экспорт";
+"dataPorter.export" = "Экспорт данных";
+"dataPorter.compressing" = "Сжатие...";
+"dataPorter.import" = "Импорт данных";
+"dataPorter.encrypt" = "Шифровать экспорт";
+"dataPorter.password" = "Пароль";
+"dataPorter.confirmPassword" = "Подтвердите пароль";
+"dataPorter.passwordMismatch" = "Пароли не совпадают";
+"dataPorter.enterPassword" = "Введите пароль для расшифровки";
+"dataPorter.exportSuccess" = "Экспорт выполнен";
+"dataPorter.importSuccess" = "Импорт выполнен";
+"dataPorter.wrongPassword" = "Неверный пароль";
+"dataPorter.decrypting" = "Расшифровка...";
+"dataPorter.refreshing" = "Обновление главного окна...";
+"dataPorter.summary.imported" = "Импортировано: %d";
+"dataPorter.summary.skipped" = "Пропущено: %d";
+"dataPorter.summary.newGroups" = "Новых групп: %d";
+"dataPorter.summary.newRules" = "Новых правил: %d";
+
+/* Dev Tools */
+"devTools.importFromRelease" = "Импортировать данные из основной версии";
+"devTools.importFromRelease.confirm" = "Импортировать из основной версии?";
+"devTools.importFromRelease.confirmMessage" = "Все данные Dev-версии будут перезаписаны. Это действие нельзя отменить.";
+"devTools.importFromRelease.releaseRunning" = "Перед импортом закройте основную версию MosaClip.";
+"devTools.importFromRelease.noData" = "Данные основной версии не найдены.";
+
+/* Rich Text / Plain Text */
+"action.pasteAsPlainText" = "Обычный текст";
+
+/* Text Editing */
+"action.edit" = "Редактировать";
+"action.save" = "Сохранить";
+
+/* Multi-select */
+"action.merge" = "Объединить";
+"action.mergeCopy" = "Копировать";
+"action.copyDebugInfo" = "Скопировать отладочную информацию";
+"quick.multiSelected" = "Выбрано: %d";
+"quick.batchPaste" = "Пакетная вставка";
+
+/* Privacy */
+"settings.privacy" = "Конфиденциальность";
+"settings.privacy.offlineMode" = "Автономный режим";
+"settings.privacy.offlineMode.hint" = "Когда включено, MosaClip блокирует предпросмотр ссылок и загрузку изображений. Онлайн-обновления и анонимная статистика в этой сборке недоступны.";
+"settings.privacy.sensitive" = "Конфиденциальное содержимое";
+"settings.privacy.sensitiveDetection" = "Автоматическое обнаружение конфиденциального содержимого";
+"settings.privacy.sensitiveHint" = "Автоматически маскирует пароли, API-ключи, токены и другие конфиденциальные данные, скопированные в буфер обмена.";
+
+/* Automation */
+"settings.automation" = "Автоматизация";
+"settings.automation.enabled" = "Включить правила автоматизации";
+"settings.automation.ruleCount" = "%d правил (%d включено)";
+"settings.automation.manage" = "Управление правилами автоматизации...";
+"settings.automation.hint" = "Все совпавшие правила выполняются по порядку. Перетащите, чтобы изменить порядок.";
+"settings.automation.auto" = "Авто";
+"settings.automation.manual" = "Вручную";
+"settings.automation.proRequired" = "Правила автоматизации — функция Pro";
+"automation.builtIn.cleanTracking" = "Очистить параметры отслеживания";
+"automation.builtIn.lowercaseEmail" = "Перевести email в нижний регистр";
+"automation.builtIn.removeBlankLines" = "Удалить лишние пустые строки";
+
+/* Onboarding - Privacy Apps */
+"onboarding.privacy.title" = "Защита конфиденциальности";
+"onboarding.privacy.desc" = "MosaClip обнаружил на вашем Mac следующие менеджеры паролей и приложения безопасности. Рекомендуем игнорировать их активность в буфере обмена для защиты ваших данных.";
+"onboarding.privacy.none" = "Менеджеры паролей и приложения безопасности не обнаружены";
+"onboarding.privacy.hint" = "Отмечено = игнорируется — буфер обмена этого приложения не сохраняется. Нажмите на строку, чтобы изменить.";
+"onboarding.privacy.ignored" = "Игнорируется";
+"onboarding.privacy.notIgnored" = "Не игнорируется";
+
+/* Onboarding - Preferences */
+"onboarding.preferences.title" = "Настройки";
+"onboarding.preferences.desc" = "Настройте предпочтительное поведение. Вы можете изменить это в любое время в настройках.";
+
+"sensitive.optionHint" = "Удерживайте ⌥ Option для быстрого просмотра";
+
+"sensitive.peek" = "Быстрый просмотр";
+
+/* Accessibility Steps */
+"accessibility.step1" = "Откройте Системные настройки → Конфиденциальность и безопасность → Универсальный доступ";
+"accessibility.step2" = "Найдите MosaClip, сначала удалите его (выберите и нажмите минус)";
+"accessibility.step3" = "Нажмите плюс, чтобы добавить MosaClip снова";
+
+/* Accessibility Steps (rich text parts) */
+"accessibility.step1.prefix" = "Откройте";
+"accessibility.step1.path" = "Системные настройки → Конфиденциальность и безопасность → Универсальный доступ";
+"accessibility.step2.prefix" = "Найдите";
+"accessibility.step2.suffix" = ", сначала удалите его";
+"accessibility.step3.text" = "Нажмите, чтобы добавить MosaClip снова";
+
+"accessibility.step2.find" = "Найдите";
+"accessibility.step2.delete" = "удалите";
+"accessibility.step3.add" = "Нажмите";
+
+"accessibility.step3.readd" = "добавить снова";
+
+"accessibility.step2.pre" = "сначала";
+"accessibility.step2.separator" = ", ";
+
+"accessibility.step3.dragFromPanel" = "Перетащите MosaClip из плавающей панели";
+"accessibility.panelHint" = "Если есть старая запись, нажмите −, чтобы удалить её перед перетаскиванием.";
+"accessibility.panelTitle" = "Разрешение Универсального доступа";
+
+"filter.sensitive" = "Конфиденциальные";
+
+
+"settings.sound" = "Звуки";
+"settings.sound.enabled" = "Звуковые эффекты";
+"settings.sound.copy" = "Звук копирования";
+"settings.sound.paste" = "Звук вставки";
+"settings.sound.section.custom" = "Пользовательские";
+"settings.sound.section.system" = "Системные";
+
+/* Backup */
+"backup.section" = "Автоматическое резервное копирование";
+"backup.enable" = "Включить автоматическое резервное копирование";
+"backup.frequency" = "Частота копирования";
+"backup.maxSlots" = "Количество копий";
+"backup.destination" = "Способ копирования";
+"backup.frequency.twoHours" = "Каждые 2 часа";
+"backup.frequency.sixHours" = "Каждые 6 часов";
+"backup.frequency.daily" = "Ежедневно";
+"backup.frequency.threeDays" = "Каждые 3 дня";
+"backup.frequency.weekly" = "Еженедельно";
+"backup.frequency.monthly" = "Ежемесячно";
+"backup.path" = "Путь резервной копии";
+"backup.lastBackup" = "Последняя копия";
+"backup.backupNow" = "Создать копию сейчас";
+"backup.restore" = "Восстановить…";
+"backup.success" = "Резервное копирование завершено.";
+"backup.progress.finalizing" = "Сохранение…";
+"backup.restore.title" = "Восстановить из копии";
+"backup.restore.empty" = "Нет доступных резервных копий.";
+"backup.restore.merge" = "Объединить (сохранить существующие)";
+"backup.restore.overwrite" = "Перезаписать (заменить всё)";
+"backup.restore.confirm" = "Подтвердить восстановление";
+"backup.restore.confirmMerge" = "Данные из копии будут объединены с существующими данными. Дубликаты будут пропущены.";
+"backup.restore.confirmOverwrite" = "Все существующие данные будут заменены данными из копии. Это действие нельзя отменить.";
+"backup.restore.success" = "Восстановление завершено.";
+"backup.webdav.url" = "URL сервера";
+"backup.webdav.username" = "Имя пользователя";
+"backup.webdav.password" = "Пароль";
+"backup.webdav.test" = "Проверить";
+"backup.destination.local" = "Локально";
+"backup.changePath" = "Изменить…";
+"backup.webdav.testSuccess" = "Подключение успешно.";
+"backup.webdav.testFailed" = "Ошибка подключения.";
+"backup.webdav.testSuccessHTTP" = "Подключение успешно (незашифрованный HTTP).";
+"backup.webdav.authFailed" = "Сервер доступен, но имя пользователя или пароль неверны.";
+"backup.webdav.certError" = "Сертификат сервера недействителен; не удалось установить защищённое соединение.";
+"backup.webdav.invalidURL" = "Неверный URL сервера. Поддерживаются только http:// и https://.";
+"backup.webdav.insecureWarning" = "Незашифрованное HTTP-соединение: учётные данные и данные резервной копии передаются в открытом виде.";
+
+// Relay Mode
+"relay.title" = "Режим Эстафеты";
+"relay.exit" = "Выйти";
+"relay.clearAndExit" = "Очистить и выйти";
+"relay.close" = "Закрыть";
+"relay.autoExit" = "Авто-выход при пустой очереди";
+"relay.previous" = "Назад";
+"relay.skip" = "Пропустить";
+"relay.pasteAll" = "Вставить все";
+"relay.pasteAll.stop" = "Остановить";
+"relay.pasteAll.help" = "Вставить все оставшиеся элементы очереди по порядку (⌥⌃V)";
+"relay.delete" = "Удалить";
+"relay.setCurrent" = "Сделать текущим";
+"relay.split" = "Разделить";
+"relay.addToQueue" = "Добавить в очередь";
+"relay.splitAndRelay" = "Разделить и эстафета";
+"relay.split.title" = "Разделить в очередь";
+"relay.split.delimiter" = "Разделитель";
+"relay.split.customPlaceholder" = "Введите разделитель...";
+"relay.split.confirm" = "Разделить";
+"relay.split.preview" = "Будет разделено на %d элементов";
+"relay.split.noResult" = "Разделитель не найден";
+"relay.delimiter.newline" = "Перенос строки";
+"relay.delimiter.comma" = "Запятая (,)";
+"relay.delimiter.chineseComma" = "Китайская запятая (、)";
+"relay.delimiter.custom" = "Пользовательский";
+"relay.exitRelay" = "Выйти из эстафеты";
+"relay.autoExit.short" = "Авто-выход по завершении";
+"relay.loop" = "Цикл";
+"relay.loop.tooltip.on" = "Цикл: Вкл. (перезапуск с начала после окончания очереди)";
+"relay.loop.tooltip.off" = "Цикл: Выкл.";
+"relay.pasteAsText" = "Вставить как текст";
+"relay.startRelay" = "Начать эстафету";
+"relay.pause" = "Пауза";
+"relay.resume" = "Продолжить";
+"relay.paused" = "На паузе";
+"relay.emptyHint" = "Скопируйте содержимое для добавления в очередь";
+"relay.deleted.recirculated" = "Удалено из реле, сохранено в истории";
+"relay.deleted.undo" = "Отменить";
+"relay.appendedToQueue" = "Добавлено в очередь эстафеты (%d/%d)";
+"relay.queue.heading" = "Очередь %d";
+"relay.quickPastePaused" = "Быстрая вставка приостановлена в режиме эстафеты";
+"relay.expand" = "Развернуть";
+"relay.collapse" = "Свернуть";
+"relay.content.truncated" = "…(содержимое слишком большое, обрезано)";
+"relay.alert.title" = "Режим Эстафеты активирован";
+"relay.alert.message" = "Быстрая вставка приостановлена. Скопированное содержимое будет добавлено в очередь.
+
+Используйте %@ для вставки по одному.";
+"relay.alert.ok" = "Понятно";
+"relay.alert.dontShowAgain" = "Больше не показывать";
+"relay.settings.pasteKey" = "Горячая клавиша вставки";
+"relay.settings.pasteKeyNote" = "Некоторые приложения (Терминал, Emacs) могут использовать ту же клавишу.";
+"relay.settings.plainText" = "Вставить как обычный текст";
+"relay.settings.plainText.desc" = "Удалить форматирование";
+"relay.settings.allowRepeatCopy" = "Разрешить повторы";
+"relay.settings.allowRepeatCopy.desc" = "Добавлять одинаковые подряд элементы";
+"relay.settings.completeSound" = "Звук завершения";
+"relay.settings.completeSound.desc" = "Воспроизводить по завершении эстафеты";
+"relay.settings.completeSound.mute" = "Без звука";
+"relay.banner.clickToClear" = "Клик — переключить · ✕ — очистить";
+"relay.settings.automation" = "Автоматизация";
+"relay.settings.automation.desc" = "Применять правило при вставке";
+"relay.settings.automation.none" = "Нет";
+"relay.settings.preview" = "Предпросмотр";
+"relay.settings.preview.desc" = "Список показывает обработанный текст";
+"relay.settings.tooltip.default" = "Настройки";
+"relay.settings.tooltip.active" = "Активно";
+"relay.settings.postPasteKey" = "Клавиша после вставки";
+"relay.settings.postPasteKey.desc" = "Для быстрого ввода";
+"relay.settings.postPasteKey.none" = "Нет";
+"relay.settings.postPasteKey.return" = "Return";
+"relay.settings.postPasteKey.tab" = "Tab";
+"relay.settings.postPasteKey.down" = "Вниз";
+"relay.settings.postPasteKey.up" = "Вверх";
+"relay.settings.postPasteKey.left" = "Влево";
+"relay.settings.postPasteKey.right" = "Вправо";
+"relay.settings.postPasteKey.space" = "Пробел";
+"relay.settings.pauseToChange" = "Приостановите или выйдите из режима эстафеты для изменения клавиши.";
+"onboarding.relay.title" = "Режим Эстафеты";
+"onboarding.relay.desc" = "Скопируйте несколько элементов и вставляйте их по одному — идеально для массового ввода данных.";
+"onboarding.relay.feature1" = "Выберите несколько элементов или копируйте последовательно";
+"onboarding.relay.feature2" = "Разделите текст по разделителю для быстрого создания очереди";
+"onboarding.relay.feature3" = "Нажмите Ctrl+V для вставки по одному (настраивается)";
+"onboarding.aiAgent.title" = "Мост к ИИ-агентам";
+"onboarding.aiAgent.desc" = "Сделайте буфер обмена доступным для Claude Code, Cursor, Codex и любого MCP-совместимого ИИ-агента.";
+"onboarding.aiAgent.feature1" = "5 инструментов MCP — чтение, поиск, запись буфера обмена";
+"onboarding.aiAgent.feature2" = "Установка в один клик в Настройки → AI Agents";
+"onboarding.aiAgent.feature3" = "Конфиденциальные элементы фильтруются по умолчанию";
+
+/* Missing Keys - Empty State */
+"empty.noResults" = "Совпадений не найдено";
+
+/* Missing Keys - Actions */
+"cmd.showInFinder" = "Показать в Finder";
+"cmd.copyAs" = "Копировать как %@";
+"relay.reverse" = "Обратный порядок";
+"relay.clearAll" = "Очистить всё";
+"relay.editItem" = "Редактировать содержимое";
+"quickPanel.pin" = "Закрепить окно";
+"quickPanel.unpin" = "Открепить окно";
+
+/* Missing Keys - Settings */
+"settings.doubleTap" = "Двойное нажатие для открытия";
+"settings.doubleTap.modifier" = "Клавиша-модификатор двойного нажатия";
+
+/* Missing Keys - Quick Panel */
+"quick.commandPalette" = "Быстрые действия";
+
+/* Missing Keys - Onboarding */
+"onboarding.skip" = "Пропустить";
+
+/* Missing Keys - About */
+"about.help" = "Руководство";
+
+/* Missing Keys - Help - Relay */
+"help.relay" = "Режим Эстафеты";
+"help.relay.open" = "Откройте через кнопку на панели инструментов или строке меню";
+"help.relay.paste" = "Ctrl+V для вставки следующего элемента (настраивается в Настройках)";
+"help.relay.skip" = "Нажмите кнопку «Пропустить» в окне эстафеты, чтобы пропустить текущий элемент";
+"help.relay.previous" = "Нажмите кнопку «Назад» в окне эстафеты, чтобы вернуться";
+"help.relay.split" = "Наведите и нажмите значок ножниц, или правый клик для разделения элемента";
+"help.relay.pauseResume" = "Кнопки «Пауза» / «Продолжить» в окне эстафеты";
+"help.relay.exit" = "Кнопка закрытия или Esc для выхода из режима эстафеты";
+
+/* Missing Keys - Clear Data */
+
+/* Missing Keys - Backup */
+"backup.nextBackup" = "Следующая копия";
+
+/* Missing Keys - Command Palette */
+"cmd.title" = "Быстрые действия";
+"cmd.paste" = "Вставить";
+"cmd.pasteAndDestroy" = "Вставить и удалить";
+"cmd.pasteAsPlainText" = "Вставить как обычный текст";
+"cmd.copyAsPlainText" = "Скопировать как обычный текст";
+"cmd.copy" = "Копировать";
+"cmd.pin" = "Закрепить / Открепить";
+"cmd.toggleSensitive" = "Переключить конфиденциальность";
+"cmd.delete" = "Удалить";
+"cmd.openLink" = "Открыть ссылку";
+"cmd.openEntity" = "Открыть %@";
+"cmd.pasteEntity" = "Вставить %@";
+"cmd.pasteAsFile" = "Вставить как файл";
+"cmd.pastePath" = "Вставить путь";
+"cmd.andNewLine" = " + новая строка";
+"cmd.transform" = "Преобразовать";
+"cmd.automation" = "Автоматизация";
+
+/* Missing Keys - Relay */
+
+/* Missing Keys - Automation Manager Window */
+"automation.window.title" = "Правила автоматизации";
+"automation.section.builtIn" = "Встроенные правила";
+"automation.section.custom" = "Мои правила";
+"automation.section.empty" = "(пусто)";
+"automation.section.disabled" = "Отключено";
+"automation.editor.selectRule" = "Выберите правило для редактирования";
+"automation.rule.name" = "Название";
+"automation.rule.enabled" = "Включено";
+"automation.rule.triggerMode" = "Триггер";
+"automation.rule.triggerMode.automatic" = "Автоматический";
+"automation.rule.triggerMode.manual" = "Только вручную";
+"automation.rule.triggerMode.shortcutManualOnly" = "Есть действия, выполняемые только вручную, — только ручной запуск";
+"automation.rule.outputMode" = "Куда идёт результат";
+"automation.rule.outputMode.replaceItem" = "Заменить этот элемент";
+"automation.rule.outputMode.newItem" = "Новый элемент";
+"automation.rule.outputMode.clipboard" = "Только буфер обмена";
+"automation.rule.outputMode.pasteToFrontmost" = "Вставить в активное приложение";
+"automation.rule.outputMode.help" = "У автоматических правил нет цели вставки: «Только буфер обмена» и «Вставить в активное приложение» оба записывают результат обратно в буфер обмена, так что ⌘V сразу после копирования вставляет обработанный текст (форматированный текст становится обычным).";
+"automation.action.section.flow" = "Поток";
+"automation.action.stopProcessing" = "Не выполнять остальные правила";
+"automation.action.closeQuickPanel" = "Закрыть быструю панель";
+"automation.rule.triggerMode.automatic.help" = "Выполняется автоматически при копировании";
+"automation.rule.triggerMode.manual.help" = "Запускайте через ⌘K в быстрой панели или из контекстного меню элемента";
+"automation.action.regexReplace.pattern" = "Найти";
+"automation.preview.asyncSkipped" = "Команды и OCR здесь не предпросматриваются";
+"automation.builtIn.restore" = "Восстановить встроенные правила";
+"automation.editor.unsaved" = "Несохранённые изменения";
+"automation.editor.unsavedMessage" = "Сохранить перед переходом к другому правилу?";
+"automation.editor.dontSave" = "Не сохранять";
+"automation.editor.on" = "Вкл.";
+"automation.editor.off" = "Выкл.";
+"automation.flow.when" = "Триггер";
+"automation.flow.if" = "Условия";
+"automation.flow.then" = "Действия";
+"automation.flow.finally" = "Результат";
+"automation.flow.allConditions" = "выполнены все условия";
+"automation.flow.anyCondition" = "выполнено любое условие";
+"automation.flow.inOrder" = "по порядку";
+"automation.rule.notifyBeforeApply" = "Подтверждать перед применением";
+"automation.rule.newName" = "Новое правило";
+"automation.condition.title" = "Условия";
+"automation.condition.add" = "+ Добавить условие";
+"automation.condition.contentType" = "Тип содержимого";
+"automation.condition.regexMatch" = "Содержимое соответствует регулярному выражению";
+"automation.condition.containsText" = "Содержимое содержит";
+"automation.condition.sourceApp" = "Приложение-источник";
+"automation.condition.anyText" = "Любой текст";
+"automation.action.title" = "Действия (по порядку)";
+"automation.action.add" = "+ Добавить действие";
+"automation.action.lowercased" = "В нижний регистр";
+"automation.action.uppercased" = "В верхний регистр";
+"automation.action.trimWhitespace" = "Удалить пробелы";
+"automation.action.removeBlankLines" = "Удалить пустые строки";
+"automation.action.stripRichText" = "Удалить форматирование";
+"automation.action.assignGroup" = "Назначить группу";
+"automation.action.assignGroup.placeholder" = "Введите название группы";
+"automation.action.urlEncode" = "URL-кодирование";
+"automation.action.urlDecode" = "URL-декодирование";
+"automation.action.removeQueryParams" = "Удалить параметры URL";
+"automation.action.regexReplace" = "Замена по регулярному выражению";
+"automation.action.regexReplace.to" = "Заменить на";
+"automation.action.addPrefix" = "Добавить префикс";
+"automation.action.addSuffix" = "Добавить суффикс";
+"automation.action.removeQueryParams.placeholder" = "Введите имена параметров через запятую";
+"automation.action.regexReplace.placeholder" = "Введите шаблон регулярного выражения";
+"automation.action.regexReplace.to.placeholder" = "Введите текст замены";
+"automation.action.addPrefix.placeholder" = "Введите текст префикса";
+"automation.action.addSuffix.placeholder" = "Введите текст суффикса";
+"automation.preview" = "Тестировать правило";
+"automation.preview.input" = "Вставьте или введите содержимое для тестирования правила…";
+"automation.preview.useClipboard" = "Использовать буфер обмена";
+"automation.preview.output" = "Предпросмотр результата";
+"automation.preview.notMatched" = "Условия не выполнены";
+
+/* Automation Confirm */
+"automation.confirm.title" = "Сработало правило автоматизации";
+"automation.confirm.matched" = "Правило «%@» сработало";
+"automation.confirm.apply" = "Применить";
+"automation.confirm.keep" = "Оставить оригинал";
+"automation.confirm.original" = "Оригинал:";
+"automation.confirm.processed" = "Обработано:";
+"automation.action.delete" = "Удалить правило";
+"automation.action.section.text" = "Текст";
+"automation.action.section.url" = "URL";
+"automation.action.section.advanced" = "Дополнительно";
+"automation.action.section.clipboard" = "Буфер обмена";
+"automation.action.markSensitive" = "Пометить как конфиденциальное";
+"automation.action.pin" = "Закрепить";
+"automation.action.skipCapture" = "Не сохранять в историю";
+"automation.action.section.external" = "Внешние";
+"automation.action.runShortcut" = "Запустить быструю команду";
+"automation.action.runShortcut.placeholder" = "Название быстрой команды";
+"automation.action.runShortcut.empty" = "Быстрая команда не выбрана";
+"automation.action.runShortcut.pick" = "Выбрать из списка";
+"automation.action.runShortcut.openInApp" = "Открыть в «Быстрых командах»";
+"automation.action.runShortcut.failed" = "Сбой быстрой команды";
+"automation.action.runShortcut.loading" = "Загрузка…";
+"automation.rule.notifyOnTrigger" = "Отправлять уведомление при срабатывании";
+"automation.notification.title" = "Автоматизация";
+"automation.applied" = "Автоматизация выполнена";
+"automation.validation.incomplete" = "Не удалось включить правило";
+"automation.validation.incompleteMessage" = "Перед включением добавьте хотя бы одно условие и одно действие.";
+"automation.delete.confirm" = "Удалить правило?";
+"automation.delete.confirmMessage" = "Это действие нельзя отменить.";
+"automation.notification.permissionDenied" = "Уведомления запрещены";
+"automation.notification.permissionDeniedMessage" = "Разрешите уведомления для MosaClip в Системных настройках.";
+"automation.notification.openSettings" = "Открыть настройки";
+"automation.condition.sourceApp.select" = "Выбрать приложение";
+"automation.condition.sourceApp.add" = "Добавить приложение";
+"automation.condition.sourceApp.empty" = "Приложения не выбраны";
+"automation.editor.definition" = "Определение правила";
+"automation.editor.settings" = "Настройки";
+"automation.editor.triggerAndNotification" = "Триггер и уведомления";
+"automation.rule.status.active" = "Активно";
+"automation.rule.status.inactive" = "Неактивно";
+"automation.editor.save" = "Сохранить";
+"automation.editor.cancel" = "Отмена";
+"automation.editor.edit" = "Редактировать";
+"automation.condition.empty" = "Нет условий";
+"automation.condition.title.prefix" = "Когда";
+"automation.condition.logic.all" = "все";
+"automation.condition.logic.any" = "любое";
+"automation.condition.title.suffix" = "условия выполнены";
+"automation.condition.regexMatch.placeholder" = "Введите шаблон регулярного выражения";
+"automation.condition.containsText.placeholder" = "Введите текстовое содержимое";
+"automation.action.empty" = "Нет действий";
+"quick.pasteToApp" = "Вставить в %@";
+
+
+/* About - Open Source */
+"about.license" = "Лицензия";
+
+/* Analytics */
+"settings.privacy.analytics" = "Статистика использования";
+"settings.privacy.analyticsToggle" = "Отправлять анонимную статистику";
+"settings.privacy.analyticsHint" = "Помогите улучшить MosaClip, отправляя анонимные данные (версия приложения, язык системы, версия macOS). Личные данные не собираются.";
+"analytics.consent.title" = "Статистика использования";
+"analytics.consent.message" = "Хотите отправлять анонимную статистику для улучшения MosaClip? Включает версию приложения, язык системы и версию macOS. Личные данные не собираются. Вы можете изменить это в Настройки → Конфиденциальность.";
+"analytics.consent.allow" = "Разрешить";
+"analytics.consent.deny" = "Не разрешать";
+
+/* Onboarding - Analytics */
+"onboarding.analytics.title" = "Статистика использования";
+"onboarding.analytics.desc" = "Помогите улучшить MosaClip, отправляя анонимные данные (версия приложения, язык системы, версия macOS). Личные данные не собираются.";
+"onboarding.analytics.hint" = "Вы можете изменить это в Настройки → Конфиденциальность.";
+
+/* OCR */
+"settings.ocr" = "OCR";
+"settings.ocr.enable" = "Включить OCR изображений";
+"settings.ocr.auto" = "Автоматически обрабатывать новые изображения";
+"settings.ocr.markdown" = "Распознавать разметку как Markdown";
+"settings.ocr.markdown.hint" = "Распознаёт абзацы, списки и таблицы и сохраняет текст в формате Markdown. Требуется macOS 26.";
+"settings.ocr.stopScan" = "Остановить сканирование";
+"settings.ocr.scanExisting" = "Сканировать существующие изображения";
+"settings.ocr.scanStarted" = "Фоновый OCR для существующих изображений запущен.";
+"settings.ocr.hint" = "OCR выполняется на устройстве и делает текст внутри изображений доступным для поиска.";
+"settings.autoCheckUpdates" = "Автоматически проверять обновления";
+"settings.updateCheckInterval" = "Интервал проверки";
+"settings.updateCheckInterval.6h" = "Каждые 6 часов";
+"settings.updateCheckInterval.12h" = "Каждые 12 часов";
+"settings.updateCheckInterval.24h" = "Каждые 24 часа";
+"settings.updateCheckInterval.72h" = "Каждые 3 дня";
+"settings.includeBetaChannel" = "Участвовать в бета-тестировании";
+"settings.includeBetaChannel.hint" = "Раннее тестирование новых функций. Может быть нестабильным. Автоматическое обновление до стабильной версии.";
+"detail.ocr" = "Распознанный текст";
+"detail.ocr.copy" = "Копировать текст";
+"detail.ocr.retry" = "Повторить OCR";
+"detail.ocr.recognize" = "Распознать текст";
+"detail.ocr.notStarted" = "Текст изображения ещё не распознан";
+"detail.ocr.notStartedHint" = "Автоматическое распознавание выключено — это изображение можно распознать вручную.";
+"detail.ocr.pending" = "Ожидается сканирование текста на изображении.";
+"detail.ocr.processing" = "Распознавание текста на изображении…";
+"detail.ocr.ready" = "Распознанный текст доступен для поиска.";
+"detail.ocr.empty" = "Текст на этом изображении пока не найден.";
+"detail.ocr.failed" = "Не удалось выполнить OCR для этого изображения.";
+"quick.ocrMatch" = "Совпадение в распознанном тексте";
+"cmd.openInPreview" = "Открыть в Просмотре";
+"cmd.quickLook" = "Быстрый просмотр";
+"cmd.retryOCR" = "Повторить OCR";
+"cmd.pasteOCR" = "Вставить OCR-текст";
+
+/* Edit */
+"detail.richText.editWarning" = "При редактировании форматирование будет удалено и текст станет простым.";
+
+/* AI Agents */
+"settings.tab.aiAgents" = "ИИ-агенты";
+"settings.aiAgents.service" = "Сервис";
+"settings.aiAgents.serverRunning" = "MCP-сервер работает";
+"settings.aiAgents.agents" = "Агенты";
+"settings.aiAgents.detected" = "Доступно";
+"settings.aiAgents.notInstalled" = "Не установлено на этом Mac";
+"settings.aiAgents.installed.label" = "Установлено";
+"settings.aiAgents.install" = "Установить";
+"settings.aiAgents.uninstall" = "Удалить";
+"settings.aiAgents.manualConfig" = "Ручная настройка";
+"settings.aiAgents.installed" = "Установлено в %@. Перезапустите %@, чтобы изменения вступили в силу.";
+"settings.aiAgents.uninstalled" = "Удалено из %@.";
+"settings.aiAgents.installFailed" = "Не удалось установить в %@: %@";
+"settings.aiAgents.uninstallFailed" = "Не удалось удалить из %@: %@";
+"settings.aiAgents.privacy" = "Конфиденциальность";
+"settings.aiAgents.allowSensitive" = "Разрешить агенту читать конфиденциальные элементы";
+"settings.aiAgents.master.toggle" = "Включить интеграцию AI-агента";
+"settings.aiAgents.master.detail" = "Разрешить AI-инструментам, таким как Claude и Codex, читать историю буфера обмена через MCP";
+"settings.aiAgents.master.disabledHint" = "Отключено. Включите, чтобы AI-агенты могли получать доступ к буферу обмена через MCP.";
+"settings.aiAgents.sourceBlocklist" = "Чёрный список приложений-источников";
+"settings.aiAgents.binaryMissing" = "Отсутствует бинарный файл pastememo-mcp";
+"settings.aiAgents.binaryMissingDetail" = "Компонент MCP отсутствует. Переустановите MosaClip из тестового DMG.";
+"settings.aiAgents.openDownload" = "Открыть страницу загрузки";
+"settings.aiAgents.blocklist.empty" = "Нет заблокированных приложений";
+"settings.aiAgents.blocklist.add" = "Добавить приложение";
+"settings.aiAgents.manualConfig.title" = "Ручная настройка для %@";
+"settings.aiAgents.manualConfig.subtitle" = "Скопируйте фрагмент ниже и вставьте его в соответствующий файл конфигурации.";
+"settings.aiAgents.manualConfig.copy" = "Копировать в буфер обмена";
+"settings.aiAgents.manualConfig.done" = "Готово";
+
+"settings.diagnostics" = "Диагностика";
+"settings.diagnostics.export" = "Экспортировать журнал диагностики";
+
+/* Image grid (Quick Panel) */
+"settings.imageLayout" = "Отображение изображений";
+"settings.imageLayout.list" = "Список";
+"settings.imageLayout.grid" = "Каскадная сетка";
+"workspace.layout.cards" = "Карточки";
+"settings.imageGridDensity" = "Плотность сетки";
+"settings.imageGridDensity.sparse" = "Разреженная";
+"settings.imageGridDensity.medium" = "Средняя";
+"settings.imageGridDensity.dense" = "Плотная";
+
+"settings.ocr.memoryHint" = "Когда включено, MosaClip распознаёт текст на изображениях в фоне с помощью Vision, что может увеличить расход памяти.";
+
+// SMS verification codes
+"settings.smsCode" = "SMS-коды подтверждения";
+"settings.smsCode.enabled" = "Автоматически копировать коды из Сообщений";
+"settings.smsCode.needsFDA" = "Для чтения сообщений требуется полный доступ к диску";
+"settings.smsCode.openSettings" = "Открыть Системные настройки";
+"settings.smsCode.granted" = "Полный доступ к диску предоставлен";
+"settings.smsCode.hint" = "Требуется пересылка SMS с iPhone на этот Mac (Настройки → Сообщения → Пересылка SMS). Если после выдачи доступа не работает, перезапустите MosaClip.";
+"sms.notification.codeCopied" = "Код %@ скопирован";
+"sms.notification.fallbackTitle" = "Сообщение может содержать код подтверждения";
+"sms.preview.messageLabel" = "Исходное сообщение";
+"settings.smsCode.description" = "Если включено, MosaClip извлекает коды подтверждения из входящих сообщений, копирует их в буфер обмена и уведомляет вас.";
+"settings.smsCode.feedback" = "Код не распознан? Поделитесь (обезличенным) текстом сообщения, чтобы помочь улучшить правила распознавания.";
+"settings.smsCode.feedbackLink" = "Отправить отзыв";
+
+// MARK: - List row metrics
+"meta.chars" = "%@ симв.";
+"meta.lines" = "%@ строк";
+"markdown.preview.mode" = "Режим предпросмотра Markdown";
+"markdown.preview.rendered" = "Результат";
+"markdown.preview.raw" = "Исходник";
+"markdown.preview.renderOnDemand" = "Может снизить отзывчивость; по умолчанию показан исходник. Выберите Результат, чтобы продолжить";
+"markdown.preview.tooLarge" = "Слишком большой объём для безопасного рендеринга; показан исходный текст";
+"markdown.preview.imageBlocked" = "Загрузка изображения заблокирована";
+"svg.preview.mode" = "Режим предпросмотра SVG";
+"svg.preview.rendered" = "Результат";
+"svg.preview.raw" = "Исходник";
+"svg.preview.invalid" = "Некорректный SVG; показан исходный текст";
+"svg.preview.blocked" = "Скрипты или внешние ресурсы заблокированы; показан исходный текст";
+"svg.preview.tooLarge" = "SVG слишком большой или сложный для безопасного отображения; показан исходный текст";
+"svg.preview.unreadable" = "Не удалось прочитать исходный SVG";
+"svg.preview.unsupported" = "macOS не смогла отобразить этот SVG; показан исходный текст";
+"svg.metadata.viewBox" = "viewBox";
+"svg.metadata.width" = "Ширина";
+"svg.metadata.height" = "Высота";
+"svg.metadata.sourceSize" = "Размер исходника";
+"settings.update.disabled.title" = "Онлайн-обновления отключены";
+"settings.update.disabled.message" = "Онлайн-обновления отключены. Скачайте проверенный DMG MosaClip со страницы выпусков проекта и установите вручную.";
+"about.acknowledgements" = "Благодарности";
+"about.upstreamThanks" = "MosaClip основан на PasteMemo. Спасибо lifedever и участникам исходного проекта за их работу с открытым исходным кодом.";
+"about.upstreamRepository" = "PasteMemo · Исходный репозиторий";
+
+/* Automation: extract / open / outputs */
+"automation.action.convertColor" = "Преобразовать формат цвета";
+"automation.action.extractVerificationCode" = "Оставить только код подтверждения";
+"automation.action.extractLinks" = "Оставить только ссылки";
+"automation.action.runOCR" = "Распознать текст на изображении";
+"automation.action.deleteItem" = "Удалить исходную запись";
+"automation.action.playSound" = "Воспроизвести звук";
+"automation.action.section.extract" = "Извлечение и распознавание";
+"automation.action.section.open" = "Открыть и очередь";
+"automation.rule.outputMode.saveToFile" = "Сохранить в папку";
+"automation.rule.outputMode.postWebhook" = "Отправить в вебхук";
+"automation.output.folder.empty" = "Папка не выбрана";
+"automation.output.folder.choose" = "Выбрать…";
+"automation.output.folder.invalid" = "Папка не найдена";
+"automation.output.webhook.placeholder" = "https://";
+"automation.output.webhook.help" = "Отправляет JSON (content, contentType, sourceApp, rule, createdAt). Конфиденциальные записи не отправляются.";
+"automation.output.webhook.invalidURL" = "Адрес должен начинаться с http:// или https://";
+"automation.output.webhook.tooLarge" = "Слишком длинно, не отправлено";
+"automation.output.webhook.failedStatus" = "Ошибка отправки (HTTP %d)";
+"automation.output.webhook.failed" = "Ошибка отправки: %@";
+"automation.output.webhook.sent" = "Отправлено";
+"automation.output.webhook.refused" = "Конфиденциальные записи не отправляются";
+"automation.output.webhook.textOnly" = "Можно отправить только текст";
+"automation.output.saved" = "Сохранено в «%@»";
+"automation.output.saveFailed" = "Не удалось сохранить. Проверьте, что папка существует.";
+
+/* Automation: text toolbox */
+"automation.action.base64Encode" = "Кодировать в Base64";
+"automation.action.base64Decode" = "Декодировать Base64";
+"automation.action.jsonFormat" = "Отформатировать JSON";
+"automation.action.jsonMinify" = "Сжать JSON";
+"automation.action.toCamelCase" = "В camelCase";
+"automation.action.toSnakeCase" = "В snake_case";
+"automation.action.toHalfWidth" = "Полноширинные в обычные";
+"automation.action.toFullWidth" = "Обычные в полноширинные";
+"automation.action.simplifiedToTraditional" = "Упрощённый китайский в традиционный";
+"automation.action.removeDuplicateLines" = "Удалить повторяющиеся строки";
+"automation.action.sortLines" = "Сортировать строки";
+"automation.action.sortLines.ascending" = "По возрастанию";
+"automation.action.sortLines.descending" = "По убыванию";
+"automation.action.joinLines" = "Объединить строки";
+"automation.action.joinLines.space" = "Пробел";
+"automation.action.joinLines.none" = "Без разделителя";
+"automation.action.removeHTMLTags" = "Удалить HTML-теги";
+"automation.action.section.format" = "Преобразование";
+"automation.action.section.lines" = "Строки";
+
+/* Automation: conditions */
+"automation.condition.section.content" = "Содержимое";
+"automation.condition.section.app" = "Приложения";
+"automation.condition.section.state" = "Состояние записи";
+"automation.condition.section.time" = "Время";
+"automation.condition.targetApp" = "Вставка в";
+"automation.condition.targetApp.help" = "Известно только в быстрой панели и при вставке из очереди. Правила, срабатывающие при копировании, этому не соответствуют.";
+"automation.condition.contentLength" = "Число символов";
+"automation.condition.lineCount" = "Число строк";
+"automation.condition.range.min" = "Мин.";
+"automation.condition.range.max" = "Макс.";
+"automation.condition.range.any" = "Любое";
+"automation.condition.isPinned" = "Закреплено";
+"automation.condition.isSensitive" = "Отмечено как конфиденциальное";
+"automation.condition.inGroup" = "Группа";
+"automation.condition.inGroup.any" = "Любая группа";
+"automation.condition.timeOfDay" = "Время суток";
+"automation.condition.weekday" = "День недели";
+"automation.condition.negated" = "Не выполнено";
+
+/* Privacy: sensitive retention */
+"settings.privacy.sensitiveRetention" = "Хранить конфиденциальные записи";
+"settings.privacy.sensitiveRetention.followHistory" = "Как история";
+"settings.privacy.sensitiveRetention.minutes" = "%d мин";
+"settings.privacy.sensitiveRetention.hours" = "%d ч";
+"settings.privacy.sensitiveRetention.hint" = "Отсчитывается от последнего копирования или вставки, затем запись удаляется. Закреплённые записи и записи в бессрочных группах остаются.";
+"settings.privacy.sensitiveRetention.cleanConfirm" = "Будет удалено конфиденциальных записей: %d";
+
+/* Storage */
+"settings.nav.back" = "Назад";
+"settings.nav.forward" = "Вперёд";
+"settings.storage" = "Хранилище";
+"storage.manage.title" = "Управление хранилищем";
+"storage.manage" = "Управлять";
+"storage.recordCount" = "Записей: %@";
+"storage.scanFailed" = "Не удалось прочитать данные";
+"storage.scanning" = "Подсчёт...";
+"storage.part.originals" = "Оригиналы";
+"storage.part.previews" = "Миниатюры";
+"storage.part.richText" = "Форматированный текст";
+"storage.byType" = "По типу";
+"storage.itemCount" = "%@ шт.";
+"storage.autoClean" = "Автоочистка";
+"storage.optimize" = "Оптимизация";
+"storage.tiff.title" = "Преобразовать оригиналы TIFF в PNG без потерь";
+"storage.tiff.detail" = "Изображений: %1$@ · %2$@";
+"storage.tiff.progress" = "Преобразование: %1$@ из %2$@";
+"storage.tiff.result" = "Преобразовано изображений: %1$@, освобождено %2$@";
+"storage.tiff.kept" = "Изображений без преобразования (остались в TIFF): %@";
+"storage.sourceCount" = "Источников: %@";
+"storage.grouping.source" = "По источнику";
+"storage.typeCount" = "Типов: %@";
+"storage.column.type" = "Тип";
+"storage.typeSelectionSummary" = "Выбрано типов: %1$@ · записей: %2$@ · %3$@";
+"storage.searchSources" = "Поиск источника";
+"storage.allSources" = "Все источники";
+"storage.sourceWithCount" = "%1$@ · %2$@";
+"storage.column.source" = "Источник";
+"storage.column.latest" = "Последнее копирование";
+"storage.column.count" = "Записи";
+"storage.column.size" = "Размер";
+"storage.protectedNote" = "Удаляются записи MosaClip, а не исходные файлы. Закреплённые элементы и элементы из постоянных групп не удаляются.";
+"storage.protectedExcluded" = "Без учёта закреплённых и постоянных: %@";
+"storage.deleteRecords" = "Удалить записи";
+"storage.delete.scope" = "Удаляются только записи MosaClip и сохранённые им копии; исходные файлы не затрагиваются. Это действие нельзя отменить.";
+"storage.selectionSummary" = "Выбрано источников: %1$@ · записей: %2$@ · %3$@";
+"storage.delete.confirm" = "Удалить записи (%@)?";
+"storage.deleting" = "Удаление...";
+"storage.empty" = "Нечего очищать";
+"storage.time.all" = "За всё время";
+"storage.time.1month" = "Старше 1 месяца";
+"storage.time.3months" = "Старше 3 месяцев";
+"storage.time.6months" = "Старше 6 месяцев";
+"storage.time.1year" = "Старше 1 года";
+"storage.time.custom" = "Свой период...";
+"storage.type.all" = "Все типы";
+"storage.listSeparator" = ", ";
+"storage.sort.size" = "Сначала крупные";
+"storage.sort.latest" = "Сначала новые";
+"storage.selectAll" = "Выбрать все";
+"storage.deselectAll" = "Снять выбор";
+"storage.itemSelectionSummary" = "Выбрано: %1$@ · %2$@";
+"storage.custom.title" = "Свой период";
+"storage.custom.from" = "С";
+"storage.custom.to" = "По";
+
+"about.productWebsite" = "Сайт продукта";

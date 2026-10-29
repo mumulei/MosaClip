@@ -1,0 +1,119 @@
+import SwiftUI
+import AppKit
+
+struct AsyncPreviewImageView: View {
+    let data: Data?
+    let cacheKey: String
+    var maxPixelSize: CGFloat = 1200
+    var cornerRadius: CGFloat = 8
+    var thumbnailSize: CGFloat = 240
+    var onDoubleClick: (() -> Void)? = nil
+    /// `data` 为 nil 时的磁盘兜底源（多图文件条目没有缩略图字节，读第一张原文件）。
+    var fallbackFileURL: URL? = nil
+
+    @State private var image: NSImage?
+    @State private var thumbnail: NSImage?
+    @State private var isLoading = false
+
+    var body: some View {
+        Group {
+            if let image {
+                Image(nsImage: image)
+                    .resizable()
+                    .interpolation(.high)
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            } else if let thumbnail {
+                Image(nsImage: thumbnail)
+                    .resizable()
+                    .interpolation(.medium)
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            } else if data != nil || fallbackFileURL != nil {
+                placeholder
+            } else {
+                unavailableState
+            }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture(count: 2) {
+            onDoubleClick?()
+        }
+        .task(id: taskID) {
+            await loadImage()
+        }
+    }
+
+    private var taskID: String {
+        "\(cacheKey)_\(Int(maxPixelSize))_\(data?.count ?? 0)_\(fallbackFileURL?.path ?? "")"
+    }
+
+    @MainActor
+    private func loadImage() async {
+        isLoading = true
+        defer { isLoading = false }
+
+        var resolvedData = data
+        if resolvedData == nil, let fileURL = fallbackFileURL {
+            // 磁盘读取放后台线程，避免大图卡主线程
+            resolvedData = await Task.detached(priority: .userInitiated) {
+                try? Data(contentsOf: fileURL)
+            }.value
+            guard !Task.isCancelled else { return }
+        }
+        guard let data = resolvedData else {
+            image = nil
+            thumbnail = nil
+            return
+        }
+
+        if let cached = ImageCache.shared.cachedPreview(for: cacheKey, maxDimension: maxPixelSize) {
+            image = cached
+            thumbnail = nil
+            return
+        }
+
+        image = nil
+
+        if let cachedThumbnail = ImageCache.shared.cachedThumbnail(for: cacheKey, size: thumbnailSize) {
+            thumbnail = cachedThumbnail
+        } else {
+            let thumbnailTask = ImageCache.shared.thumbnailTask(for: data, key: cacheKey, size: thumbnailSize)
+            let loadedThumbnail = await thumbnailTask.value.image
+            guard !Task.isCancelled else { return }
+            thumbnail = loadedThumbnail
+        }
+
+        let previewTask = ImageCache.shared.previewTask(for: data, key: cacheKey, maxDimension: maxPixelSize)
+        let loadedImage = await previewTask.value.image
+
+        guard !Task.isCancelled else { return }
+        image = loadedImage
+        if image != nil { thumbnail = nil }
+    }
+
+    private var placeholder: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(Color.primary.opacity(0.05))
+
+            if isLoading {
+                ProgressView()
+                    .controlSize(.small)
+            } else {
+                Image(systemName: "photo")
+                    .foregroundStyle(.tertiary)
+            }
+        }
+    }
+
+    private var unavailableState: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "photo")
+                .foregroundStyle(.tertiary)
+            Text("[Image]")
+                .foregroundStyle(.tertiary)
+        }
+        .font(.system(size: 13))
+    }
+}

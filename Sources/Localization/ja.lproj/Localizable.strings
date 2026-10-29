@@ -1,0 +1,1123 @@
+/* App */
+"app.name" = "MosaClip";
+
+/* Menu */
+"menu.checkForUpdates" = "アップデートを確認…";
+"menu.github" = "GitHub";
+"menu.reportIssue" = "問題を報告";
+"menu.upgrade" = "Proにアップグレード";
+
+/* Search */
+"search.placeholder" = "クリップボード履歴を検索…";
+
+/* Empty State */
+"empty.title" = "クリップなし";
+"empty.message" = "何かをコピーして始めましょう";
+
+/* Actions */
+"action.favorite" = "お気に入り";
+"action.unfavorite" = "お気に入り解除";
+"action.pin" = "ピン留め";
+"action.unpin" = "ピン留め解除";
+"action.delete" = "削除";
+"action.clearAll" = "すべて削除";
+"action.aiCopy" = "AI用コピー";
+
+/* Content Types */
+"type.text" = "テキスト";
+"type.link" = "リンク";
+"type.image" = "画像";
+"type.code" = "コード";
+"type.color" = "カラー";
+
+/* Filter */
+"filter.all" = "すべて";
+"filter.special" = "特別";
+"filter.favorites" = "お気に入り";
+"filter.pinned" = "ピン留め";
+"filter.aiAgent" = "AI Agent";
+
+/* Time */
+"time.now" = "たった今";
+"time.weeks" = "%d週間前";
+"time.months" = "%dヶ月前";
+"time.years" = "%d年前";
+
+/* Settings */
+"settings.general" = "一般";
+"settings.update" = "アップデート";
+"settings.about" = "このアプリについて";
+"settings.appearance" = "外観";
+"settings.theme" = "テーマ";
+"settings.theme.system" = "システム";
+"settings.theme.light" = "ライト";
+"settings.theme.dark" = "ダーク";
+"settings.language" = "言語";
+"settings.language.restart_title" = "再起動が必要です";
+"settings.language.restart_message" = "言語の変更を完全に反映するには、アプリの再起動が必要です。";
+"settings.language.restart_now" = "今すぐ再起動";
+"settings.language.restart_later" = "後で";
+"settings.launchAtLogin" = "ログイン時に起動";
+"settings.clipboardMonitoring" = "クリップボード監視を有効にする";
+"settings.hideDockIcon" = "Dockアイコンを非表示";
+"settings.hideDockIcon.hint" = "有効にすると、メニューバーのアイコンからのみアプリにアクセスできます。";
+"settings.hideDockIcon.confirm.title" = "Dockアイコンを非表示にしますか？";
+"settings.hideDockIcon.confirm.message" = "すべてのウィンドウが閉じられます。メニューバーのアイコンから再度開くことができます。";
+"settings.hideDockIcon.confirm.ok" = "非表示にしてウィンドウを閉じる";
+"settings.menuBarIconStyle" = "メニューバーアイコン";
+"settings.menuBarIconStyle.outline" = "アウトライン";
+"settings.menuBarIconStyle.filled" = "塗りつぶし";
+"settings.menuBar.leftClickAction" = "ステータスバー左クリックの動作";
+"settings.menuBar.leftClickAction.help" = "ステータスバーアイコンを左クリックしたときの動作；右クリックは常にメニューを表示します";
+"menuBar.leftClick.menu" = "メニューを表示";
+"menuBar.leftClick.openManager" = "マネージャーを開く";
+"menuBar.leftClick.quickPanel" = "クイック貼り付けを開く";
+"menuBar.leftClick.toggleRelay" = "リレーモードの切り替え";
+"menuBar.leftClick.togglePause" = "クリップボード監視を一時停止 / 再開";
+"menuBar.leftClick.openSettings" = "設定を開く";
+"settings.currentVersion" = "現在のバージョン";
+
+/* Pro */
+"pro.title" = "MosaClip Proにアップグレード";
+"pro.description" = "無制限の履歴、スマートグループ、iCloud同期などをアンロック。";
+"pro.enterKey" = "ライセンスキーを入力";
+"pro.activate" = "有効化";
+"pro.activated" = "ライセンスが有効化されました";
+"pro.deactivate" = "ライセンスを無効化";
+"pro.invalidKey" = "無効なライセンスキー";
+"pro.features" = "Pro機能";
+"pro.feature.unlimited" = "無制限の履歴";
+"pro.feature.favorites" = "無制限のお気に入り";
+"pro.feature.smartGroup" = "スマートグループ";
+"pro.feature.icloud" = "自動バックアップ";
+"pro.feature.themes" = "カスタムテーマ";
+
+/* Menu */
+"menu.manager" = "管理ツールを開く";
+
+/* Detail */
+"detail.select" = "アイテムを選択";
+"detail.selectHint" = "左のアイテムをクリックして詳細を表示";
+"detail.info" = "情報";
+"detail.type" = "種類";
+"detail.source" = "コピー元アプリ";
+"detail.aiAgent" = "AI Agent";
+"detail.created" = "作成日時";
+"detail.group" = "グループ";
+"detail.lastUsed" = "最終使用";
+"detail.chars" = "文字数";
+"detail.lines" = "行数";
+"detail.aiPreview" = "AI用プレビュー";
+"detail.language" = "言語";
+"detail.preview_failed" = "プレビューを読み込めません";
+"detail.ocr" = "認識テキスト";
+"detail.ocr.copy" = "テキストをコピー";
+"detail.ocr.retry" = "OCRを再試行";
+"detail.ocr.recognize" = "文字を認識";
+"detail.ocr.notStarted" = "画像のテキストはまだ認識されていません";
+"detail.ocr.notStartedHint" = "自動認識はオフです。この画像を手動で認識できます。";
+"detail.ocr.pending" = "画像テキストのスキャン待機中です。";
+"detail.ocr.processing" = "画像から文字を認識中…";
+"detail.ocr.ready" = "認識テキストを検索できます。";
+"detail.ocr.empty" = "この画像ではまだ文字が見つかっていません。";
+"detail.ocr.failed" = "この画像の OCR に失敗しました。";
+
+/* Filter */
+"filter.types" = "種類";
+
+/* Actions */
+"action.paste" = "ペースト";
+"action.cancel" = "キャンセル";
+"action.confirm" = "OK";
+"action.assignGroup" = "グループに割り当て";
+"action.newGroup" = "新規グループ…";
+"action.editGroup" = "グループを編集…";
+"action.deleteGroup" = "グループを削除";
+"action.deleteGroupConfirm" = "グループ「%@」を削除してもよろしいですか？グループ内のアイテムは削除されません。";
+"action.removeFromGroup" = "グループから除外";
+"group.preserveItems" = "このグループの内容を永久保存する";
+"group.preserveItems.help" = "有効にすると、このグループ内の内容は自動保持期間の整理や「データを消去」の対象外になります。";
+"group.preserveItems.badge" = "永久保存";
+"action.changeIcon" = "アイコンを変更…";
+"action.clearConfirm" = "お気に入りとピン留めを除くすべてのアイテムが削除されます。";
+"action.clearScope.type" = "この種類のアイテムをすべて削除";
+"action.clearScope.group" = "このグループ内のアイテムをすべて削除";
+"action.clearScope.group.disabledHelp" = "このグループは永久保存に設定されているため、中のアイテムは削除できません。";
+"action.clearScope.app" = "このアプリからのアイテムをすべて削除";
+"action.clearScope.title" = "「%@」を削除";
+"action.clearScope.confirm" = "ピン留めされていない %d 件のアイテムが削除されます。永久保存グループ内のアイテムは削除されません。";
+"action.clearScope.empty" = "現在のフィルターには削除可能なアイテムがありません（ピン留めと永久保存グループのアイテムは除外されます）。";
+
+/* Stats */
+"stats.total" = "クリップ合計";
+
+/* Settings */
+"settings.features" = "機能";
+"settings.shortcuts" = "ショートカット";
+"settings.quickPanelShortcut" = "クイックペースト";
+"settings.managerShortcut" = "管理ツールを開く";
+"settings.managerShortcut.global" = "グローバル";
+"settings.managerShortcut.scopeHint" = "グローバルをオフにすると、このショートカットはクイックパネルがすでに開いているときだけ使えます。";
+"settings.relayShortcut" = "リレー開始";
+"settings.shortcut.none" = "未設定";
+"settings.paste" = "ペースト";
+"settings.autoPaste" = "Enterでアプリに直接ペースト";
+"settings.addNewLine" = "ペースト後に改行を追加";
+"settings.quickPanelLaunchAnimation" = "クイックパネル起動アニメーション";
+"settings.quickPanelRememberFilter" = "前回のフィルターを記憶";
+"settings.quickPanelSecondaryRow" = "クイックパネル検索下に表示";
+"settings.quickPanelSecondaryRow.types" = "タイプ";
+"settings.quickPanelSecondaryRow.groups" = "グループ";
+"settings.history" = "履歴";
+"settings.quickPanelTabTypes" = "タブバーに表示するカテゴリ";
+"settings.quickPanelTabTypes.hint" = "ドラッグで並び替え。チェックを外すとクイックパネルで非表示になります（サイドバーはそのまま）。";
+"settings.quickPanelTabTypes.reset" = "デフォルトに戻す";
+"settings.retentionDays" = "履歴の保持";
+"settings.retentionDays.forever" = "永久";
+"settings.retentionDays.days" = "%d日";
+"settings.retentionDays.cleanConfirm" = "保持期間を超えた%d件の項目が削除されます";
+"settings.retentionDays.cleanWarning" = "この操作は元に戻せません。続行しますか？";
+"settings.display" = "表示";
+"settings.quickPanelPosition" = "クイックパネルの位置";
+"settings.quickPanelPosition.remembered" = "前回の位置を記憶";
+"settings.quickPanelPosition.cursor" = "カーソル";
+"settings.quickPanelPosition.menuBarIcon" = "メニューバーアイコン";
+"settings.quickPanelPosition.windowCenter" = "アクティブウィンドウの中央";
+"settings.quickPanelPosition.screenCenter" = "画面中央";
+"settings.quickPanelTargetScreen" = "対象画面";
+"settings.quickPanelTargetScreen.active" = "アクティブ画面";
+"settings.quickPanelTargetScreen.specified" = "指定画面";
+"settings.quickPanelSpecifiedScreen" = "指定ディスプレイ";
+"settings.behavior" = "動作";
+"settings.preferences" = "環境設定";
+"settings.quickPanel" = "クイック貼り付け";
+"settings.previewRecognition" = "プレビューと認識";
+"settings.ocr" = "OCR";
+"settings.ocr.enable" = "画像OCRを有効にする";
+"settings.ocr.auto" = "新しい画像を自動処理する";
+"settings.ocr.markdown" = "レイアウトを Markdown として認識";
+"settings.ocr.markdown.hint" = "段落・リスト・表を認識し、テキストを Markdown として保存します。macOS 26 が必要です。";
+"settings.ocr.stopScan" = "スキャンを停止";
+"settings.ocr.scanExisting" = "既存の画像をスキャン";
+"settings.ocr.scanStarted" = "既存の画像に対するOCRをバックグラウンドで開始しました。";
+"settings.ocr.hint" = "OCR はデバイス上で実行され、画像内の文字を検索可能にします。";
+"settings.showLinkURL" = "リンクをページタイトルではなくURLで表示";
+"settings.webPreview" = "Webプレビュー";
+"settings.imageLinkPreview" = "画像リンクプレビュー";
+"settings.previewExecutesJavaScript" = "プレビューで JavaScript を実行";
+"settings.linkPreview" = "リンクとプレビュー";
+"settings.linkPreview.footer" = "上記のスイッチで、コピーされたリンクに対してネットワークリクエストを行うかどうかを制御します。すべてオフにすると、アップデート確認以外では一切通信しません。";
+"settings.linkPreview.footer.offline" = "オフラインモードが有効：上記のスイッチは無効化されます。「プライバシー」タブで切り替えられます。";
+"settings.richTextPreview" = "リッチテキストプレビュー";
+"settings.showGuide" = "ウェルカムガイドを表示";
+
+/* Pro */
+"pro.beta.desc" = "MosaClipは現在ベータテスト中です。Pro機能は今後のリリースで提供予定です。";
+"pro.feature.rules" = "クリップボードルール";
+"pro.feature.relay" = "リレーモード";
+"pro.feature.customCategory" = "カスタムカテゴリ";
+"pro.feature.ignoreApps" = "特定アプリを除外";
+"pro.feature.automation" = "クリップボード自動化";
+
+/* Onboarding */
+"onboarding.back" = "戻る";
+"onboarding.next" = "次へ";
+"onboarding.done" = "始める";
+"onboarding.welcome.title" = "MosaClipへようこそ";
+"onboarding.welcome.desc" = "メニューバーに常駐するスマートクリップボードマネージャー。コピーしたものを自動保存し、即座に検索できます。";
+"onboarding.accessibility.title" = "アクセシビリティを有効にする";
+"onboarding.accessibility.desc" = "MosaClipは他のアプリにコンテンツをペーストするためにアクセシビリティ権限が必要です。";
+"onboarding.accessibility.grant" = "アクセシビリティ設定を開く";
+"onboarding.accessibility.granted" = "権限が付与されました";
+"onboarding.accessibility.hint" = "権限を付与すると、このページが自動的に更新されます。";
+"onboarding.shortcut.title" = "クイックペーストショートカット";
+"onboarding.shortcut.desc" = "どこからでもショートカットを押してクイックペーストパネルを開きます。";
+"onboarding.shortcut.current" = "クリックしてショートカットを変更";
+"onboarding.helpHint" = "ヘルプ → MosaClip ヘルプからいつでも確認できます";
+
+/* Help */
+"menu.newGroup" = "新規グループ…";
+"menu.newSmartGroup" = "新規スマートグループ…";
+"menu.help" = "MosaClip ヘルプ";
+"menu.alwaysOnTop" = "常に最前面に表示";
+"help.title" = "MosaClip ヘルプ";
+"help.subtitle" = "クリップボードマネージャーの使い方ガイド。";
+"help.close" = "了解";
+"help.shortcuts" = "キーボードショートカット";
+"help.shortcut.quickPaste" = "クイックペーストパネルを開く";
+"help.shortcut.paste" = "選択したアイテムをペースト";
+"help.shortcut.switchType" = "コンテンツタイプでフィルタ";
+"help.shortcut.navigate" = "アイテムを移動";
+"help.shortcut.cmdEnter" = "パスをペースト / フォルダに保存 / 画像としてペースト";
+"help.shortcut.preview" = "プレビュー / リンクを開く";
+"help.shortcut.delete" = "アイテムを削除";
+"help.shortcut.close" = "パネルを閉じる";
+"help.actions" = "クイックペースト操作";
+"help.action.paste" = "Enterまたはダブルクリックで現在のアプリにペースト";
+"help.action.openLink" = "リンクはデフォルトブラウザで直接開けます";
+"help.action.pastePath" = "ファイル：⌘↵ でファイルパスをペースト";
+"help.action.saveToFolder" = "テキスト/画像：⌘↵ でファイルとしてフォルダに保存";
+"help.action.pasteImage" = "画像付きアイテム：⌘↵ で画像ファイルとしてペースト";
+"help.action.pin" = "右クリックでピン留め — 常にリストの上部に表示";
+"help.tips" = "ヒント";
+"help.tip.doubleClick" = "ダブルクリックでペースト、シングルクリックで選択・プレビュー";
+"help.tip.rightClick" = "右クリックメニュー：ピン留め、削除";
+"help.tip.menuBar" = "メニューバーアイコンから履歴と設定にアクセス";
+"help.tip.search" = "検索ボックスに入力して即座にクリップを検索";
+
+/* Update */
+"update.available.title" = "MosaClipの新しいバージョンが利用可能です！";
+"update.available.beta.title" = "MosaClipの新しいベータ版が利用可能です";
+"update.beta.warning" = "ベータ版は不安定な場合があります。インストール前に重要なデータをバックアップしてください。";
+"update.available.message" = "MosaClip %@ が利用可能です — 現在のバージョンは %@ です。今すぐダウンロードしますか？";
+"update.skip" = "このバージョンをスキップ";
+"update.remind_later" = "後で通知";
+"update.install" = "アップデートをインストール";
+"update.downloading" = "アップデートをダウンロード中...";
+"update.ready" = "インストール準備完了";
+"update.install_restart" = "インストールして再起動";
+"update.cancel" = "キャンセル";
+"update.check_failed" = "アップデートの確認に失敗しました";
+"update.check_failed.hint" = "最新バージョンの情報を取得できませんでした。ネットワーク接続を確認して再試行するか、以下のページから手動でダウンロードしてください：";
+"update.check_failed.github" = "GitHub ダウンロード";
+"update.check_failed.gitee" = "Gitee ダウンロード";
+"update.check_failed.cancel" = "キャンセル";
+"update.no_updates" = "最新版です！";
+"update.no_updates.message" = "MosaClip %@ は最新バージョンです。";
+"update.download_error" = "ダウンロード失敗";
+"update.dmg_error" = "アップデート失敗";
+"update.dmg_error.message" = "ダウンロードしたディスクイメージが破損しています。再度ダウンロードしてください。";
+"update.download_error.incomplete" = "ダウンロードが未完了または中断されました。ネットワークを確認して再試行してください。";
+
+/* About */
+"about.description" = "macOS のローカルクリップボードワークスペース";
+
+/* Ignored Apps */
+"settings.ignoredApps" = "無視するアプリ";
+"settings.ignoredApps.add" = "アプリを追加";
+"settings.ignoredApps.empty" = "無視するアプリはありません";
+"settings.ignoredApps.remove" = "削除";
+"settings.ignoredApps.selectApp" = "無視するアプリを選択";
+"settings.ignoredApps.running" = "実行中のアプリ";
+"settings.ignoredApps.browse" = "アプリケーションを参照…";
+
+/* Sensitive Content */
+"sensitive.masked" = "••••••••";
+"sensitive.reveal" = "表示";
+"sensitive.hide" = "非表示";
+"sensitive.markSensitive" = "機密としてマーク";
+"sensitive.unmarkSensitive" = "機密マークを解除";
+
+/* Data Import/Export */
+"dataPorter.section" = "データ";
+"dataPorter.importExport" = "読み込みと書き出し";
+"dataPorter.export" = "データをエクスポート";
+"dataPorter.compressing" = "圧縮中...";
+"dataPorter.import" = "データをインポート";
+"dataPorter.encrypt" = "暗号化してエクスポート";
+"dataPorter.password" = "パスワード";
+"dataPorter.confirmPassword" = "パスワード確認";
+"dataPorter.passwordMismatch" = "パスワードが一致しません";
+"dataPorter.enterPassword" = "パスワードを入力して復号化";
+"dataPorter.exportSuccess" = "エクスポート成功";
+"dataPorter.importSuccess" = "インポート成功";
+"dataPorter.wrongPassword" = "パスワードが正しくありません";
+"dataPorter.decrypting" = "復号化中...";
+"dataPorter.refreshing" = "メイン画面を更新中...";
+"dataPorter.summary.imported" = "%d 件をインポートしました";
+"dataPorter.summary.skipped" = "%d 件をスキップしました";
+"dataPorter.summary.newGroups" = "新規グループ %d 個を追加";
+"dataPorter.summary.newRules" = "新規ルール %d 個を追加";
+
+/* Dev Tools */
+"devTools.importFromRelease" = "正式版からデータを読み込む";
+"devTools.importFromRelease.confirm" = "正式版からデータを読み込みますか？";
+"devTools.importFromRelease.confirmMessage" = "Dev 版のすべてのデータが上書きされます。この操作は取り消せません。";
+"devTools.importFromRelease.releaseRunning" = "読み込む前に正式版 MosaClip を終了してください。";
+"devTools.importFromRelease.noData" = "正式版のデータが見つかりません。";
+
+/* Rich Text / Plain Text */
+"action.pasteAsPlainText" = "プレーンテキスト";
+
+/* Text Editing */
+"action.edit" = "編集";
+"action.save" = "保存";
+
+/* Multi-select */
+"action.merge" = "結合";
+"action.mergeCopy" = "コピー";
+"action.copyDebugInfo" = "デバッグ情報をコピー";
+"quick.multiSelected" = "%d 件選択中";
+"quick.batchPaste" = "一括ペースト";
+
+/* Privacy */
+"settings.privacy" = "プライバシー";
+"settings.privacy.offlineMode" = "オフラインモード";
+"settings.privacy.offlineMode.hint" = "オンにすると、MosaClip はリンクプレビューと画像読み込みを停止します。このビルドではオンライン更新と匿名統計は利用できません。";
+"settings.privacy.sensitive" = "機密コンテンツ";
+"settings.privacy.sensitiveDetection" = "機密コンテンツを自動検出";
+"settings.privacy.sensitiveHint" = "クリップボードにコピーされたパスワード、APIキー、トークンなどの機密データを自動的にマスクします。";
+
+/* Automation */
+"settings.automation" = "自動化";
+"settings.automation.enabled" = "自動化ルールを有効にする";
+"settings.automation.ruleCount" = "%d 件のルール（%d 件有効）";
+"settings.automation.manage" = "自動化ルールを管理...";
+"settings.automation.hint" = "一致したルールはすべて順番に実行されます。ドラッグで並べ替えできます。";
+"settings.automation.auto" = "自動";
+"settings.automation.manual" = "手動";
+"settings.automation.proRequired" = "自動化ルールは Pro 専用機能です";
+"automation.builtIn.cleanTracking" = "リンクのトラッキングパラメータを削除";
+"automation.builtIn.lowercaseEmail" = "メールアドレスを小文字に変換";
+"automation.builtIn.removeBlankLines" = "余分な空行を削除";
+
+/* Onboarding - Privacy Apps */
+"onboarding.privacy.title" = "プライバシー保護";
+"onboarding.privacy.desc" = "お使いの Mac に以下のパスワードマネージャーやセキュリティアプリが検出されました。機密データを保護するため、クリップボード監視の除外リストに追加することをお勧めします。";
+"onboarding.privacy.none" = "パスワードマネージャーやセキュリティアプリは検出されませんでした";
+"onboarding.privacy.hint" = "チェック = 無視（このアプリのクリップボードは保存されません）。行をクリックで切り替え。";
+"onboarding.privacy.ignored" = "無視";
+"onboarding.privacy.notIgnored" = "無視しない";
+
+/* Onboarding - Preferences */
+"onboarding.preferences.title" = "環境設定";
+"onboarding.preferences.desc" = "お好みの動作を設定してください。設定はいつでも変更できます。";
+
+"sensitive.optionHint" = "⌥ Option を押して一時表示";
+
+"sensitive.peek" = "一時表示";
+
+/* Accessibility Steps */
+"accessibility.step1" = "システム設定 → プライバシーとセキュリティ → アクセシビリティ を開く";
+"accessibility.step2" = "MosaClip を見つけて削除（選択してマイナスをクリック）";
+"accessibility.step3" = "プラスをクリックして MosaClip を再追加";
+
+/* Accessibility Steps (rich text parts) */
+"accessibility.step1.prefix" = "開く";
+"accessibility.step1.path" = "システム設定 → プライバシーとセキュリティ → アクセシビリティ";
+"accessibility.step2.prefix" = "見つける";
+"accessibility.step2.suffix" = "を削除";
+"accessibility.step3.text" = "MosaClip を再追加";
+
+"accessibility.step2.find" = "見つけて";
+"accessibility.step2.delete" = "削除";
+"accessibility.step3.add" = "再追加";
+
+"accessibility.step3.readd" = "再追加";
+
+"accessibility.step2.pre" = "まず";
+"accessibility.step2.separator" = "、";
+
+"accessibility.step3.dragFromPanel" = "フローティングパネルから MosaClip をドラッグ";
+"accessibility.panelHint" = "古い項目がある場合は先に − をクリックして削除してください";
+"accessibility.panelTitle" = "アクセシビリティ権限";
+
+"filter.sensitive" = "機密";
+
+
+"settings.sound" = "サウンド";
+"settings.sound.enabled" = "効果音";
+"settings.sound.copy" = "コピー音";
+"settings.sound.paste" = "ペースト音";
+"settings.sound.section.custom" = "カスタム";
+"settings.sound.section.system" = "システム";
+
+/* Backup */
+"backup.section" = "自動バックアップ";
+"backup.enable" = "自動バックアップを有効化";
+"backup.frequency" = "バックアップ頻度";
+"backup.maxSlots" = "バックアップ数";
+"backup.destination" = "バックアップ方法";
+"backup.frequency.twoHours" = "2時間ごと";
+"backup.frequency.sixHours" = "6時間ごと";
+"backup.frequency.daily" = "毎日";
+"backup.frequency.threeDays" = "3日ごと";
+"backup.frequency.weekly" = "毎週";
+"backup.frequency.monthly" = "毎月";
+"backup.path" = "バックアップ先";
+"backup.lastBackup" = "前回のバックアップ";
+"backup.backupNow" = "今すぐバックアップ";
+"backup.restore" = "バックアップから復元…";
+"backup.success" = "バックアップが完了しました。";
+"backup.progress.finalizing" = "保存中…";
+"backup.restore.title" = "バックアップから復元";
+"backup.restore.empty" = "利用可能なバックアップがありません。";
+"backup.restore.merge" = "マージ（既存データを保持）";
+"backup.restore.overwrite" = "上書き（すべて置換）";
+"backup.restore.confirm" = "復元の確認";
+"backup.restore.confirmMerge" = "バックアップデータが既存データとマージされます。重複はスキップされます。";
+"backup.restore.confirmOverwrite" = "すべての既存データがバックアップデータに置き換えられます。この操作は元に戻せません。";
+"backup.restore.success" = "復元が完了しました。";
+"backup.webdav.url" = "サーバーURL";
+"backup.webdav.username" = "ユーザー名";
+"backup.webdav.password" = "パスワード";
+"backup.webdav.test" = "接続テスト";
+"backup.destination.local" = "ローカル";
+"backup.changePath" = "変更…";
+"backup.webdav.testSuccess" = "接続に成功しました。";
+"backup.webdav.testFailed" = "接続に失敗しました。";
+"backup.webdav.testSuccessHTTP" = "接続に成功しました（暗号化されていないHTTP）。";
+"backup.webdav.authFailed" = "サーバーには接続できましたが、ユーザー名またはパスワードが正しくありません。";
+"backup.webdav.certError" = "サーバー証明書が無効なため、安全な接続を確立できませんでした。";
+"backup.webdav.invalidURL" = "サーバーURLが無効です。http:// と https:// のみに対応しています。";
+"backup.webdav.insecureWarning" = "暗号化されていないHTTP接続のため、認証情報とバックアップデータは平文で送信されます。";
+
+// リレーモード
+// コマンドパレット
+"cmd.title" = "クイックアクション";
+"cmd.paste" = "ペースト";
+"cmd.pasteAndDestroy" = "貼り付けて削除";
+"cmd.pasteAsPlainText" = "プレーンテキストでペースト";
+"cmd.copyAsPlainText" = "プレーンテキストとしてコピー";
+"cmd.copy" = "コピー";
+"cmd.pin" = "ピン / ピン解除";
+"cmd.toggleSensitive" = "機密の切り替え";
+"cmd.delete" = "削除";
+"cmd.openLink" = "リンクを開く";
+"cmd.openEntity" = "%@ を開く";
+"cmd.pasteEntity" = "%@ をペースト";
+"cmd.pasteAsFile" = "ファイルとしてペースト";
+"cmd.pastePath" = "パスをペースト";
+"cmd.retryOCR" = "OCRを再試行";
+"cmd.pasteOCR" = "OCRテキストを貼り付け";
+"cmd.openInPreview" = "「プレビュー」で開く";
+"cmd.quickLook" = "クイックルック";
+"cmd.andNewLine" = "＋改行";
+"cmd.transform" = "変換";
+"cmd.automation" = "オートメーション";
+
+"relay.title" = "リレーモード";
+"relay.exit" = "終了";
+"relay.clearAndExit" = "クリアして終了";
+"relay.close" = "閉じる";
+"relay.exitRelay" = "リレー終了";
+"relay.startRelay" = "リレー開始";
+"relay.pause" = "一時停止";
+"relay.resume" = "再開";
+"relay.paused" = "一時停止中";
+"relay.emptyHint" = "コピーした内容がキューに追加されます";
+"relay.deleted.recirculated" = "リレーから削除（クリップボード履歴に保持）";
+"relay.deleted.undo" = "元に戻す";
+"relay.appendedToQueue" = "リレーキューに追加（%d/%d）";
+"relay.queue.heading" = "キュー %d";
+"relay.quickPastePaused" = "リレーモード中はクイックペーストが一時停止しています";
+"relay.expand" = "展開";
+"relay.collapse" = "折りたたむ";
+"relay.content.truncated" = "…（内容が大きすぎるため切り詰めました）";
+"relay.alert.title" = "リレーモードが有効になりました";
+"relay.alert.message" = "クイックペーストが一時停止しました。コピーした内容はリレーキューに追加されます。
+
+%@ で1つずつペーストします。";
+"relay.alert.ok" = "了解";
+"relay.alert.dontShowAgain" = "今後表示しない";
+"relay.settings.pasteKey" = "リレーペーストショートカット";
+"relay.settings.pasteKeyNote" = "一部のアプリ（ターミナル、Emacs）が同じショートカットを使用する場合があります。競合する場合はカスタマイズしてください。";
+"relay.settings.pauseToChange" = "ショートカットを変更するにはリレーモードを一時停止または終了してください。";
+"relay.settings.plainText" = "プレーンテキストで貼り付け";
+"relay.settings.plainText.desc" = "リッチテキスト書式を削除";
+"relay.settings.allowRepeatCopy" = "重複コピーを許可";
+"relay.settings.allowRepeatCopy.desc" = "連続する重複項目もキューに追加";
+"relay.settings.completeSound" = "完了音";
+"relay.settings.completeSound.desc" = "リレー完了時に再生";
+"relay.settings.completeSound.mute" = "ミュート";
+"relay.banner.clickToClear" = "クリックで切替・✕ で解除";
+"relay.settings.automation" = "自動化";
+"relay.settings.automation.desc" = "ペースト時にルールを適用";
+"relay.settings.automation.none" = "なし";
+"relay.settings.preview" = "プレビュー";
+"relay.settings.preview.desc" = "リストで処理後のテキストを表示";
+"relay.settings.tooltip.default" = "設定";
+"relay.settings.tooltip.active" = "有効";
+"relay.settings.postPasteKey" = "貼り付け後のキー";
+"relay.settings.postPasteKey.desc" = "連続入力に便利";
+"relay.settings.postPasteKey.none" = "なし";
+"relay.settings.postPasteKey.return" = "リターン";
+"relay.settings.postPasteKey.tab" = "Tab";
+"relay.settings.postPasteKey.down" = "下";
+"relay.settings.postPasteKey.up" = "上";
+"relay.settings.postPasteKey.left" = "左";
+"relay.settings.postPasteKey.right" = "右";
+"relay.settings.postPasteKey.space" = "スペース";
+"relay.autoExit.short" = "完了後に自動終了";
+"relay.loop" = "ループ";
+"relay.loop.tooltip.on" = "ループ：オン（キュー完了後に先頭から再開）";
+"relay.loop.tooltip.off" = "ループ：オフ";
+"relay.pasteAsText" = "テキストとして貼り付け";
+"relay.autoExit" = "キューが空になったら自動終了";
+"relay.previous" = "前へ";
+"relay.skip" = "スキップ";
+"relay.pasteAll" = "すべて貼り付け";
+"relay.pasteAll.stop" = "停止";
+"relay.pasteAll.help" = "キュー内の残りすべての項目を順番に貼り付け（⌥⌃V）";
+"relay.delete" = "削除";
+"relay.setCurrent" = "現在に設定";
+"relay.split" = "分割";
+"relay.addToQueue" = "リレーキューに追加";
+"relay.splitAndRelay" = "分割してリレー";
+"relay.split.title" = "キューに分割";
+"relay.split.delimiter" = "区切り文字";
+"relay.split.customPlaceholder" = "区切り文字を入力...";
+"relay.split.confirm" = "分割";
+"relay.split.preview" = "%d 件に分割されます";
+"relay.split.noResult" = "区切り文字が見つかりません";
+"relay.delimiter.newline" = "改行";
+"relay.delimiter.comma" = "カンマ (,)";
+"relay.delimiter.chineseComma" = "読点 (、)";
+"relay.delimiter.custom" = "カスタム";
+"onboarding.skip" = "スキップ";
+"onboarding.relay.title" = "リレーモード";
+"onboarding.relay.desc" = "複数のアイテムを連続コピーし、順番に1つずつペースト。一括データ入力に最適です。";
+"onboarding.relay.feature1" = "複数選択または連続コピーでペーストキューを構築";
+"onboarding.relay.feature2" = "区切り文字でテキストを分割してキューを素早く作成";
+"onboarding.relay.feature3" = "Ctrl+V で1つずつペースト（設定でカスタマイズ可能）";
+"onboarding.aiAgent.title" = "AI Agent 連携";
+"onboarding.aiAgent.desc" = "Claude Code、Cursor、Codex など、MCP 互換の AI Agent にクリップボードを提供します。";
+"onboarding.aiAgent.feature1" = "5 つの MCP ツール — クリップボードの読み取り、検索、書き込み";
+"onboarding.aiAgent.feature2" = "設定 → AI Agents からワンクリックでインストール";
+"onboarding.aiAgent.feature3" = "機密項目はデフォルトでフィルタリング";
+"help.relay" = "リレーモード";
+"help.relay.open" = "ツールバーボタンまたはメニューバーから開く";
+"help.relay.paste" = "Ctrl+V で次のアイテムをペースト（設定でカスタマイズ可能）";
+"help.relay.skip" = "リレーウィンドウのスキップボタンで現在のアイテムをスキップ";
+"help.relay.previous" = "リレーウィンドウの前へボタンで1つ戻る";
+"help.relay.split" = "ホバーしてハサミアイコンをクリック、または右クリックで分割";
+"help.relay.pauseResume" = "リレーウィンドウの一時停止 / 再開ボタン";
+"help.relay.exit" = "閉じるボタンまたは Esc でリレーモードを終了";
+"about.help" = "ユーザーガイド";
+
+/* Actions - Additional */
+"action.copy" = "コピー";
+"action.copied" = "クリップボードにコピーしました";
+"action.undo" = "元に戻す";
+"delete.undo.toast" = "%d 件を削除しました";
+"action.deleteSelected" = "%d 件を削除";
+"action.deleteSelected.confirm" = "%d 件の記録を削除しますか？";
+
+/* About - Additional */
+"about.project" = "MosaClip プロジェクトとソースコード";
+
+/* Content Types - Additional */
+"type.file" = "ファイル";
+"type.other" = "その他";
+"type.email" = "メール";
+"type.phone" = "電話番号";
+"type.video" = "動画";
+"type.audio" = "オーディオ";
+"type.document" = "ドキュメント";
+"type.archive" = "アーカイブ";
+"type.application" = "アプリ";
+"type.mixed" = "ミックス";
+"mixed.section.image" = "画像";
+"mixed.section.text" = "テキスト";
+"mixed.section.files" = "ファイル (%d)";
+
+/* Phone Actions */
+"phone.call" = "電話をかける";
+"phone.message" = "メッセージ";
+"phone.copy" = "コピー";
+
+/* Detail - Additional */
+"detail.dimensions" = "サイズ";
+"detail.fileCount" = "ファイル数";
+"detail.fileStatus" = "状態";
+"file.unavailable.missing" = "ファイルは存在しません";
+"finder.notResponding" = "Finderが応答していません";
+"file.unavailable.denied" = "アクセス権限がありません";
+"detail.format" = "フォーマット";
+"detail.host" = "ホスト";
+"detail.linkTitle" = "タイトル";
+"detail.location" = "場所";
+"detail.multiSelected" = "%d 件を選択中";
+"detail.openInBrowser" = "ブラウザで開く";
+"detail.size" = "サイズ";
+"detail.url" = "URL";
+"detail.words" = "単語数";
+
+/* File */
+"file.multiTitle" = " 他 %d ファイル";
+
+/* Filter - Additional */
+"filter.apps" = "アプリ別";
+"filter.groups" = "グループ";
+"filter.other" = "その他";
+
+/* Empty State - Additional */
+"empty.hint" = "⌘C でテキスト、画像、ファイルをコピー";
+"empty.noResults" = "一致する項目が見つかりません";
+"empty.quickHint" = "何かをコピーして始めましょう";
+
+/* Guide */
+"guide.doubleClick" = "ダブルクリックでペースト、シングルクリックで選択";
+"guide.pin" = "右クリックで重要なクリップをピン留め";
+"guide.shortcut" = "%@ を押していつでもクイックペーストを開く";
+
+/* Menu - Additional */
+"menu.openMain" = "メインウィンドウを開く";
+"menu.pause" = "クリップボード監視を一時停止";
+"menu.quickPanel" = "クイックペースト";
+"menu.quit" = "%@ を終了";
+"menu.accessibility.grant" = "⚠ アクセシビリティ権限を許可";
+"menu.resume" = "クリップボード監視を再開";
+"menu.settings" = "設定";
+
+/* Quick Panel */
+"quick.actions" = "アクション";
+"quick.close" = "閉じる";
+"quick.commandPalette" = "アクション";
+"quick.delete" = "削除";
+"quick.navigate" = "移動";
+"quick.ocrMatch" = "認識テキストに一致";
+"quick.openLink" = "開く";
+"quick.pasteAction" = "ペースト";
+"quick.pasteImage" = "画像をペースト";
+"quick.pasteName" = "名前をペースト";
+"quick.pasteNewLine" = "ペースト＋改行";
+"quick.pastePath" = "パスをペースト";
+"quick.copyPath" = "パスをコピー";
+"quick.pasteTo" = "%@ にペースト";
+"quick.copyToClipboard" = "クリップボードにコピー";
+"quick.pasteToApp" = "%@ にペースト";
+"quick.preview" = "プレビュー";
+"quick.recent" = "最近";
+"quick.saveToFolder" = "ファイルとしてペースト";
+"quick.search" = "クリップを検索…";
+"quick.selectHint" = "アイテムを選択してプレビュー";
+"quick.switchType" = "種類";
+"quickPanel.pin" = "ウィンドウをピン留め";
+"quickPanel.unpin" = "ウィンドウのピン留めを解除";
+
+/* Time - Additional */
+"time.days" = "%d日前";
+"time.hours" = "%d時間前";
+"time.minutes" = "%d分前";
+"time.older" = "それ以前";
+"time.pinned" = "ピン留め";
+"time.thisMonth" = "今月";
+"time.thisWeek" = "今週";
+"time.today" = "今日";
+"time.yesterday" = "昨日";
+
+/* Stats - Additional */
+"stats.clips" = "クリップ";
+
+/* Settings - Clear Data */
+
+/* Settings - Double Tap */
+"settings.doubleTap" = "ダブルタップで開く";
+"settings.doubleTap.modifier" = "ダブルタップ修飾キー";
+
+/* Settings - Shortcut Additional */
+"settings.shortcut.clickToRecord" = "クリックして記録";
+"settings.shortcut.pressKey" = "ショートカットを入力…";
+
+/* Relay - Additional */
+"relay.editItem" = "内容を編集";
+"relay.reverse" = "逆順にする";
+"relay.clearAll" = "すべてクリア";
+
+/* Command - Additional */
+"cmd.copyAs" = "%@ としてコピー";
+"cmd.showInFinder" = "Finderで表示";
+
+/* Accessibility - Lost Permission */
+"accessibility.lost.later" = "後で";
+"reinstall.required.title" = "アプリファイルが不完全です";
+"reinstall.required.message" = "アップデート後、一部のファイルが不足しています。DMG を再ダウンロードして再インストールしてください。データと権限は保持されます。";
+"reinstall.required.action" = "ダウンロードページを開く";
+"accessibility.lost.message" = "アプリのアップデート後、macOS は再認証を要求します。「アクセシビリティ設定を開く」をクリックしたあと、リストで既存の MosaClip を選択して − をクリックして削除し、フローティングパネルから新しいバージョンをドラッグしてください。";
+"accessibility.lost.title" = "アクセシビリティ権限が必要です";
+
+/* Automation Window */
+"automation.window.title" = "自動化ルール";
+"automation.section.builtIn" = "組み込みルール";
+"automation.section.custom" = "マイルール";
+"automation.section.empty" = "（空）";
+"automation.section.disabled" = "無効";
+"automation.editor.selectRule" = "編集するルールを選択";
+"automation.editor.definition" = "ルール定義";
+"automation.editor.settings" = "設定";
+"automation.editor.triggerAndNotification" = "トリガーと通知";
+"automation.rule.status.active" = "有効";
+"automation.rule.status.inactive" = "無効";
+"automation.editor.save" = "保存";
+"automation.editor.cancel" = "キャンセル";
+"automation.editor.edit" = "編集";
+
+/* Automation Rules */
+"automation.rule.name" = "名前";
+"automation.rule.enabled" = "有効";
+"automation.rule.triggerMode" = "トリガー";
+"automation.rule.triggerMode.automatic" = "自動";
+"automation.rule.triggerMode.manual" = "手動のみ";
+"automation.rule.triggerMode.shortcutManualOnly" = "手動でしか実行できないアクションを含むため、手動トリガーのみ";
+"automation.rule.outputMode" = "結果の出力先";
+"automation.rule.outputMode.replaceItem" = "この項目を置き換え";
+"automation.rule.outputMode.newItem" = "新しい項目を作成";
+"automation.rule.outputMode.clipboard" = "クリップボードのみ";
+"automation.rule.outputMode.pasteToFrontmost" = "前面のAppにペースト";
+"automation.rule.outputMode.help" = "自動ルールにはペースト先がないため、「クリップボードのみ」と「前面のAppにペースト」はどちらも結果をクリップボードに書き戻します。コピー直後の ⌘V で処理後のテキストがペーストされます（リッチテキストはプレーンテキストになります）。";
+"automation.action.section.flow" = "フロー";
+"automation.action.stopProcessing" = "以降のルールを実行しない";
+"automation.action.closeQuickPanel" = "クイックパネルを閉じる";
+"automation.rule.triggerMode.automatic.help" = "コピー時に自動で実行";
+"automation.rule.triggerMode.manual.help" = "クイックパネルの ⌘K か、項目のコンテキストメニューから実行";
+"automation.action.regexReplace.pattern" = "検索";
+"automation.preview.asyncSkipped" = "ショートカット実行と OCR はここではプレビューされません";
+"automation.builtIn.restore" = "内蔵ルールを復元";
+"automation.editor.unsaved" = "未保存の変更があります";
+"automation.editor.unsavedMessage" = "別のルールに切り替える前に保存しますか？";
+"automation.editor.dontSave" = "保存しない";
+"automation.editor.on" = "オン";
+"automation.editor.off" = "オフ";
+"automation.flow.when" = "トリガー";
+"automation.flow.if" = "条件";
+"automation.flow.then" = "アクション";
+"automation.flow.finally" = "結果";
+"automation.flow.allConditions" = "すべての条件を満たす";
+"automation.flow.anyCondition" = "いずれかの条件を満たす";
+"automation.flow.inOrder" = "順番に実行";
+"automation.rule.notifyBeforeApply" = "適用前に確認する";
+"automation.rule.newName" = "新しいルール";
+
+/* Automation Conditions */
+"automation.condition.title" = "条件";
+"automation.condition.add" = "＋ 条件を追加";
+"automation.condition.contentType" = "コンテンツの種類が";
+"automation.condition.regexMatch" = "正規表現に一致";
+"automation.condition.containsText" = "テキストを含む";
+"automation.condition.sourceApp" = "コピー元アプリが";
+"automation.condition.anyText" = "任意のテキスト";
+"automation.condition.sourceApp.select" = "アプリを選択";
+"automation.condition.sourceApp.add" = "アプリを追加";
+"automation.condition.sourceApp.empty" = "アプリが選択されていません";
+"automation.condition.empty" = "条件なし";
+"automation.condition.title.prefix" = "以下の";
+"automation.condition.logic.all" = "すべての";
+"automation.condition.logic.any" = "いずれかの";
+"automation.condition.title.suffix" = "条件を満たした場合";
+"automation.condition.regexMatch.placeholder" = "正規表現パターンを入力";
+"automation.condition.containsText.placeholder" = "テキスト内容を入力";
+
+/* Automation Actions */
+"automation.action.title" = "アクション（順番に実行）";
+"automation.action.add" = "＋ アクションを追加";
+"automation.action.lowercased" = "小文字に変換";
+"automation.action.uppercased" = "大文字に変換";
+"automation.action.trimWhitespace" = "空白を削除";
+"automation.action.removeBlankLines" = "空行を削除";
+"automation.action.stripRichText" = "リッチテキストを除去";
+"automation.action.assignGroup" = "グループに割り当て";
+"automation.action.assignGroup.placeholder" = "グループ名を入力";
+"automation.action.urlEncode" = "URLエンコード";
+"automation.action.urlDecode" = "URLデコード";
+"automation.action.removeQueryParams" = "URLパラメータを削除";
+"automation.action.regexReplace" = "正規表現で置換";
+"automation.action.regexReplace.to" = "置換後の文字列";
+"automation.action.addPrefix" = "接頭辞を追加";
+"automation.action.addSuffix" = "接尾辞を追加";
+"automation.action.removeQueryParams.placeholder" = "パラメータ名を入力（カンマ区切り）";
+"automation.action.regexReplace.placeholder" = "正規表現パターンを入力";
+"automation.action.regexReplace.to.placeholder" = "置換テキストを入力";
+"automation.action.addPrefix.placeholder" = "接頭辞テキストを入力";
+"automation.action.addSuffix.placeholder" = "接尾辞テキストを入力";
+"automation.action.section.text" = "テキスト";
+"automation.action.section.url" = "URL";
+"automation.action.section.advanced" = "高度な設定";
+"automation.action.section.clipboard" = "クリップボード";
+"automation.action.markSensitive" = "機密としてマーク";
+"automation.action.pin" = "ピン留め";
+"automation.action.skipCapture" = "記録しない";
+"automation.action.section.external" = "外部";
+"automation.action.runShortcut" = "ショートカットを実行";
+"automation.action.runShortcut.placeholder" = "ショートカット名";
+"automation.action.runShortcut.empty" = "ショートカット未選択";
+"automation.action.runShortcut.pick" = "リストから選択";
+"automation.action.runShortcut.openInApp" = "ショートカットアプリで開く";
+"automation.action.runShortcut.failed" = "ショートカット実行失敗";
+"automation.action.runShortcut.loading" = "読み込み中…";
+"automation.rule.notifyOnTrigger" = "トリガー時に通知を送信";
+"automation.notification.title" = "自動化";
+"automation.applied" = "自動化を実行しました";
+"automation.validation.incomplete" = "ルールを有効にできません";
+"automation.validation.incompleteMessage" = "有効にする前に、条件とアクションを少なくとも 1 つずつ追加してください。";
+"automation.delete.confirm" = "ルールを削除しますか？";
+"automation.delete.confirmMessage" = "この操作は取り消せません。";
+"automation.notification.permissionDenied" = "通知が許可されていません";
+"automation.notification.permissionDeniedMessage" = "システム設定で MosaClip の通知を許可してください。";
+"automation.notification.openSettings" = "設定を開く";
+"automation.action.delete" = "ルールを削除";
+"automation.action.empty" = "アクションなし";
+
+/* Automation Preview */
+"automation.preview" = "ルールをテスト";
+"automation.preview.input" = "内容をペーストまたは入力してルールをテスト…";
+"automation.preview.useClipboard" = "現在のクリップボードを使用";
+"automation.preview.output" = "結果プレビュー";
+"automation.preview.notMatched" = "条件に一致しませんでした";
+
+/* Automation Confirm */
+"automation.confirm.title" = "自動化ルールがトリガーされました";
+"automation.confirm.matched" = "ルール「%@」が一致しました";
+"automation.confirm.apply" = "適用";
+"automation.confirm.keep" = "元のテキストを保持";
+"automation.confirm.original" = "元のテキスト：";
+"automation.confirm.processed" = "処理後：";
+
+/* Backup - Additional */
+"backup.nextBackup" = "次回のバックアップ";
+"detail.openInFinder" = "Finderで表示";
+"preview.image.zoomFit" = "幅に合わせる";
+"preview.image.zoomActual" = "100%";
+"preview.image.openInPreview" = "プレビューで開く";
+"preview.image.zoomHint" = "⌘+スクロールまたはピンチで拡大";
+
+
+/* About - Open Source */
+"about.license" = "ライセンス";
+
+/* Analytics */
+"settings.privacy.analytics" = "使用統計";
+"settings.privacy.analyticsToggle" = "匿名使用統計を送信";
+"settings.privacy.analyticsHint" = "匿名の使用データ（アプリバージョン、システム言語、macOS バージョン）を送信して MosaClip の改善にご協力ください。個人情報は収集されません。";
+"settings.autoCheckUpdates" = "自動でアップデートを確認";
+"settings.updateCheckInterval" = "確認間隔";
+"settings.updateCheckInterval.6h" = "6時間ごと";
+"settings.updateCheckInterval.12h" = "12時間ごと";
+"settings.updateCheckInterval.24h" = "24時間ごと";
+"settings.updateCheckInterval.72h" = "3日ごと";
+"settings.includeBetaChannel" = "Beta チャンネルに参加";
+"settings.includeBetaChannel.hint" = "新機能をいち早く試せます。不安定な場合があります。安定版が出ると自動的に更新されます。";
+"analytics.consent.title" = "使用統計";
+"analytics.consent.message" = "MosaClip の改善のため匿名使用統計を送信しますか？アプリバージョン、システム言語、macOS バージョンが含まれます。個人情報は収集されません。設定 → プライバシーでいつでも変更できます。";
+"analytics.consent.allow" = "許可";
+"analytics.consent.deny" = "許可しない";
+
+/* Onboarding - Analytics */
+"onboarding.analytics.title" = "使用統計";
+"onboarding.analytics.desc" = "匿名の使用データ（アプリバージョン、システム言語、macOS バージョン）を送信して MosaClip の改善にご協力ください。個人情報は収集されません。";
+"onboarding.analytics.hint" = "設定 → プライバシーでいつでも変更できます。";
+
+/* Edit */
+"detail.richText.editWarning" = "編集するとリッチテキストはプレーンテキストに変換されます。";
+
+/* AI Agents */
+"settings.tab.aiAgents" = "AIエージェント";
+"settings.aiAgents.service" = "サービス";
+"settings.aiAgents.serverRunning" = "MCP サーバー実行中";
+"settings.aiAgents.agents" = "エージェント";
+"settings.aiAgents.detected" = "利用可能";
+"settings.aiAgents.notInstalled" = "このMacにインストールされていません";
+"settings.aiAgents.installed.label" = "インストール済み";
+"settings.aiAgents.install" = "インストール";
+"settings.aiAgents.uninstall" = "アンインストール";
+"settings.aiAgents.manualConfig" = "手動設定";
+"settings.aiAgents.installed" = "%@ にインストールしました。変更を反映するには %@ を再起動してください。";
+"settings.aiAgents.uninstalled" = "%@ からアンインストールしました。";
+"settings.aiAgents.installFailed" = "%@ へのインストールに失敗しました：%@";
+"settings.aiAgents.uninstallFailed" = "%@ からのアンインストールに失敗しました：%@";
+"settings.aiAgents.privacy" = "プライバシー";
+"settings.aiAgents.allowSensitive" = "エージェントが機密としてマークされた項目を読み取ることを許可";
+"settings.aiAgents.master.toggle" = "AI エージェント連携を有効にする";
+"settings.aiAgents.master.detail" = "Claude や Codex などの AI ツールが MCP 経由でクリップボード履歴を読み取ることを許可します";
+"settings.aiAgents.master.disabledHint" = "無効になっています。オンにすると AI エージェントが MCP 経由でクリップボードにアクセスできます。";
+"settings.aiAgents.sourceBlocklist" = "ソース App ブロックリスト";
+"settings.aiAgents.binaryMissing" = "pastememo-mcp バイナリが見つかりません";
+"settings.aiAgents.binaryMissingDetail" = "MCP ヘルパーがありません。MosaClip のテスト DMG から再インストールしてください。";
+"settings.aiAgents.openDownload" = "ダウンロードページを開く";
+"settings.aiAgents.blocklist.empty" = "ブロック中の App はありません";
+"settings.aiAgents.blocklist.add" = "App を追加";
+"settings.aiAgents.manualConfig.title" = "%@ の手動設定";
+"settings.aiAgents.manualConfig.subtitle" = "下のスニペットをコピーして、対応する設定ファイルに統合してください。";
+"settings.aiAgents.manualConfig.copy" = "クリップボードにコピー";
+"settings.aiAgents.manualConfig.done" = "完了";
+
+"settings.diagnostics" = "診断";
+"settings.diagnostics.export" = "診断ログを書き出す";
+
+/* Image grid (Quick Panel) */
+"settings.imageLayout" = "画像の表示";
+"settings.imageLayout.list" = "リスト";
+"settings.imageLayout.grid" = "ウォーターフォール";
+"workspace.layout.cards" = "カード";
+"settings.imageGridDensity" = "グリッドの密度";
+"settings.imageGridDensity.sparse" = "粗";
+"settings.imageGridDensity.medium" = "中";
+"settings.imageGridDensity.dense" = "密";
+
+"settings.ocr.memoryHint" = "オンにすると、Vision を使って画像内の文字をバックグラウンドで認識します。メモリ使用量が増えることがあります。";
+
+// SMS verification codes
+"settings.smsCode" = "SMS認証コード";
+"settings.smsCode.enabled" = "「メッセージ」から認証コードを自動コピー";
+"settings.smsCode.needsFDA" = "メッセージの読み取りには「フルディスクアクセス」が必要です";
+"settings.smsCode.openSettings" = "システム設定を開く";
+"settings.smsCode.granted" = "フルディスクアクセスが許可されています";
+"settings.smsCode.hint" = "iPhoneの「SMS転送」でこのMacへの転送を有効にしてください（設定 → メッセージ → SMS転送）。許可後も動作しない場合はMosaClipを再起動してください。";
+"sms.notification.codeCopied" = "認証コード %@ をコピーしました";
+"sms.notification.fallbackTitle" = "認証コードを含む可能性のあるメッセージ";
+"sms.preview.messageLabel" = "元のメッセージ";
+"settings.smsCode.description" = "オンにすると、受信メッセージから認証コードを自動抽出してクリップボードにコピーし、通知します。";
+"settings.smsCode.feedback" = "認証コードが認識されないメッセージがありましたか？（個人情報を除いた）本文をお送りいただければ、認識ルールの改善に役立てます。";
+"settings.smsCode.feedbackLink" = "フィードバックを送る";
+
+// MARK: - List row metrics
+"meta.chars" = "%@ 文字";
+"meta.lines" = "%@ 行";
+"markdown.preview.mode" = "Markdownプレビューモード";
+"markdown.preview.rendered" = "レンダリング";
+"markdown.preview.raw" = "原文";
+"markdown.preview.renderOnDemand" = "応答性に影響する可能性があるため原文を表示しています。レンダリングを選ぶと続行できます";
+"markdown.preview.tooLarge" = "安全にレンダリングするには大きすぎるため、原文を表示します";
+"markdown.preview.imageBlocked" = "画像の読み込みをブロックしました";
+"svg.preview.mode" = "SVGプレビューモード";
+"svg.preview.rendered" = "レンダリング";
+"svg.preview.raw" = "原文";
+"svg.preview.invalid" = "無効なSVGのため、原文を表示します";
+"svg.preview.blocked" = "スクリプトまたは外部リソースをブロックし、原文を表示します";
+"svg.preview.tooLarge" = "安全に表示するには大きすぎるか複雑なため、原文を表示します";
+"svg.preview.unreadable" = "SVGソースを読み込めませんでした";
+"svg.preview.unsupported" = "macOSでこのSVGを表示できないため、原文を表示します";
+"svg.metadata.viewBox" = "viewBox";
+"svg.metadata.width" = "幅";
+"svg.metadata.height" = "高さ";
+"svg.metadata.sourceSize" = "ソースサイズ";
+"settings.update.disabled.title" = "オンライン更新は無効です";
+"settings.update.disabled.message" = "オンライン更新は無効です。MosaClip のリリースページから検証済み DMG をダウンロードし、手動でインストールしてください。";
+"about.acknowledgements" = "謝辞";
+"about.upstreamThanks" = "MosaClip は PasteMemo を基に開発されています。オープンソースとして公開してくださった lifedever と上流の貢献者に感謝します。";
+"about.upstreamRepository" = "PasteMemo · 上流リポジトリ";
+
+/* Automation: extract / open / outputs */
+"automation.action.convertColor" = "カラー形式を変換";
+"automation.action.extractVerificationCode" = "認証コードだけ残す";
+"automation.action.extractLinks" = "リンクだけ残す";
+"automation.action.runOCR" = "画像内の文字を認識";
+"automation.action.deleteItem" = "元の項目を削除";
+"automation.action.playSound" = "サウンドを再生";
+"automation.action.section.extract" = "抽出・認識";
+"automation.action.section.open" = "開く・リレー";
+"automation.rule.outputMode.saveToFile" = "フォルダに保存";
+"automation.rule.outputMode.postWebhook" = "Webhook に送信";
+"automation.output.folder.empty" = "フォルダ未選択";
+"automation.output.folder.choose" = "選択…";
+"automation.output.folder.invalid" = "フォルダが見つかりません";
+"automation.output.webhook.placeholder" = "https://";
+"automation.output.webhook.help" = "JSON（content、contentType、sourceApp、rule、createdAt）を送信します。機密項目は送信しません。";
+"automation.output.webhook.invalidURL" = "アドレスは http:// か https:// で始めてください";
+"automation.output.webhook.tooLarge" = "長すぎるため送信しませんでした";
+"automation.output.webhook.failedStatus" = "送信に失敗しました（HTTP %d）";
+"automation.output.webhook.failed" = "送信に失敗しました：%@";
+"automation.output.webhook.sent" = "送信しました";
+"automation.output.webhook.refused" = "機密項目は送信しません";
+"automation.output.webhook.textOnly" = "送信できるのはテキストのみです";
+"automation.output.saved" = "「%@」に保存しました";
+"automation.output.saveFailed" = "保存できませんでした。フォルダがあるか確認してください";
+
+/* Automation: text toolbox */
+"automation.action.base64Encode" = "Base64 エンコード";
+"automation.action.base64Decode" = "Base64 デコード";
+"automation.action.jsonFormat" = "JSON を整形";
+"automation.action.jsonMinify" = "JSON を圧縮";
+"automation.action.toCamelCase" = "キャメルケースに変換";
+"automation.action.toSnakeCase" = "スネークケースに変換";
+"automation.action.toHalfWidth" = "全角を半角に";
+"automation.action.toFullWidth" = "半角を全角に";
+"automation.action.simplifiedToTraditional" = "簡体字を繁体字に";
+"automation.action.removeDuplicateLines" = "重複行を削除";
+"automation.action.sortLines" = "行を並べ替え";
+"automation.action.sortLines.ascending" = "昇順";
+"automation.action.sortLines.descending" = "降順";
+"automation.action.joinLines" = "1 行に結合";
+"automation.action.joinLines.space" = "スペース";
+"automation.action.joinLines.none" = "区切りなし";
+"automation.action.removeHTMLTags" = "HTML タグを削除";
+"automation.action.section.format" = "変換";
+"automation.action.section.lines" = "行の処理";
+
+/* Automation: conditions */
+"automation.condition.section.content" = "内容";
+"automation.condition.section.app" = "アプリ";
+"automation.condition.section.state" = "項目の状態";
+"automation.condition.section.time" = "時間";
+"automation.condition.targetApp" = "貼り付け先アプリが";
+"automation.condition.targetApp.help" = "クイックパネルとリレー貼り付けのときだけ判定できます。コピー時の自動実行では満たされません";
+"automation.condition.contentLength" = "文字数";
+"automation.condition.lineCount" = "行数";
+"automation.condition.range.min" = "最小";
+"automation.condition.range.max" = "最大";
+"automation.condition.range.any" = "制限なし";
+"automation.condition.isPinned" = "ピン留め済み";
+"automation.condition.isSensitive" = "機密としてマーク済み";
+"automation.condition.inGroup" = "グループが";
+"automation.condition.inGroup.any" = "いずれかのグループ";
+"automation.condition.timeOfDay" = "時間帯";
+"automation.condition.weekday" = "曜日";
+"automation.condition.negated" = "満たさない";
+
+/* Privacy: sensitive retention */
+"settings.privacy.sensitiveRetention" = "機密項目の保持期間";
+"settings.privacy.sensitiveRetention.followHistory" = "履歴と同じ";
+"settings.privacy.sensitiveRetention.minutes" = "%d 分";
+"settings.privacy.sensitiveRetention.hours" = "%d 時間";
+"settings.privacy.sensitiveRetention.hint" = "最後にコピーまたは貼り付けした時点から数え、期間が過ぎると削除します。ピン留めと永久保存グループの項目は残ります。";
+"settings.privacy.sensitiveRetention.cleanConfirm" = "%d 件の機密項目を削除します";
+
+/* Storage */
+"settings.nav.back" = "戻る";
+"settings.nav.forward" = "進む";
+"settings.storage" = "ストレージ";
+"storage.manage.title" = "ストレージを管理";
+"storage.manage" = "管理";
+"storage.recordCount" = "%@ 件の項目";
+"storage.scanFailed" = "データを読み込めません";
+"storage.scanning" = "計算中...";
+"storage.part.originals" = "オリジナル";
+"storage.part.previews" = "サムネイル";
+"storage.part.richText" = "リッチテキスト";
+"storage.byType" = "種類別";
+"storage.itemCount" = "%@ 件";
+"storage.autoClean" = "自動クリーンアップ";
+"storage.optimize" = "最適化";
+"storage.tiff.title" = "TIFF オリジナルを PNG にロスレス変換";
+"storage.tiff.detail" = "%1$@ 枚 · %2$@";
+"storage.tiff.progress" = "変換中 %1$@ / %2$@";
+"storage.tiff.result" = "%1$@ 枚を変換、%2$@ 節約";
+"storage.tiff.kept" = "%@ 枚はロスレス変換できないため TIFF のままです";
+"storage.sourceCount" = "%@ 個のソース";
+"storage.grouping.source" = "ソース別";
+"storage.typeCount" = "%@ 種類";
+"storage.column.type" = "種類";
+"storage.typeSelectionSummary" = "%1$@ 種類を選択 · %2$@ 件 · %3$@";
+"storage.searchSources" = "ソースを検索";
+"storage.allSources" = "すべてのソース";
+"storage.sourceWithCount" = "%1$@ · %2$@";
+"storage.column.source" = "ソース";
+"storage.column.latest" = "最終コピー";
+"storage.column.count" = "件数";
+"storage.column.size" = "サイズ";
+"storage.protectedNote" = "削除されるのは MosaClip の項目で、元のファイルには影響しません。ピン留めした項目と永久保存グループの項目は削除されません。";
+"storage.protectedExcluded" = "ピン留め・永久保存グループの %@ 件は含みません";
+"storage.deleteRecords" = "項目を削除";
+"storage.delete.scope" = "削除されるのは MosaClip の項目と保存しているコピーだけで、元のファイルには影響しません。この操作は取り消せません。";
+"storage.selectionSummary" = "%1$@ 個のソースを選択 · %2$@ 件 · %3$@";
+"storage.delete.confirm" = "%@ 件の項目を削除しますか？";
+"storage.deleting" = "削除中...";
+"storage.empty" = "クリーンアップするものはありません";
+"storage.time.all" = "すべての期間";
+"storage.time.1month" = "1 か月より前";
+"storage.time.3months" = "3 か月より前";
+"storage.time.6months" = "6 か月より前";
+"storage.time.1year" = "1 年より前";
+"storage.time.custom" = "期間を指定...";
+"storage.type.all" = "すべての種類";
+"storage.listSeparator" = "、";
+"storage.sort.size" = "サイズの大きい順";
+"storage.sort.latest" = "新しい順";
+"storage.selectAll" = "すべて選択";
+"storage.deselectAll" = "選択を解除";
+"storage.itemSelectionSummary" = "%1$@ 件を選択 · %2$@";
+"storage.custom.title" = "期間を指定";
+"storage.custom.from" = "開始";
+"storage.custom.to" = "終了";
+
+"about.productWebsite" = "製品サイト";

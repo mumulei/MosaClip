@@ -1,0 +1,1083 @@
+/* App */
+"app.name" = "MosaClip";
+
+/* Menu */
+"menu.checkForUpdates" = "檢查更新…";
+"menu.github" = "GitHub";
+"menu.reportIssue" = "回報問題";
+"menu.upgrade" = "升級到 Pro";
+
+/* Search */
+"search.placeholder" = "搜尋剪貼簿歷史…";
+
+/* Empty State */
+"empty.title" = "暫無記錄";
+"empty.message" = "複製內容即可開始使用";
+"empty.hint" = "使用 ⌘C 複製文字、圖片或檔案";
+"empty.quickHint" = "複製內容即可開始使用";
+"empty.noResults" = "沒有找到匹配內容";
+"guide.shortcut" = "按下 %@ 隨時開啟快捷面板";
+"guide.doubleClick" = "雙擊貼上，單擊選取";
+"guide.pin" = "右鍵可置頂重要條目";
+
+/* Actions */
+"action.favorite" = "收藏";
+"action.unfavorite" = "取消收藏";
+"action.pin" = "置頂";
+"action.unpin" = "取消置頂";
+"action.delete" = "刪除";
+"action.clearAll" = "清空全部";
+"action.aiCopy" = "AI 友善複製";
+
+/* Content Types */
+"type.text" = "文字";
+"type.link" = "連結";
+"type.image" = "圖片";
+"type.code" = "程式碼";
+"type.color" = "顏色";
+"type.file" = "檔案";
+"type.other" = "其他";
+"type.email" = "電子郵件";
+"type.phone" = "電話";
+"phone.call" = "撥打";
+"phone.message" = "簡訊";
+"phone.copy" = "複製";
+"type.video" = "影片";
+"type.audio" = "音訊";
+"type.document" = "文件";
+"type.archive" = "壓縮檔";
+"type.application" = "應用程式";
+"type.mixed" = "混合";
+"mixed.section.image" = "圖片";
+"mixed.section.text" = "文字";
+"mixed.section.files" = "檔案 (%d)";
+"detail.openInFinder" = "在 Finder 中顯示";
+"preview.image.zoomFit" = "適應寬度";
+"preview.image.zoomActual" = "100%";
+"preview.image.openInPreview" = "在預覽中打開";
+"preview.image.zoomHint" = "⌘+滾輪或雙指捏合縮放";
+"filter.all" = "全部";
+"filter.special" = "特殊";
+"filter.favorites" = "收藏";
+"filter.pinned" = "置頂";
+"filter.aiAgent" = "AI Agent";
+
+/* Time */
+"time.now" = "剛剛";
+"time.pinned" = "置頂";
+"time.today" = "今天";
+"time.yesterday" = "昨天";
+"time.thisWeek" = "本週";
+"time.thisMonth" = "本月";
+"time.older" = "更早";
+"time.minutes" = "%d分鐘前";
+"time.hours" = "%d小時前";
+"time.days" = "%d天前";
+"time.weeks" = "%d週前";
+"time.months" = "%d月前";
+"time.years" = "%d年前";
+
+/* Settings */
+"settings.general" = "一般";
+"settings.update" = "更新";
+"settings.about" = "關於";
+"settings.appearance" = "外觀";
+"settings.theme" = "主題";
+"settings.theme.system" = "跟隨系統";
+"settings.theme.light" = "淺色";
+"settings.theme.dark" = "深色";
+"settings.language" = "語言";
+"settings.language.restart_title" = "需要重新啟動";
+"settings.language.restart_message" = "語言更改需要重新啟動應用才能完全生效。";
+"settings.language.restart_now" = "立即重新啟動";
+"settings.language.restart_later" = "稍後";
+"settings.launchAtLogin" = "開機啟動";
+"settings.clipboardMonitoring" = "啟用剪貼板監聽";
+"settings.hideDockIcon" = "隱藏 Dock 圖示";
+"settings.hideDockIcon.hint" = "開啟後，只能透過狀態列圖示存取應用程式。";
+"settings.hideDockIcon.confirm.title" = "隱藏 Dock 圖示？";
+"settings.hideDockIcon.confirm.message" = "所有視窗將被關閉，您可以透過狀態列圖示重新開啟。";
+"settings.hideDockIcon.confirm.ok" = "隱藏並關閉視窗";
+"settings.menuBarIconStyle" = "狀態列圖示";
+"settings.menuBarIconStyle.outline" = "描邊";
+"settings.menuBarIconStyle.filled" = "填充";
+"settings.menuBar.leftClickAction" = "狀態列圖示左鍵動作";
+"settings.menuBar.leftClickAction.help" = "左鍵單擊狀態列圖示時執行的動作；右鍵永遠彈出選單";
+"menuBar.leftClick.menu" = "彈出選單";
+"menuBar.leftClick.openManager" = "開啟管理器";
+"menuBar.leftClick.quickPanel" = "開啟快捷面板";
+"menuBar.leftClick.toggleRelay" = "切換接力模式";
+"menuBar.leftClick.togglePause" = "暫停 / 繼續剪貼簿監聽";
+"menuBar.leftClick.openSettings" = "開啟設定";
+"settings.currentVersion" = "目前版本";
+"settings.features" = "功能";
+"settings.shortcuts" = "快捷鍵";
+"settings.quickPanelShortcut" = "開啟快捷面板";
+"settings.managerShortcut" = "開啟管理器";
+"settings.managerShortcut.global" = "全域";
+"settings.managerShortcut.scopeHint" = "關閉全域後，這個快捷鍵只會在快捷面板已開啟時可用。";
+"settings.relayShortcut" = "開啟接力";
+"settings.shortcut.none" = "未設定";
+"settings.shortcut.clickToRecord" = "點擊錄入";
+"settings.shortcut.pressKey" = "請按快捷鍵…";
+"settings.paste" = "貼上";
+"settings.autoPaste" = "按 Enter 直接貼上到應用";
+"settings.addNewLine" = "貼上後自動換行";
+"settings.quickPanelLaunchAnimation" = "快捷面板啟動動畫";
+"settings.quickPanelRememberFilter" = "記住上次的分組/分類";
+"settings.quickPanelSecondaryRow" = "快捷面板搜尋框下方顯示";
+"settings.quickPanelSecondaryRow.types" = "類型";
+"settings.quickPanelSecondaryRow.groups" = "分組";
+"settings.history" = "歷史記錄";
+"settings.quickPanelTabTypes" = "標籤列顯示的分類";
+"settings.quickPanelTabTypes.hint" = "拖曳調整順序，置頂和全部也能排。取消勾選可在快捷面板隱藏該分類，主視窗側邊欄不受影響。";
+"settings.quickPanelTabTypes.reset" = "恢復預設";
+"settings.retentionDays" = "保留時長";
+"settings.retentionDays.forever" = "永久";
+"settings.retentionDays.days" = "%d 天";
+"settings.retentionDays.cleanConfirm" = "將刪除 %d 條超出保留期的記錄";
+"settings.retentionDays.cleanWarning" = "此操作不可恢復，確定要繼續嗎？";
+"settings.display" = "顯示";
+"settings.quickPanelPosition" = "快捷面板位置";
+"settings.quickPanelPosition.remembered" = "記住上次位置";
+"settings.quickPanelPosition.cursor" = "游標";
+"settings.quickPanelPosition.menuBarIcon" = "選單列圖示";
+"settings.quickPanelPosition.windowCenter" = "目前視窗中心";
+"settings.quickPanelPosition.screenCenter" = "螢幕中央";
+"settings.quickPanelTargetScreen" = "目標螢幕";
+"settings.quickPanelTargetScreen.active" = "目前螢幕";
+"settings.quickPanelTargetScreen.specified" = "指定螢幕";
+"settings.quickPanelSpecifiedScreen" = "指定顯示器";
+"settings.behavior" = "行為";
+"settings.preferences" = "偏好";
+"settings.quickPanel" = "快捷面板";
+"settings.previewRecognition" = "預覽與識別";
+"settings.showLinkURL" = "連結顯示原始網址而非頁面標題";
+"settings.webPreview" = "網頁預覽";
+"settings.imageLinkPreview" = "圖片連結預覽";
+"settings.previewExecutesJavaScript" = "預覽時執行網頁腳本";
+"settings.linkPreview" = "連結與預覽";
+"settings.linkPreview.footer" = "以上開關共同決定 MosaClip 是否為複製的連結發起網路請求。全部關閉後，MosaClip 僅在檢查更新時聯網。";
+"settings.linkPreview.footer.offline" = "已開啟單機模式：以上開關被覆蓋為關閉。前往「隱私」標籤可關閉單機模式。";
+"settings.richTextPreview" = "富文本預覽";
+
+/* Pro */
+"pro.title" = "升級到 MosaClip Pro";
+"pro.description" = "解鎖無限歷史記錄、智慧分組、iCloud 同步等功能。";
+"pro.enterKey" = "輸入授權金鑰";
+"pro.activate" = "啟用";
+"pro.activated" = "授權已啟用";
+"pro.deactivate" = "停用授權";
+"pro.invalidKey" = "無效的授權金鑰";
+"pro.features" = "Pro 功能";
+"pro.beta.desc" = "MosaClip 目前處於測試階段，Pro 功能將在後續版本中上線，敬請期待！";
+"pro.feature.unlimited" = "無限歷史記錄";
+"pro.feature.favorites" = "無限收藏";
+"pro.feature.smartGroup" = "智慧分組";
+"pro.feature.icloud" = "自動備份";
+"pro.feature.themes" = "自訂主題";
+"pro.feature.rules" = "剪貼簿規則";
+"pro.feature.relay" = "接力模式";
+"pro.feature.customCategory" = "自訂分類";
+"pro.feature.ignoreApps" = "忽略特定應用程式";
+"pro.feature.automation" = "剪貼簿自動化";
+
+/* Menu */
+"menu.manager" = "開啟管理器";
+
+/* Detail */
+"detail.select" = "選擇一筆記錄";
+"detail.selectHint" = "點擊左側條目檢視詳情";
+"detail.info" = "詳細資訊";
+"detail.type" = "類型";
+"detail.source" = "來源應用";
+"detail.aiAgent" = "AI Agent";
+"detail.created" = "建立時間";
+"detail.group" = "分組";
+"detail.lastUsed" = "最近使用";
+"detail.chars" = "字元數";
+"detail.lines" = "行數";
+"detail.words" = "詞數";
+"detail.dimensions" = "尺寸";
+"detail.size" = "大小";
+"detail.format" = "格式";
+"detail.fileCount" = "檔案數";
+"detail.fileStatus" = "狀態";
+"file.unavailable.missing" = "檔案已不存在";
+"finder.notResponding" = "Finder 沒有回應";
+"file.unavailable.denied" = "無存取權限";
+"detail.host" = "網域";
+"detail.url" = "連結";
+"detail.aiPreview" = "AI 友善預覽";
+"detail.location" = "位置";
+"detail.linkTitle" = "標題";
+"detail.language" = "語言";
+"detail.openInBrowser" = "在瀏覽器中開啟";
+"detail.preview_failed" = "無法載入預覽";
+"detail.multiSelected" = "已選取 %d 筆記錄";
+"action.deleteSelected" = "刪除 %d 筆記錄";
+"action.deleteSelected.confirm" = "確定刪除 %d 筆記錄？";
+"file.multiTitle" = "等%d個檔案";
+
+/* Filter */
+"filter.types" = "依類型";
+"filter.apps" = "依應用";
+"filter.groups" = "分組";
+"filter.other" = "其他";
+
+/* Actions */
+"action.paste" = "貼上";
+"action.cancel" = "取消";
+"action.confirm" = "確定";
+"action.assignGroup" = "歸入分組";
+"action.newGroup" = "新建分組…";
+"action.editGroup" = "編輯分組…";
+"action.deleteGroup" = "刪除分組";
+"action.deleteGroupConfirm" = "確定要刪除分組「%@」嗎？分組內的條目不會被刪除。";
+"action.removeFromGroup" = "移出分組";
+"group.preserveItems" = "永久保留此分組中的內容";
+"group.preserveItems.help" = "開啟後，此分組中的內容不會被自動過期清理，也不會被「清空資料」刪除。";
+"group.preserveItems.badge" = "永久保留";
+"action.changeIcon" = "修改圖示…";
+"action.clearConfirm" = "將刪除所有未置頂的條目。";
+"action.clearScope.type" = "清空此類型下的條目";
+"action.clearScope.group" = "清空此分組下的條目";
+"action.clearScope.group.disabledHelp" = "此分組已啟用永久保留，不能清空其中條目。";
+"action.clearScope.app" = "清空此 App 下的條目";
+"action.clearScope.title" = "清空「%@」";
+"action.clearScope.confirm" = "將刪除 %d 條未置頂的條目，永久保留分組中的條目不會被清除。";
+"action.clearScope.empty" = "目前篩選下沒有可清空的條目（已忽略置頂和永久保留分組的條目）。";
+"action.copy" = "複製";
+"action.copied" = "已複製到剪貼簿";
+"action.undo" = "撤銷";
+"delete.undo.toast" = "已刪除 %d 條";
+
+/* Stats */
+"stats.total" = "總記錄數";
+"stats.clips" = "筆記錄";
+
+/* Menu */
+"menu.openMain" = "開啟主視窗";
+"menu.quickPanel" = "快捷面板";
+"menu.pause" = "暫停剪貼板監聽";
+"menu.resume" = "恢復剪貼板監聽";
+"menu.settings" = "設定";
+"menu.quit" = "結束 %@";
+"menu.accessibility.grant" = "⚠ 授權輔助使用權限";
+
+/* Quick Panel */
+"quick.search" = "搜尋剪貼簿歷史…";
+"quick.recent" = "最近";
+"quick.selectHint" = "選擇一筆記錄預覽";
+"quick.pasteTo" = "貼上到 %@";
+"quick.copyToClipboard" = "複製到剪貼簿";
+"quick.actions" = "操作";
+"quick.navigate" = "導覽";
+"quick.pasteAction" = "貼上";
+"quick.close" = "關閉";
+"quick.pasteNewLine" = "貼上+換行";
+"quick.pastePath" = "貼上路徑";
+"quick.copyPath" = "複製路徑";
+"quick.pasteName" = "貼上檔名";
+"quick.saveToFolder" = "貼上檔案";
+"quick.switchType" = "類型";
+"quick.delete" = "刪除";
+"quick.openLink" = "開啟";
+"quick.preview" = "預覽";
+"quick.commandPalette" = "快捷操作";
+"quick.pasteImage" = "貼上圖片";
+"settings.showGuide" = "顯示新手引導";
+
+/* Onboarding */
+"accessibility.lost.title" = "需要輔助使用權限";
+"accessibility.lost.message" = "應用程式更新後，macOS 要求重新授權。點擊「打開輔助使用設定」後，請先在列表裡選取 MosaClip 並點 − 刪除，然後從懸浮面板拖入新版本。";
+"accessibility.lost.later" = "稍後";
+"reinstall.required.title" = "應用程式檔案不完整";
+"reinstall.required.message" = "App 升級時有檔案缺失，請重新下載 DMG 覆蓋安裝。你的資料與授權都會保留。";
+"reinstall.required.action" = "開啟下載頁";
+"onboarding.back" = "上一步";
+"onboarding.next" = "下一步";
+"onboarding.done" = "開始使用";
+"onboarding.welcome.title" = "歡迎使用 MosaClip";
+"onboarding.welcome.desc" = "一款常駐選單列的智慧剪貼簿管理器。自動儲存你複製的一切，支援即時搜尋。";
+"onboarding.accessibility.title" = "開啟輔助使用權限";
+"onboarding.accessibility.desc" = "MosaClip 需要輔助使用權限才能將內容貼上到其他應用程式。點擊下方按鈕在系統設定中授權。";
+"onboarding.accessibility.grant" = "開啟輔助使用設定";
+"onboarding.accessibility.granted" = "已取得權限";
+"onboarding.accessibility.hint" = "授權後此頁面將自動更新。";
+"onboarding.shortcut.title" = "快捷面板";
+"onboarding.shortcut.desc" = "在任意應用程式中按下快捷鍵，開啟快捷面板。搜尋剪貼簿歷史，一鍵貼上。";
+"onboarding.shortcut.current" = "點擊修改快捷鍵";
+
+/* About */
+/* Help */
+"menu.newGroup" = "新建分組…";
+"menu.newSmartGroup" = "新建智慧分組…";
+"menu.help" = "MosaClip 說明";
+"menu.alwaysOnTop" = "始終保持在最前";
+"help.title" = "MosaClip 說明";
+"help.subtitle" = "快速瞭解剪貼簿管理器的使用方法。";
+"help.close" = "知道了";
+"help.shortcuts" = "快捷鍵";
+"help.shortcut.quickPaste" = "開啟快捷面板";
+"help.shortcut.paste" = "貼上選取項目";
+"help.shortcut.switchType" = "依內容類型篩選";
+"help.shortcut.navigate" = "上下瀏覽條目";
+"help.shortcut.cmdEnter" = "貼上路徑 / 貼上檔案 / 貼上圖片";
+"help.shortcut.preview" = "預覽 / 開啟連結";
+"help.shortcut.delete" = "刪除條目";
+"help.shortcut.close" = "關閉面板";
+"help.actions" = "快捷貼上操作";
+"help.action.paste" = "按 Enter 或雙擊，直接貼上到目前應用程式";
+"help.action.openLink" = "連結類型可直接在預設瀏覽器中開啟";
+"help.action.pastePath" = "檔案類型：⌘↵ 貼上檔案路徑";
+"help.action.saveToFolder" = "文字/圖片類型：⌘↵ 貼上為檔案到 Finder";
+"help.action.pasteImage" = "含圖片的條目：⌘↵ 貼上為圖片檔案";
+"help.action.pin" = "右鍵置頂條目，始終固定在列表最上方";
+"help.tips" = "使用技巧";
+"help.tip.doubleClick" = "雙擊貼上，單擊選取預覽";
+"help.tip.rightClick" = "右鍵選單可以置頂、刪除條目";
+"help.tip.menuBar" = "點擊選單列圖示可快速存取歷史和設定";
+"help.tip.search" = "在搜尋框輸入關鍵字，即時檢索所有記錄";
+"onboarding.helpHint" = "你可以隨時透過選單 說明 → MosaClip 說明 查看";
+
+"about.description" = "macOS 本機剪貼簿工作區";
+"about.project" = "MosaClip 專案與原始碼";
+
+/* Update */
+"update.available.title" = "新版本的 MosaClip 已經發佈";
+"update.available.beta.title" = "MosaClip Beta 版本可用";
+"update.beta.warning" = "Beta 版本可能不穩定，安裝前建議先備份重要資料。";
+"update.available.message" = "MosaClip %@ 可供下載，您目前的版本是 %@。要現在下載嗎？";
+"update.skip" = "跳過這個版本";
+"update.remind_later" = "稍後提醒我";
+"update.install" = "安裝更新";
+"update.downloading" = "正在下載更新...";
+"update.ready" = "可以開始安裝了";
+"update.install_restart" = "安裝並重新啟動應用";
+"update.cancel" = "取消";
+"update.check_failed" = "檢查更新失敗";
+"update.check_failed.hint" = "無法取得最新版本資訊，請檢查網路連線後重試，或前往以下頁面手動下載：";
+"update.check_failed.github" = "GitHub 下載";
+"update.check_failed.gitee" = "Gitee 下載";
+"update.check_failed.cancel" = "取消";
+"update.no_updates" = "已是最新版本！";
+"update.no_updates.message" = "MosaClip %@ 是目前最新版本。";
+"update.download_error" = "下載失敗";
+"update.dmg_error" = "更新失敗";
+"update.dmg_error.message" = "下載的磁碟映像檔已損毀，請重新下載更新。";
+"update.download_error.incomplete" = "下載不完整或已中斷，請檢查網路後重試。";
+
+/* Ignored Apps */
+"settings.ignoredApps" = "忽略的應用程式";
+"settings.ignoredApps.add" = "新增應用程式";
+"settings.ignoredApps.empty" = "暫無忽略的應用程式";
+"settings.ignoredApps.remove" = "移除";
+"settings.ignoredApps.selectApp" = "選擇要忽略的應用程式";
+"settings.ignoredApps.running" = "執行中的應用程式";
+"settings.ignoredApps.browse" = "瀏覽應用程式…";
+
+/* Sensitive Content */
+"sensitive.masked" = "••••••••";
+"sensitive.reveal" = "顯示";
+"sensitive.hide" = "隱藏";
+"sensitive.markSensitive" = "標記為敏感";
+"sensitive.unmarkSensitive" = "取消敏感標記";
+
+/* Data Import/Export */
+"dataPorter.section" = "資料";
+"dataPorter.importExport" = "匯入與匯出";
+"dataPorter.export" = "匯出資料";
+"dataPorter.compressing" = "壓縮中...";
+"dataPorter.import" = "匯入資料";
+"dataPorter.encrypt" = "加密匯出";
+"dataPorter.password" = "密碼";
+"dataPorter.confirmPassword" = "確認密碼";
+"dataPorter.passwordMismatch" = "兩次密碼不一致";
+"dataPorter.enterPassword" = "輸入密碼以解密";
+"dataPorter.exportSuccess" = "匯出成功";
+"dataPorter.importSuccess" = "匯入成功";
+"dataPorter.wrongPassword" = "密碼錯誤";
+"dataPorter.decrypting" = "正在解密...";
+"dataPorter.refreshing" = "正在重新整理主介面...";
+"dataPorter.summary.imported" = "已匯入 %d 筆";
+"dataPorter.summary.skipped" = "略過 %d 筆";
+"dataPorter.summary.newGroups" = "新增群組 %d 個";
+"dataPorter.summary.newRules" = "新增規則 %d 條";
+
+/* Dev Tools */
+"devTools.importFromRelease" = "從正式版匯入資料";
+"devTools.importFromRelease.confirm" = "從正式版匯入資料？";
+"devTools.importFromRelease.confirmMessage" = "這將覆寫 Dev 版的所有資料，此操作無法復原。";
+"devTools.importFromRelease.releaseRunning" = "請先結束正式版 MosaClip 再匯入。";
+"devTools.importFromRelease.noData" = "未找到正式版資料。";
+
+/* Rich Text / Plain Text */
+"action.pasteAsPlainText" = "純文字貼上";
+
+/* Text Editing */
+"action.edit" = "編輯";
+"action.save" = "儲存";
+
+/* Multi-select */
+"action.merge" = "合併";
+"action.mergeCopy" = "複製";
+"action.copyDebugInfo" = "複製除錯資訊";
+"quick.multiSelected" = "已選取 %d 筆";
+"quick.batchPaste" = "批次貼上";
+
+/* Privacy */
+"settings.privacy" = "隱私";
+"settings.privacy.offlineMode" = "單機模式";
+"settings.privacy.offlineMode.hint" = "開啟後，MosaClip 將禁止連結預覽和圖片載入。本構建不提供線上更新和匿名統計。";
+"settings.privacy.sensitive" = "敏感內容";
+"settings.privacy.sensitiveDetection" = "自動偵測敏感內容";
+"settings.privacy.sensitiveHint" = "自動遮罩複製到剪貼簿的密碼、API 金鑰、Token 等敏感資料。";
+
+/* Automation */
+"settings.automation" = "自動化";
+"settings.automation.enabled" = "啟用自動化規則";
+"settings.automation.ruleCount" = "%d 條規則（%d 條啟用）";
+"settings.automation.manage" = "管理自動化規則...";
+"settings.automation.hint" = "所有符合的規則將依序執行，可拖曳調整優先順序。";
+"settings.automation.auto" = "自動";
+"settings.automation.manual" = "手動";
+"settings.automation.proRequired" = "自動化規則為 Pro 專屬功能";
+"automation.builtIn.cleanTracking" = "清理連結追蹤參數";
+"automation.builtIn.lowercaseEmail" = "電子郵件自動轉小寫";
+"automation.builtIn.removeBlankLines" = "去除多餘空行";
+
+/* Onboarding - Privacy Apps */
+"onboarding.privacy.title" = "隱私保護";
+"onboarding.privacy.desc" = "MosaClip 偵測到你的 Mac 上安裝了以下密碼管理器或安全應用，建議將它們加入忽略列表以保護你的敏感資料。";
+"onboarding.privacy.none" = "未偵測到密碼管理器或安全應用";
+"onboarding.privacy.hint" = "勾選 = 忽略——該應用的剪貼簿內容不會被記錄。點按一行可切換。";
+"onboarding.privacy.ignored" = "已忽略";
+"onboarding.privacy.notIgnored" = "未忽略";
+
+/* Onboarding - Preferences */
+"onboarding.preferences.title" = "偏好設定";
+"onboarding.preferences.desc" = "設定你偏好的行為方式，之後隨時可以在設定中修改。";
+
+"sensitive.optionHint" = "按住 ⌥ Option 快速查看";
+
+"sensitive.peek" = "快速查看";
+
+/* Accessibility Steps */
+"accessibility.step1" = "開啟 系統設定 → 隱私與安全性 → 輔助使用";
+"accessibility.step2" = "找到 MosaClip，先將其刪除（選取後點減號）";
+"accessibility.step3" = "點擊加號重新加入 MosaClip";
+
+/* Accessibility Steps (rich text parts) */
+"accessibility.step1.prefix" = "開啟";
+"accessibility.step1.path" = "系統設定 → 隱私與安全性 → 輔助使用";
+"accessibility.step2.prefix" = "找到";
+"accessibility.step2.suffix" = "，先將其刪除";
+"accessibility.step3.text" = "重新加入 MosaClip";
+
+"accessibility.step2.find" = "找到";
+"accessibility.step2.delete" = "刪除";
+"accessibility.step3.add" = "點擊";
+
+"accessibility.step3.readd" = "重新加入";
+
+"accessibility.step2.pre" = "先將其";
+"accessibility.step2.separator" = "，";
+
+"accessibility.step3.dragFromPanel" = "從懸浮面板拖入 MosaClip";
+"accessibility.panelHint" = "如已存在舊項目，請先點 − 刪除再拖入";
+"accessibility.panelTitle" = "輔助使用權限";
+
+"filter.sensitive" = "敏感";
+
+
+"settings.sound" = "音效";
+"settings.sound.enabled" = "操作音效";
+"settings.sound.copy" = "複製音效";
+"settings.sound.paste" = "貼上音效";
+"settings.sound.section.custom" = "自定義";
+"settings.sound.section.system" = "系統";
+
+/* Backup */
+"backup.section" = "自動備份";
+"backup.enable" = "啟用自動備份";
+"backup.frequency" = "備份頻率";
+"backup.maxSlots" = "備份數量";
+"backup.destination" = "備份方式";
+"backup.frequency.twoHours" = "每 2 小時";
+"backup.frequency.sixHours" = "每 6 小時";
+"backup.frequency.daily" = "每天";
+"backup.frequency.threeDays" = "每 3 天";
+"backup.frequency.weekly" = "每週";
+"backup.frequency.monthly" = "每月";
+"backup.path" = "備份路徑";
+"backup.lastBackup" = "上次備份";
+"backup.backupNow" = "立即備份";
+"backup.restore" = "從備份還原…";
+"backup.success" = "備份成功。";
+"backup.progress.finalizing" = "正在儲存…";
+"backup.restore.title" = "從備份還原";
+"backup.restore.empty" = "暫無可用備份。";
+"backup.restore.merge" = "合併（保留現有資料）";
+"backup.restore.overwrite" = "覆蓋（取代所有資料）";
+"backup.restore.confirm" = "確認還原";
+"backup.restore.confirmMerge" = "備份資料將與現有資料合併，重複項目將被跳過。";
+"backup.restore.confirmOverwrite" = "所有現有資料將被備份資料取代，此操作無法復原。";
+"backup.restore.success" = "還原完成。";
+"backup.webdav.url" = "伺服器位址";
+"backup.webdav.username" = "使用者名稱";
+"backup.webdav.password" = "密碼";
+"backup.webdav.test" = "測試連線";
+"backup.destination.local" = "本機";
+"backup.changePath" = "更改…";
+"backup.webdav.testSuccess" = "連線成功。";
+"backup.webdav.testFailed" = "連線失敗。";
+"backup.webdav.testSuccessHTTP" = "連線成功（未加密 HTTP）。";
+"backup.webdav.authFailed" = "已連上伺服器，但使用者名稱或密碼不正確。";
+"backup.webdav.certError" = "伺服器憑證無效，無法建立安全連線。";
+"backup.webdav.invalidURL" = "伺服器位址無效，僅支援 http:// 或 https://。";
+"backup.webdav.insecureWarning" = "目前為未加密的 HTTP 連線，帳號密碼與備份資料將以明文傳輸。";
+
+// 接力模式
+// 命令面板
+"cmd.title" = "快捷操作";
+"cmd.paste" = "貼上";
+"cmd.pasteAndDestroy" = "貼上並銷毀";
+"cmd.pasteAsPlainText" = "純文字貼上";
+"cmd.copyAsPlainText" = "複製為純文字";
+"cmd.copy" = "複製";
+"cmd.pin" = "置頂 / 取消置頂";
+"cmd.toggleSensitive" = "標記 / 取消敏感";
+"cmd.delete" = "刪除";
+"cmd.openLink" = "開啟連結";
+"cmd.openEntity" = "開啟 %@";
+"cmd.pasteEntity" = "貼上 %@";
+"cmd.pasteAsFile" = "貼上為檔案";
+"cmd.pastePath" = "貼上路徑";
+"cmd.andNewLine" = "並換行";
+"cmd.transform" = "轉換";
+"cmd.automation" = "自動化";
+
+"relay.title" = "接力模式";
+"relay.exit" = "退出";
+"relay.clearAndExit" = "清空並退出";
+"relay.close" = "關閉";
+"relay.exitRelay" = "退出接力";
+"relay.startRelay" = "開啟接力";
+"relay.pause" = "暫停接力";
+"relay.resume" = "繼續接力";
+"relay.paused" = "接力已暫停";
+"relay.emptyHint" = "複製內容自動加入佇列";
+"relay.deleted.recirculated" = "已從接力刪除，保留在剪貼簿歷史";
+"relay.deleted.undo" = "撤銷";
+"relay.appendedToQueue" = "已追加到接力佇列（%d/%d）";
+"relay.queue.heading" = "佇列 %d";
+"relay.quickPastePaused" = "接力模式下快捷貼上已暫停";
+"relay.expand" = "展開";
+"relay.collapse" = "收合";
+"relay.content.truncated" = "…（內容過大，已截斷）";
+"relay.alert.title" = "接力模式已開啟";
+"relay.alert.message" = "快捷貼上已暫停，複製的內容將自動加入接力佇列。
+
+使用 %@ 逐條貼上佇列內容。";
+"relay.alert.ok" = "知道了";
+"relay.alert.dontShowAgain" = "不再提示";
+"relay.settings.pasteKey" = "接力貼上快捷鍵";
+"relay.settings.pasteKeyNote" = "部分應用（終端機、Emacs）可能使用相同快捷鍵，如有衝突請自訂。";
+"relay.settings.pauseToChange" = "請先暫停或退出接力模式再修改快捷鍵。";
+"relay.settings.plainText" = "純文字貼上";
+"relay.settings.plainText.desc" = "去除富文字格式";
+"relay.settings.allowRepeatCopy" = "允許重複複製";
+"relay.settings.allowRepeatCopy.desc" = "連續相同內容也入隊";
+"relay.settings.completeSound" = "完成提示音";
+"relay.settings.completeSound.desc" = "接力完成時播放";
+"relay.settings.completeSound.mute" = "靜音";
+"relay.banner.clickToClear" = "單擊切換規則 · 點 ✕ 關閉自動化";
+"relay.settings.automation" = "自動化";
+"relay.settings.automation.desc" = "貼上時套用所選規則";
+"relay.settings.automation.none" = "無";
+"relay.settings.preview" = "啟用預覽";
+"relay.settings.preview.desc" = "清單顯示處理後文字";
+"relay.settings.tooltip.default" = "設定";
+"relay.settings.tooltip.active" = "已啟用";
+"relay.settings.postPasteKey" = "貼上後按鍵";
+"relay.settings.postPasteKey.desc" = "連續錄入使用";
+"relay.settings.postPasteKey.none" = "無";
+"relay.settings.postPasteKey.return" = "Return";
+"relay.settings.postPasteKey.tab" = "Tab";
+"relay.settings.postPasteKey.down" = "下";
+"relay.settings.postPasteKey.up" = "上";
+"relay.settings.postPasteKey.left" = "左";
+"relay.settings.postPasteKey.right" = "右";
+"relay.settings.postPasteKey.space" = "空白鍵";
+"relay.autoExit.short" = "結束後自動退出";
+"relay.loop" = "循環";
+"relay.loop.tooltip.on" = "循環接力：開（佇列結束後自動從頭開始）";
+"relay.loop.tooltip.off" = "循環接力：關";
+"relay.pasteAsText" = "貼上為文字";
+"relay.autoExit" = "佇列清空後自動退出";
+"relay.previous" = "上一條";
+"relay.skip" = "跳過";
+"relay.pasteAll" = "全部貼上";
+"relay.pasteAll.stop" = "停止";
+"relay.pasteAll.help" = "依序貼上佇列剩餘的所有項目（⌥⌃V）";
+"relay.delete" = "刪除";
+"relay.setCurrent" = "設為當前";
+"relay.split" = "拆分";
+"relay.addToQueue" = "加入接力佇列";
+"relay.splitAndRelay" = "拆分並接力";
+"relay.split.title" = "拆分為佇列";
+"relay.split.delimiter" = "分隔符";
+"relay.split.customPlaceholder" = "輸入分隔符...";
+"relay.split.confirm" = "拆分";
+"relay.split.preview" = "將拆分為 %d 條";
+"relay.split.noResult" = "未找到分隔符";
+"relay.delimiter.newline" = "換行";
+"relay.delimiter.comma" = "逗號 (,)";
+"relay.delimiter.chineseComma" = "頓號 (、)";
+"relay.delimiter.custom" = "自訂";
+"onboarding.skip" = "跳過";
+"onboarding.relay.title" = "接力模式";
+"onboarding.relay.desc" = "連續複製多條內容，然後按順序逐條貼上，適合批次錄入資料的場景。";
+"onboarding.relay.feature1" = "多選條目或連續複製，自動構建貼上佇列";
+"onboarding.relay.feature2" = "按分隔符拆分文字，快速建立佇列";
+"onboarding.relay.feature3" = "按 Ctrl+V 逐條貼上（可在設定中自訂）";
+"onboarding.aiAgent.title" = "AI Agent 整合";
+"onboarding.aiAgent.desc" = "把你的剪貼簿提供給 Claude Code、Cursor、Codex 等任何 MCP 相容的 AI Agent。";
+"onboarding.aiAgent.feature1" = "5 個 MCP 工具——讀取、搜尋、寫入剪貼簿";
+"onboarding.aiAgent.feature2" = "設定 → AI Agents 一鍵安裝";
+"onboarding.aiAgent.feature3" = "敏感項目預設自動過濾";
+"help.relay" = "接力模式";
+"help.relay.open" = "透過工具列按鈕或選單列開啟";
+"help.relay.paste" = "Ctrl+V 貼上下一條（可在設定中自訂）";
+"help.relay.skip" = "點擊接力視窗中的跳過按鈕跳過當前條目";
+"help.relay.previous" = "點擊接力視窗中的上一條按鈕回退";
+"help.relay.split" = "懸停點擊剪刀圖示，或右鍵選單拆分條目";
+"help.relay.pauseResume" = "接力視窗中的暫停 / 繼續按鈕";
+"help.relay.exit" = "點擊關閉按鈕或按 Esc 退出接力模式";
+"about.help" = "使用指南";
+
+/* 缺失的鍵 - 操作 */
+"cmd.showInFinder" = "在 Finder 中顯示";
+"cmd.copyAs" = "複製為 %@";
+"relay.reverse" = "反轉順序";
+"relay.clearAll" = "清空所有";
+"relay.editItem" = "編輯內容";
+"quickPanel.pin" = "固定視窗";
+"quickPanel.unpin" = "取消固定";
+
+/* 缺失的鍵 - 設定 */
+"settings.doubleTap" = "雙擊按鍵喚起";
+"settings.doubleTap.modifier" = "雙擊修飾鍵";
+
+/* 缺失的鍵 - 清空資料 */
+
+/* 缺失的鍵 - 備份 */
+"backup.nextBackup" = "下次備份";
+
+/* 缺失的鍵 - 自動化管理視窗 */
+"automation.window.title" = "自動化規則";
+"automation.section.builtIn" = "內建規則";
+"automation.section.custom" = "我的規則";
+"automation.section.empty" = "（空）";
+"automation.section.disabled" = "未啟用";
+"automation.editor.selectRule" = "選擇一條規則進行編輯";
+"automation.rule.name" = "名稱";
+"automation.rule.enabled" = "啟用";
+"automation.rule.triggerMode" = "觸發模式";
+"automation.rule.triggerMode.automatic" = "自動觸發";
+"automation.rule.triggerMode.manual" = "僅手動觸發";
+"automation.rule.triggerMode.shortcutManualOnly" = "規則裡有只能手動執行的動作，只能手動觸發";
+"automation.rule.outputMode" = "結果去向";
+"automation.rule.outputMode.replaceItem" = "取代目前項目";
+"automation.rule.outputMode.newItem" = "產生新項目";
+"automation.rule.outputMode.clipboard" = "僅寫入剪貼板";
+"automation.rule.outputMode.pasteToFrontmost" = "直接貼到前台";
+"automation.rule.outputMode.help" = "自動觸發時沒有貼上目標，「僅寫入剪貼板」和「直接貼到前台」都是把結果寫回剪貼板，複製後 ⌘V 直接得到處理後的內容（富文字轉為純文字）。";
+"automation.action.section.flow" = "流程";
+"automation.action.stopProcessing" = "不再執行後續規則";
+"automation.action.closeQuickPanel" = "關閉快捷面板";
+"automation.rule.triggerMode.automatic.help" = "複製時自動執行";
+"automation.rule.triggerMode.manual.help" = "在快捷面板按 ⌘K，或在項目的右鍵選單裡執行";
+"automation.action.regexReplace.pattern" = "尋找";
+"automation.preview.asyncSkipped" = "捷徑和 OCR 不在這裡預覽";
+"automation.builtIn.restore" = "恢復內建規則";
+"automation.editor.unsaved" = "有未儲存的更改";
+"automation.editor.unsavedMessage" = "切換到其它規則前要儲存嗎？";
+"automation.editor.dontSave" = "不儲存";
+"automation.editor.on" = "開";
+"automation.editor.off" = "關";
+"automation.flow.when" = "觸發";
+"automation.flow.if" = "條件";
+"automation.flow.then" = "動作";
+"automation.flow.finally" = "結果";
+"automation.flow.allConditions" = "滿足全部條件";
+"automation.flow.anyCondition" = "滿足任一條件";
+"automation.flow.inOrder" = "按順序執行";
+"automation.rule.notifyBeforeApply" = "觸發時彈窗確認";
+"automation.rule.newName" = "新規則";
+"automation.condition.title" = "當滿足以下條件";
+"automation.condition.add" = "+ 新增條件";
+"automation.condition.contentType" = "內容類型是";
+"automation.condition.regexMatch" = "內容符合正規表達式";
+"automation.condition.containsText" = "內容包含";
+"automation.condition.sourceApp" = "來源應用程式是";
+"automation.condition.anyText" = "任意文字";
+"automation.action.title" = "執行以下動作（依序）";
+"automation.action.add" = "+ 新增動作";
+"automation.action.lowercased" = "轉小寫";
+"automation.action.uppercased" = "轉大寫";
+"automation.action.trimWhitespace" = "去除首尾空白";
+"automation.action.removeBlankLines" = "去除多餘空行";
+"automation.action.stripRichText" = "轉純文字";
+"automation.action.assignGroup" = "歸入分組";
+"automation.action.assignGroup.placeholder" = "請輸入分組名";
+"automation.action.urlEncode" = "URL 編碼";
+"automation.action.urlDecode" = "URL 解碼";
+"automation.action.removeQueryParams" = "刪除 URL 參數";
+"automation.action.regexReplace" = "正規表達式替換";
+"automation.action.regexReplace.to" = "替換為";
+"automation.action.addPrefix" = "新增前綴";
+"automation.action.addSuffix" = "新增後綴";
+"automation.action.removeQueryParams.placeholder" = "請輸入參數名稱，以逗號分隔";
+"automation.action.regexReplace.placeholder" = "請輸入正規表達式";
+"automation.action.regexReplace.to.placeholder" = "請輸入替換內容";
+"automation.action.addPrefix.placeholder" = "請輸入前綴文字";
+"automation.action.addSuffix.placeholder" = "請輸入後綴文字";
+"automation.preview" = "測試規則";
+"automation.preview.input" = "貼上或輸入內容以測試規則…";
+"automation.preview.useClipboard" = "使用目前剪貼簿";
+"automation.preview.output" = "結果預覽";
+"automation.preview.notMatched" = "條件未匹配";
+
+/* Automation Confirm */
+"automation.confirm.title" = "自動化規則觸發";
+"automation.confirm.matched" = "規則「%@」已匹配";
+"automation.confirm.apply" = "套用";
+"automation.confirm.keep" = "保留原文";
+"automation.confirm.original" = "原文：";
+"automation.confirm.processed" = "處理後：";
+"automation.action.delete" = "刪除規則";
+"automation.action.section.text" = "文字處理";
+"automation.action.section.url" = "URL 處理";
+"automation.action.section.advanced" = "進階";
+"automation.action.section.clipboard" = "剪貼簿";
+"automation.action.markSensitive" = "標記為敏感";
+"automation.action.pin" = "置頂";
+"automation.action.skipCapture" = "不複製";
+"automation.action.section.external" = "外部";
+"automation.action.runShortcut" = "執行捷徑";
+"automation.action.runShortcut.placeholder" = "捷徑名稱";
+"automation.action.runShortcut.empty" = "未選擇捷徑";
+"automation.action.runShortcut.pick" = "從列表選擇";
+"automation.action.runShortcut.openInApp" = "在捷徑中開啟";
+"automation.action.runShortcut.failed" = "捷徑執行失敗";
+"automation.action.runShortcut.loading" = "載入中…";
+"automation.rule.notifyOnTrigger" = "觸發時傳送通知";
+"automation.notification.title" = "自動化";
+"automation.applied" = "自動化已執行";
+"automation.validation.incomplete" = "無法啟用規則";
+"automation.validation.incompleteMessage" = "請至少新增一個條件和一個動作後再啟用。";
+"automation.delete.confirm" = "刪除規則？";
+"automation.delete.confirmMessage" = "此操作無法復原。";
+"automation.notification.permissionDenied" = "未開啟通知權限";
+"automation.notification.permissionDeniedMessage" = "請在系統設定中允許 MosaClip 傳送通知。";
+"automation.notification.openSettings" = "開啟設定";
+"automation.condition.sourceApp.select" = "選擇應用程式";
+"automation.condition.sourceApp.add" = "新增應用程式";
+"automation.condition.sourceApp.empty" = "暫無已選應用程式";
+"automation.editor.definition" = "規則定義";
+"automation.editor.settings" = "設定";
+"automation.editor.triggerAndNotification" = "觸發與通知";
+"automation.rule.status.active" = "已啟用";
+"automation.rule.status.inactive" = "未啟用";
+"automation.editor.save" = "儲存";
+"automation.editor.cancel" = "取消";
+"automation.editor.edit" = "編輯";
+"automation.condition.empty" = "暫無條件";
+"automation.condition.title.prefix" = "當滿足以下";
+"automation.condition.logic.all" = "全部";
+"automation.condition.logic.any" = "任一";
+"automation.condition.title.suffix" = "條件";
+"automation.condition.regexMatch.placeholder" = "請輸入正規表達式";
+"automation.condition.containsText.placeholder" = "請輸入文字內容";
+"automation.action.empty" = "暫無動作";
+"quick.pasteToApp" = "貼上到 %@";
+
+
+/* About - Open Source */
+"about.license" = "開源授權";
+
+/* Analytics */
+"settings.privacy.analytics" = "使用統計";
+"settings.privacy.analyticsToggle" = "傳送匿名使用統計";
+"settings.privacy.analyticsHint" = "幫助改進 MosaClip，傳送匿名使用資料（應用版本、系統語言、macOS 版本）。不採集任何個人資訊。";
+"analytics.consent.title" = "使用統計";
+"analytics.consent.message" = "是否傳送匿名使用統計以幫助改進 MosaClip？包括應用版本、系統語言和 macOS 版本，不採集任何個人資訊。你可以隨時在 設定 → 隱私 中更改。";
+"analytics.consent.allow" = "允許";
+"analytics.consent.deny" = "不允許";
+
+/* Onboarding - Analytics */
+"onboarding.analytics.title" = "使用統計";
+"onboarding.analytics.desc" = "傳送匿名使用資料（應用版本、系統語言、macOS 版本）幫助改進 MosaClip。不採集任何個人資訊。";
+"onboarding.analytics.hint" = "你可以隨時在 設定 → 隱私 中更改。";
+
+/* OCR */
+"settings.ocr" = "OCR";
+"settings.ocr.enable" = "啟用圖片 OCR";
+"settings.ocr.auto" = "自動處理新圖片";
+"settings.ocr.markdown" = "辨識版面為 Markdown";
+"settings.ocr.markdown.hint" = "辨識段落、清單與表格，並將文字儲存為 Markdown。需要 macOS 26。";
+"settings.ocr.stopScan" = "停止掃描";
+"settings.ocr.scanExisting" = "掃描現有圖片";
+"settings.ocr.scanStarted" = "已開始在背景掃描現有圖片。";
+"settings.ocr.hint" = "OCR 會在本機執行，讓圖片中的文字可被搜尋。";
+"settings.autoCheckUpdates" = "自動檢查更新";
+"settings.updateCheckInterval" = "檢查頻率";
+"settings.updateCheckInterval.6h" = "每 6 小時";
+"settings.updateCheckInterval.12h" = "每 12 小時";
+"settings.updateCheckInterval.24h" = "每 24 小時";
+"settings.updateCheckInterval.72h" = "每 3 天";
+"settings.includeBetaChannel" = "參與 Beta 測試";
+"settings.includeBetaChannel.hint" = "提前體驗新功能，可能不穩定。Beta 版穩定後會自動升級到正式版。";
+"detail.ocr" = "辨識文字";
+"detail.ocr.copy" = "複製文字";
+"detail.ocr.retry" = "重新辨識";
+"detail.ocr.recognize" = "辨識文字";
+"detail.ocr.notStarted" = "尚未辨識圖片文字";
+"detail.ocr.notStartedHint" = "自動辨識已關閉，你可以手動辨識這張圖片。";
+"detail.ocr.pending" = "等待掃描圖片文字。";
+"detail.ocr.processing" = "正在辨識圖片文字…";
+"detail.ocr.ready" = "辨識文字已可供搜尋。";
+"detail.ocr.empty" = "目前尚未在這張圖片中辨識到文字。";
+"detail.ocr.failed" = "這張圖片的 OCR 辨識失敗。";
+"quick.ocrMatch" = "命中辨識文字";
+"cmd.openInPreview" = "用「預覽」打開";
+"cmd.quickLook" = "快速查看";
+"cmd.retryOCR" = "重新辨識 OCR";
+"cmd.pasteOCR" = "貼上 OCR 文字";
+
+/* Edit */
+"detail.richText.editWarning" = "編輯將移除富文本格式並轉為純文字。";
+
+/* AI Agents */
+"settings.tab.aiAgents" = "AI Agents";
+"settings.aiAgents.service" = "服務";
+"settings.aiAgents.serverRunning" = "MCP 伺服器執行中";
+"settings.aiAgents.agents" = "Agent";
+"settings.aiAgents.detected" = "本機可用";
+"settings.aiAgents.notInstalled" = "本機未安裝";
+"settings.aiAgents.installed.label" = "已安裝";
+"settings.aiAgents.install" = "安裝";
+"settings.aiAgents.uninstall" = "解除安裝";
+"settings.aiAgents.manualConfig" = "手動設定";
+"settings.aiAgents.installed" = "已安裝到 %@，請重新啟動 %@ 後生效。";
+"settings.aiAgents.uninstalled" = "已從 %@ 解除安裝。";
+"settings.aiAgents.installFailed" = "安裝到 %@ 失敗：%@";
+"settings.aiAgents.uninstallFailed" = "從 %@ 解除安裝失敗：%@";
+"settings.aiAgents.privacy" = "隱私";
+"settings.aiAgents.allowSensitive" = "允許 Agent 讀取標記為敏感的剪貼項目";
+"settings.aiAgents.master.toggle" = "啟用 AI Agent 整合";
+"settings.aiAgents.master.detail" = "允許 Claude、Codex 等 AI 工具透過 MCP 協定讀取你的剪貼簿歷史";
+"settings.aiAgents.master.disabledHint" = "已關閉。開啟後可讓 AI Agent 透過 MCP 協定存取你的剪貼簿歷史。";
+"settings.aiAgents.sourceBlocklist" = "來源 App 黑名單";
+"settings.aiAgents.binaryMissing" = "pastememo-mcp 執行檔遺失";
+"settings.aiAgents.binaryMissingDetail" = "目前安裝缺少 MCP 輔助程式。請使用 MosaClip 測試 DMG 重新安裝。";
+"settings.aiAgents.openDownload" = "開啟下載頁";
+"settings.aiAgents.blocklist.empty" = "無已封鎖 App";
+"settings.aiAgents.blocklist.add" = "新增 App";
+"settings.aiAgents.manualConfig.title" = "%@ 的手動設定";
+"settings.aiAgents.manualConfig.subtitle" = "複製下方片段，並貼到對應的設定檔中。";
+"settings.aiAgents.manualConfig.copy" = "複製到剪貼簿";
+"settings.aiAgents.manualConfig.done" = "完成";
+
+"settings.diagnostics" = "診斷";
+"settings.diagnostics.export" = "匯出診斷日誌";
+
+/* Image grid (Quick Panel) */
+"settings.imageLayout" = "圖片顯示方式";
+"settings.imageLayout.list" = "列表";
+"settings.imageLayout.grid" = "瀑布流網格";
+"workspace.layout.cards" = "卡片";
+"settings.imageGridDensity" = "網格密度";
+"settings.imageGridDensity.sparse" = "疏";
+"settings.imageGridDensity.medium" = "中";
+"settings.imageGridDensity.dense" = "密";
+
+"settings.ocr.memoryHint" = "開啟後會在背景用 Vision 辨識圖片中的文字，可能增加記憶體佔用。";
+
+// SMS verification codes
+"settings.smsCode" = "簡訊驗證碼";
+"settings.smsCode.enabled" = "自動擷取「訊息」中的簡訊驗證碼並複製";
+"settings.smsCode.needsFDA" = "讀取簡訊需要「完整磁碟取用權限」";
+"settings.smsCode.openSettings" = "打開系統設定";
+"settings.smsCode.granted" = "已取得完整磁碟取用權限";
+"settings.smsCode.hint" = "需要 iPhone 開啟「簡訊轉傳」到這台 Mac（設定 → 訊息 → 簡訊轉傳）。若授權後仍未生效，請重新啟動 MosaClip。";
+"sms.notification.codeCopied" = "驗證碼 %@ 已複製";
+"sms.notification.fallbackTitle" = "收到疑似驗證碼簡訊";
+"sms.preview.messageLabel" = "簡訊原文";
+"settings.smsCode.description" = "開啟後，收到驗證碼簡訊時會自動擷取驗證碼、複製到剪貼板並發送通知。";
+"settings.smsCode.feedback" = "遇到未能識別的驗證碼簡訊？歡迎回饋（去識別化後的）簡訊內容，協助完善識別規則。";
+"settings.smsCode.feedbackLink" = "提交回饋";
+
+// MARK: - List row metrics
+"meta.chars" = "%@ 字";
+"meta.lines" = "%@ 行";
+"markdown.preview.mode" = "Markdown 預覽模式";
+"markdown.preview.rendered" = "渲染";
+"markdown.preview.raw" = "原文";
+"markdown.preview.renderOnDemand" = "內容可能影響回應速度，已預設顯示原文；可手動選擇渲染";
+"markdown.preview.tooLarge" = "內容過大，無法安全渲染，已顯示原文";
+"markdown.preview.imageBlocked" = "已阻止圖片載入";
+"svg.preview.mode" = "SVG 預覽模式";
+"svg.preview.rendered" = "渲染";
+"svg.preview.raw" = "原文";
+"svg.preview.invalid" = "SVG 格式無效，已顯示原文";
+"svg.preview.blocked" = "SVG 包含指令碼或外部資源，已阻止渲染";
+"svg.preview.tooLarge" = "SVG 過大或過於複雜，已顯示原文";
+"svg.preview.unreadable" = "無法讀取 SVG 來源檔案";
+"svg.preview.unsupported" = "macOS 無法渲染此 SVG，已顯示原文";
+"svg.metadata.viewBox" = "viewBox";
+"svg.metadata.width" = "寬度";
+"svg.metadata.height" = "高度";
+"svg.metadata.sourceSize" = "來源大小";
+"settings.update.disabled.title" = "線上更新已關閉";
+"settings.update.disabled.message" = "線上更新尚未啟用。請從 MosaClip 專案發佈頁下載已驗證的 DMG，手動安裝更新。";
+"about.acknowledgements" = "開源致謝";
+"about.upstreamThanks" = "MosaClip 基於 PasteMemo 開發，感謝 lifedever 和上游貢獻者的開源工作。";
+"about.upstreamRepository" = "PasteMemo · 上游儲存庫";
+
+/* Automation: extract / open / outputs */
+"automation.action.convertColor" = "轉換顏色格式";
+"automation.action.extractVerificationCode" = "只保留驗證碼";
+"automation.action.extractLinks" = "只保留連結";
+"automation.action.runOCR" = "辨識圖中文字";
+"automation.action.deleteItem" = "刪除原項目";
+"automation.action.playSound" = "播放提示音";
+"automation.action.section.extract" = "擷取與辨識";
+"automation.action.section.open" = "開啟與接力";
+"automation.rule.outputMode.saveToFile" = "存到資料夾";
+"automation.rule.outputMode.postWebhook" = "傳到 Webhook";
+"automation.output.folder.empty" = "未選擇資料夾";
+"automation.output.folder.choose" = "選擇…";
+"automation.output.folder.invalid" = "找不到這個資料夾";
+"automation.output.webhook.placeholder" = "https://";
+"automation.output.webhook.help" = "傳送 JSON（content、contentType、sourceApp、rule、createdAt）。敏感內容不傳送。";
+"automation.output.webhook.invalidURL" = "位址要以 http:// 或 https:// 開頭";
+"automation.output.webhook.tooLarge" = "內容太長，沒有傳送";
+"automation.output.webhook.failedStatus" = "傳送失敗（HTTP %d）";
+"automation.output.webhook.failed" = "傳送失敗：%@";
+"automation.output.webhook.sent" = "已傳送";
+"automation.output.webhook.refused" = "敏感內容不傳送";
+"automation.output.webhook.textOnly" = "只能傳送文字內容";
+"automation.output.saved" = "已存到「%@」";
+"automation.output.saveFailed" = "儲存失敗，檢查資料夾是否還在";
+
+/* Automation: text toolbox */
+"automation.action.base64Encode" = "Base64 編碼";
+"automation.action.base64Decode" = "Base64 解碼";
+"automation.action.jsonFormat" = "JSON 格式化";
+"automation.action.jsonMinify" = "JSON 壓縮";
+"automation.action.toCamelCase" = "轉駝峰命名";
+"automation.action.toSnakeCase" = "轉底線命名";
+"automation.action.toHalfWidth" = "全形轉半形";
+"automation.action.toFullWidth" = "半形轉全形";
+"automation.action.simplifiedToTraditional" = "簡體轉繁體";
+"automation.action.removeDuplicateLines" = "刪除重複行";
+"automation.action.sortLines" = "按行排序";
+"automation.action.sortLines.ascending" = "升冪";
+"automation.action.sortLines.descending" = "降冪";
+"automation.action.joinLines" = "合併為一行";
+"automation.action.joinLines.space" = "空格";
+"automation.action.joinLines.none" = "直接拼接";
+"automation.action.removeHTMLTags" = "移除 HTML 標籤";
+"automation.action.section.format" = "格式轉換";
+"automation.action.section.lines" = "按行處理";
+
+/* Automation: conditions */
+"automation.condition.section.content" = "內容";
+"automation.condition.section.app" = "應用程式";
+"automation.condition.section.state" = "項目狀態";
+"automation.condition.section.time" = "時間";
+"automation.condition.targetApp" = "貼上到的應用程式是";
+"automation.condition.targetApp.help" = "只在快速面板和接力貼上時能判斷，複製時自動觸發的規則不會滿足這一條";
+"automation.condition.contentLength" = "字數範圍";
+"automation.condition.lineCount" = "行數範圍";
+"automation.condition.range.min" = "最少";
+"automation.condition.range.max" = "最多";
+"automation.condition.range.any" = "不限";
+"automation.condition.isPinned" = "已置頂";
+"automation.condition.isSensitive" = "已標記為敏感";
+"automation.condition.inGroup" = "所在分組是";
+"automation.condition.inGroup.any" = "任意分組";
+"automation.condition.timeOfDay" = "時段";
+"automation.condition.weekday" = "星期";
+"automation.condition.negated" = "不滿足";
+
+/* Privacy: sensitive retention */
+"settings.privacy.sensitiveRetention" = "敏感項目保留";
+"settings.privacy.sensitiveRetention.followHistory" = "跟隨保留時長";
+"settings.privacy.sensitiveRetention.minutes" = "%d 分鐘";
+"settings.privacy.sensitiveRetention.hours" = "%d 小時";
+"settings.privacy.sensitiveRetention.hint" = "從最後一次複製或貼上算起，到時自動刪除。置頂和永久保留分組裡的項目不刪。";
+"settings.privacy.sensitiveRetention.cleanConfirm" = "將刪除 %d 筆敏感項目";
+
+/* Storage */
+"settings.nav.back" = "返回";
+"settings.nav.forward" = "前進";
+"settings.storage" = "儲存空間";
+"storage.manage.title" = "管理儲存空間";
+"storage.manage" = "管理";
+"storage.recordCount" = "%@ 筆記錄";
+"storage.scanFailed" = "無法讀取資料";
+"storage.scanning" = "正在計算...";
+"storage.part.originals" = "原圖";
+"storage.part.previews" = "縮圖";
+"storage.part.richText" = "富文本";
+"storage.byType" = "依類型";
+"storage.itemCount" = "%@ 筆";
+"storage.autoClean" = "自動清理";
+"storage.optimize" = "最佳化";
+"storage.tiff.title" = "TIFF 原圖無損轉為 PNG";
+"storage.tiff.detail" = "%1$@ 張 · %2$@";
+"storage.tiff.progress" = "正在轉換 %1$@ / %2$@";
+"storage.tiff.result" = "已轉換 %1$@ 張，省下 %2$@";
+"storage.tiff.kept" = "%@ 張無法無損轉換，保留 TIFF";
+"storage.sourceCount" = "共 %@ 個來源";
+"storage.grouping.source" = "依來源";
+"storage.typeCount" = "共 %@ 種類型";
+"storage.column.type" = "類型";
+"storage.typeSelectionSummary" = "已選 %1$@ 種類型 · %2$@ 筆 · %3$@";
+"storage.searchSources" = "搜尋來源";
+"storage.allSources" = "全部來源";
+"storage.sourceWithCount" = "%1$@ · %2$@";
+"storage.column.source" = "來源";
+"storage.column.latest" = "最近時間";
+"storage.column.count" = "筆數";
+"storage.column.size" = "佔用";
+"storage.protectedNote" = "刪除的是 MosaClip 裡的記錄，原始檔案不受影響。置頂和「永久保留」分組裡的不會刪除。";
+"storage.protectedExcluded" = "不含置頂和「永久保留」分組裡的 %@ 筆";
+"storage.deleteRecords" = "刪除記錄";
+"storage.delete.scope" = "只刪除 MosaClip 裡的記錄和副本，原始檔案不受影響。此操作無法復原，確定要繼續嗎？";
+"storage.selectionSummary" = "已選 %1$@ 個來源 · %2$@ 筆 · %3$@";
+"storage.delete.confirm" = "將刪除 %@ 筆記錄";
+"storage.deleting" = "正在刪除...";
+"storage.empty" = "沒有可清理的內容";
+"storage.time.all" = "全部時間";
+"storage.time.1month" = "1 個月前";
+"storage.time.3months" = "3 個月前";
+"storage.time.6months" = "6 個月前";
+"storage.time.1year" = "1 年前";
+"storage.time.custom" = "自訂時間...";
+"storage.type.all" = "全部類型";
+"storage.listSeparator" = "、";
+"storage.sort.size" = "佔用從大到小";
+"storage.sort.latest" = "最近複製";
+"storage.selectAll" = "全選";
+"storage.deselectAll" = "取消全選";
+"storage.itemSelectionSummary" = "已選 %1$@ 筆 · %2$@";
+"storage.custom.title" = "自訂時間";
+"storage.custom.from" = "開始";
+"storage.custom.to" = "結束";
+
+"about.productWebsite" = "產品官網";

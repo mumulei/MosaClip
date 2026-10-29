@@ -1,0 +1,19 @@
+name: Online release publishing disabled
+
+# Public source availability does not enable a certified update feed.
+# The inherited upstream publisher is deliberately
+# disabled so it cannot publish to or mutate the original PasteMemo services.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  disabled:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain release policy
+        run: |
+          echo "Automatic online publishing is disabled until distribution certification passes."
+          echo "Use scripts/package.sh for a locally verified test DMG."
