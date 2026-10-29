@@ -623,10 +623,11 @@ export function App() {
             {t.dialogCta}
             <Icon name="arrow-down" size={15} />
           </Action>
-          <p className="dialog-installation">{t.dialogDescription}</p>
           <Smooth radius={12} className="release-note">
-            <Icon name="info" size={18} />
-            <p>{t.release}</p>
+            <ol className="installation-steps">
+              <li><p>{t.dialogDescription}</p></li>
+              <li><p>{t.release}</p></li>
+            </ol>
           </Smooth>
           <p className="dialog-requirements">{t.requirements}</p>
         </Smooth>
