@@ -69,7 +69,7 @@ These shortcuts apply to Quick Panel unless noted. The global shortcut is config
 
 ## Source release 0.5.0
 
-[Product website](https://mumulei.dpdns.org/mosaclip/) · [Source release](https://github.com/mumulei/MosaClip/releases/tag/v0.5.0)
+[Product website](https://mosaclip.vercel.app/) · [Source release](https://github.com/mumulei/MosaClip/releases/tag/v0.5.0)
 
 Complete source, tests and build instructions are public under GPL-3.0.
 Requires macOS 14 or later. An [Apple Silicon test DMG](https://github.com/mumulei/MosaClip/releases/download/v0.5.0/MosaClip-0.5.0-arm64.dmg) is available. It uses ad-hoc signing and is not Apple-notarized; macOS may block its first launch. Verify the release checksums. Production certification remains pending. Online updates and anonymous usage statistics remain off.

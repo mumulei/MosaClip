@@ -1,17 +1,16 @@
 # MosaClip website
 
 Bilingual product site for MosaClip 0.5.0, published at
-https://mumulei.dpdns.org/mosaclip/ through Portfolio-2's existing Cloudflare Pages.
+https://mosaclip.vercel.app/ on Vercel. Portfolio-2 links to this standalone site.
 
 ```sh
 npm ci
 npm run dev -- --host 127.0.0.1
-VITE_BASE_PATH=/mosaclip/ npm run build
+npm run build
 npm run test:sites
 ```
 
-Use `npx vite build --base=/mosaclip/` for the static client build; it produces
-dist/client, which is copied to the hosting repository's public/mosaclip directory.
+The static client build produces `dist/client` for Vercel.
 The existing Sites adapter remains available but is not used for this deployment.
 
 Preserve approved responsive typography, light/dark/system themes, language switch,
@@ -28,5 +27,4 @@ other website artwork and UI icons are local assets. No clipboard access or anal
 Use the repository's `website` directory as the Vercel project root.
 `vercel.json` selects Vite, `npm run build`, and the `dist/client` output.
 Leave `VITE_BASE_PATH` unset (or `/`) for a standalone root-domain deployment.
-The existing portfolio URL remains live until the new production URL has been
-verified; update canonical/product links and the portfolio redirect afterward.
+The old portfolio `/mosaclip/` address redirects to the standalone site.

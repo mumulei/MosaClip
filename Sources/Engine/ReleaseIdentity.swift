@@ -23,7 +23,7 @@ enum ReleaseIdentity {
     static let repositoryName = "MosaClip"
 
     static let repositoryURL = URL(string: "https://github.com/mumulei/MosaClip")!
-    static let websiteURL = URL(string: "https://mumulei.dpdns.org/mosaclip/")!
+    static let websiteURL = URL(string: "https://mosaclip.vercel.app/")!
     static let issuesURL = repositoryURL.appendingPathComponent("issues")
     static let releasesURL = repositoryURL.appendingPathComponent("releases")
     static let documentationURL = repositoryURL.appendingPathComponent("blob/main/README.md")

@@ -65,7 +65,7 @@ MosaClip 是基于 PasteMemo 开发的 macOS 剪贴板管理工具。在原项�
 
 ## 0.5.0 公开源码版
 
-[产品官网](https://mumulei.dpdns.org/mosaclip/) · [源码版本](https://github.com/mumulei/MosaClip/releases/tag/v0.5.0)
+[产品官网](https://mosaclip.vercel.app/) · [源码版本](https://github.com/mumulei/MosaClip/releases/tag/v0.5.0)
 
 完整源码、测试与构建说明现以 GPL-3.0 公开，要求 macOS 14 或更高版本。
 提供 [Apple Silicon 测试安装包](https://github.com/mumulei/MosaClip/releases/download/v0.5.0/MosaClip-0.5.0-arm64.dmg)。它采用 ad-hoc 签名，未经过 Apple 公证，macOS 可能阻止首次打开；请核对发布页的校验值。正式认证仍在准备中。
