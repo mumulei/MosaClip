@@ -932,6 +932,7 @@ nav a:hover { color: var(--text); }
 }
 .dialog-body, .image-dialog { background: var(--surface); color: var(--text); border-color: var(--line); }
 .dialog-close, .image-close, .zoom-cue, .release-note { background: var(--surface-soft); border-color: var(--line); }
+:root:not([data-theme="dark"]) .release-note { background: #f8f8f9; }
 .button:focus-visible, .language-switch button:focus-visible, .dialog-close:focus-visible { outline-color: var(--blue); }
 .workspace-frame { border: 1px solid var(--line); background: transparent; box-shadow: none; }
 .showcase-controls { align-items: center; }
