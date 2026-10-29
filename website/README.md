@@ -27,4 +27,6 @@ other website artwork and UI icons are local assets. No clipboard access or anal
 Use the repository's `website` directory as the Vercel project root.
 `vercel.json` selects Vite, `npm run build`, and the `dist/client` output.
 Leave `VITE_BASE_PATH` unset (or `/`) for a standalone root-domain deployment.
+The Vercel `mosaclip` project is connected to `mumulei/MosaClip`; pushes to
+`main` deploy the website automatically. Preview branches use separate URLs.
 The old portfolio `/mosaclip/` address redirects to the standalone site.
