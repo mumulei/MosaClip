@@ -4,6 +4,8 @@ import Typed from "typed.js";
 
 const asset = path => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 const repositoryURL = "https://github.com/mumulei/MosaClip";
+const releaseURL = `${repositoryURL}/releases/tag/v0.5.0`;
+const downloadURL = `${repositoryURL}/releases/download/v0.5.0/MosaClip-0.5.0-arm64.dmg`;
 const copy = {
   zh: {
     features: "功能",
@@ -45,19 +47,20 @@ const copy = {
       },
       {
         q: "现在可以下载正式版吗？",
-        a: "0.5.0 已公开完整源码，可自行构建。正式安装包将在 Developer ID 签名与 Apple 公证完成后提供下载。",
+        a: "目前提供 0.5.0 Apple Silicon 测试安装包及完整源码。测试包尚未经过 Apple 公证，macOS 可能阻止首次打开；正式认证仍在准备中。",
       },
     ],
     closingTitle: "好内容，值得再用一次。",
     closingDescription: "给每一个复制的片段，一个随时可回的地方。",
-    preview: "查看 MosaClip 源码",
+    preview: "获取 MosaClip",
     close: "关闭",
-    dialogTitle: "MosaClip 0.5.0，现已开源。",
-    dialogDescription: "MosaClip 0.5.0 已开源。查看完整源码、参与反馈或自行构建。",
+    dialogTitle: "获取 MosaClip 0.5.0",
+    dialogDescription: "适用于 Apple Silicon Mac 的测试版本。下载后打开 DMG，将 MosaClip 拖入应用程序文件夹。",
     release:
-      "现有测试包为 ad-hoc 签名，尚未完成 Developer ID 签名与 Apple 公证。正式版准备好后，这里会提供下载。",
-    dialogCta: "前往 GitHub",
-    requirements: "适用于 macOS 14 及更新版本",
+      "这是采用 ad-hoc 签名的未公证测试版，macOS 可能阻止首次打开。请在发布页核对 SHA-256；它不是经过 Apple 认证的正式安装包。",
+    dialogCta: "下载 0.5.0 · Apple Silicon",
+    releasePage: "发布说明与校验值",
+    requirements: "需要 macOS 14 或更高版本 · Apple Silicon",
     home: "MosaClip 首页",
     pageTitle: "MosaClip — 复制的每一刻，都能随时回到手边。",
     pageDescription:
@@ -104,20 +107,21 @@ const copy = {
       },
       {
         q: "Can I download a public release?",
-        a: "MosaClip 0.5.0 source is public and can be built locally. Production downloads will follow Developer ID signing and Apple notarization.",
+        a: "An Apple Silicon test DMG and complete source are available for 0.5.0. The test build is not Apple-notarized; macOS may block its first launch. Production certification is still pending.",
       },
     ],
     closingTitle: "Good things deserve another paste.",
     closingDescription: "Give everything you copy a place to come back to.",
-    preview: "Explore the source",
+    preview: "Get MosaClip",
     close: "Close",
-    dialogTitle: "MosaClip 0.5.0 is open source.",
+    dialogTitle: "Get MosaClip 0.5.0",
     dialogDescription:
-      "MosaClip 0.5.0 is open source. Explore the complete code, share feedback, or build locally.",
+      "A test build for Apple Silicon Macs. Open the DMG and drag MosaClip into Applications.",
     release:
-      "Current test builds use ad-hoc signing and have not completed Developer ID signing or Apple notarization. Downloads will be available here when the public release is ready.",
-    dialogCta: "View on GitHub",
-    requirements: "Designed for macOS 14 and later",
+      "This ad-hoc signed test build is not Apple-notarized. macOS may block its first launch. Verify its SHA-256 on the release page; this is not a production-certified installer.",
+    dialogCta: "Download 0.5.0 · Apple Silicon",
+    releasePage: "Release notes & checksums",
+    requirements: "Requires macOS 14 or later · Apple Silicon",
     home: "MosaClip home",
     pageTitle: "MosaClip — Everything you copy, right where you need it.",
     pageDescription:
@@ -169,6 +173,7 @@ function WorkspaceScreenshot({ alt, src = asset("/assets/mosaclip-workspace.png"
     <div ref={container} className="workspace-scale">
       <Smooth
         radius={radius}
+        autoEffects={false}
         className="workspace-frame"
         style={{ borderRadius: radius }}
       >
@@ -312,7 +317,7 @@ function useEntranceMotion() {
       observer.disconnect();
       elements.forEach((element) => {
         if (preference.matches) reveal(element);
-        else if (element.dataset.entrance !== "visible") {
+        else {
           element.dataset.entrance = "pending";
           observer.observe(element);
         }
@@ -324,10 +329,13 @@ function useEntranceMotion() {
       if (element) { reveal(element); observer.unobserve(element); }
     };
     configure();
+    const onPageShow = event => { if (event.persisted) configure(); };
+    window.addEventListener("pageshow", onPageShow);
     preference.addEventListener("change", configure);
     document.addEventListener("focusin", onFocus);
     return () => {
       observer.disconnect();
+      window.removeEventListener("pageshow", onPageShow);
       preference.removeEventListener("change", configure);
       document.removeEventListener("focusin", onFocus);
       elements.forEach((element) => { delete element.dataset.entrance; });
@@ -616,10 +624,11 @@ export function App() {
             <Icon name="info" size={18} />
             <p>{t.release}</p>
           </Smooth>
-          <Action as="a" primary href={repositoryURL} target="_blank" rel="noopener noreferrer">
+          <Action as="a" primary href={downloadURL}>
             {t.dialogCta}
-            <Icon name="arrow-up-right" size={15} />
+            <Icon name="arrow-down" size={15} />
           </Action>
+          <a className="release-page-link" href={releaseURL} target="_blank" rel="noopener noreferrer">{t.releasePage}</a>
           <p className="dialog-requirements">{t.requirements}</p>
         </Smooth>
       </dialog>

@@ -787,7 +787,7 @@ footer > span {
   .shortcut-steps { gap: 17px; }
   .format-feature, .privacy-feature { min-height: 360px; }
   .format-types { padding: 20px 25px; gap: 7px; }
-  .local-art { margin-top: 5px; height: 134px; }
+  .local-art { margin-top: 29px; height: 134px; }
   .privacy-checks { padding-bottom: 27px; gap: 10px; }
   .closing { margin-top: 40px; }
   .image-dialog { width: calc(100vw - 16px); border-radius: 10px; }
@@ -795,16 +795,20 @@ footer > span {
   .image-dialog form { left: 0; }
 }
 
-/* Quiet, once-only entrances: no layout movement or screenshot rescaling. */
+/* Keyframes start from a defined first frame, even when IntersectionObserver
+   runs before the pending state was painted (including warm-cache reloads). */
 @media (prefers-reduced-motion: no-preference) {
-  [data-entrance] {
-    transition: opacity 650ms cubic-bezier(.22,1,.36,1),
-      translate 650ms cubic-bezier(.22,1,.36,1);
-    transition-delay: var(--entrance-delay, 0ms);
+  [data-entrance] { --entrance-offset: 18px; }
+  .header-inner > [data-entrance] { --entrance-offset: -8px; }
+  [data-entrance="pending"] { opacity: 0; translate: 0 var(--entrance-offset); }
+  [data-entrance="visible"] {
+    animation: site-entrance 700ms cubic-bezier(.22,1,.36,1) both;
+    animation-delay: var(--entrance-delay, 0ms);
   }
-  [data-entrance="pending"] { opacity: 0; translate: 0 18px; }
-  [data-entrance="visible"] { opacity: 1; translate: 0 0; }
-  .header-inner > [data-entrance="pending"] { translate: 0 -8px; }
+  @keyframes site-entrance {
+    from { opacity: 0; translate: 0 var(--entrance-offset); }
+    to { opacity: 1; translate: 0 0; }
+  }
   dialog[open] { animation: dialog-enter 240ms cubic-bezier(.22,1,.36,1) both; }
   @keyframes dialog-enter { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
 }
@@ -931,7 +935,7 @@ nav a:hover { color: var(--text); }
 .dialog-body, .image-dialog { background: var(--surface); color: var(--text); border-color: var(--line); }
 .dialog-close, .image-close, .zoom-cue, .release-note { background: var(--surface-soft); border-color: var(--line); }
 .button:focus-visible, .language-switch button:focus-visible, .dialog-close:focus-visible { outline-color: var(--blue); }
-.workspace-frame { border-color: var(--line); background: var(--surface); }
+.workspace-frame { border: 0; background: transparent; box-shadow: none; }
 .showcase-controls { align-items: center; }
 .showcase-controls button { position: relative; color: var(--muted); }
 .showcase-controls button[aria-pressed="true"], .showcase-controls button[aria-pressed="true"]:hover {
@@ -1007,3 +1011,6 @@ nav a:hover { color: var(--text); }
   outline: none !important;
 }
 dialog:focus { outline: none; }
+
+.release-page-link { display: block; margin-top: 14px; color: var(--muted); font-size: .8125rem; }
+.release-page-link:hover { color: var(--text); }

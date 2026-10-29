@@ -18,7 +18,7 @@ Preserve approved responsive typography, light/dark/system themes, language swit
 native screenshot carousel, reduced motion and keyboard dialog behavior. All app
 screenshots use demonstration content; do not publish user clipboard data.
 
-The primary acquisition action explains the source-release status and links to
-the public repository. A production DMG will only be linked after the existing
-Developer ID/notarization pipeline passes. Fonts load from Xiaomi's MiSans CDN;
+The acquisition dialog links directly to the explicitly authorized 0.5.0 ad-hoc
+test DMG, with its uncertified status and a release/checksum link. A production
+DMG still requires the Developer ID/notarization pipeline. Fonts load from Xiaomi's MiSans CDN;
 other website artwork and UI icons are local assets. No clipboard access or analytics.

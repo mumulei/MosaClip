@@ -5,6 +5,9 @@ Source release: 0.5.0. Requires macOS 14 or later.
 Public source availability and production binary certification are separate.
 Developer ID/notarization credentials are not configured for this release, so
 0.5.0 publishes source and build instructions; no public production DMG is offered.
+The maintainer has explicitly authorized a separately labelled ad-hoc 0.5.0 test
+DMG on the prerelease page. It is not Developer ID signed or notarized and may be
+blocked by macOS. This specific test distribution does not relax production gates.
 
 ## Local QA
 
@@ -15,7 +18,8 @@ make package VERSION=0.5.0 ARCH=arm64 SIGNING_MODE=adhoc \
 
 Keep exact App/DMG, SHA-256 checksums, source provenance and test logs together.
 Never overwrite an accepted candidate or rebuild it to promote different bytes.
-Ad-hoc artifacts are for local QA and are not notarized distribution packages.
+Ad-hoc artifacts are for local QA by default and are not notarized production
+packages. The explicit 0.5.0 test-prerelease exception above retains that distinction.
 
 ## Production pipeline
 

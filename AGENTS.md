@@ -23,7 +23,10 @@ Upstream and imported-source provenance are recorded in docs/UPSTREAM.md.
   or /tmp for experiments. Preserve App, DMG, hashes and provenance together.
 - Production DMGs require Developer ID, hardened runtime, notarization Accepted,
   stapling and Gatekeeper verification through the existing pipeline. Ad-hoc
-  packages are local QA only; never bypass Gatekeeper/quarantine to claim a pass.
+  packages are normally local QA only; never bypass Gatekeeper/quarantine to claim a pass.
+  The maintainer explicitly authorized a public ad-hoc 0.5.0 test prerelease.
+  Keep its uncertified status visible; this does not waive production gates or
+  authorize automatic publishing or other ad-hoc releases.
 - Online updates and analytics stay disabled. Making the repository public does
   not authorize enabling an updater or bypassing certification.
 - Do not merge, push, release, change remotes or migrate storage without task
