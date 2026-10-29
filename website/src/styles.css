@@ -1010,7 +1010,7 @@ nav a:hover { color: var(--text); }
 }
 dialog:focus { outline: none; }
 
-.release-page-link { display: flex; width: fit-content; align-items: center; justify-content: center; gap: 6px; margin: 14px auto 0; color: var(--muted); font-size: .8125rem; }
+.release-page-link { display: flex; width: fit-content; align-items: center; justify-content: center; gap: 6px; margin: 0 auto 14px; color: var(--muted); font-size: .8125rem; }
 .release-page-link .ui-icon { filter: var(--icon-filter); opacity: .75; }
 .dialog-body > .dialog-installation { margin-bottom: 0; }
 .release-page-link:hover { color: var(--text); }
